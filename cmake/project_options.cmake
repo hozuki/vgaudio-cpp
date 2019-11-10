@@ -1,0 +1,5 @@
+if (VGAUDIO_APPS_DYNAMIC_LINKING)
+    set(VGAUDIO_APPS_LINK_LIBRARY vgaudio)
+else ()
+    set(VGAUDIO_APPS_LINK_LIBRARY vgaudio_static)
+endif ()
