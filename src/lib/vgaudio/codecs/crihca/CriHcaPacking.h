@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "../../../common/utilities/static_class.h"
+#include "../../../common/utilities/runtime_array.h"
 
 namespace vgaudio::utilities {
     struct Crc16;
@@ -15,6 +16,7 @@ namespace vgaudio::codecs::crihca {
     struct CriHcaFrame;
 
     using namespace std;
+    using namespace common_lib::utilities;
     using namespace vgaudio::utilities;
 
     struct CriHcaPacking {
