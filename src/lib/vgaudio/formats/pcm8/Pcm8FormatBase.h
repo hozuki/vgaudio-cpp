@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <functional>
 
-#include "../../../common/utilities/runtime_jagged_array_2.h"
+#include "../../../common/utilities/runtime_jagged_array.h"
 #include "../AudioFormatBase.h"
 
 namespace vgaudio::formats::pcm8 {

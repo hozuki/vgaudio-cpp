@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../common/utilities/runtime_jagged_array_2.h"
+#include "../../../common/utilities/runtime_jagged_array.h"
 #include "../AudioFormatBaseBuilder.h"
 
 namespace vgaudio::formats::pcm8 {

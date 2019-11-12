@@ -6,7 +6,8 @@
 
 #include "../../src/api/vgaudio.h"
 #include "../../src/lib/common/utilities/runtime_array.h"
-#include "../../src/lib/common/utilities/runtime_jagged_array_2.h"
+#include "../../src/lib/common/utilities/runtime_jagged_array.h"
+#include "../../src/lib/common/utilities/runtime_jagged_array.h"
 #include "../../src/lib/common/utilities/ArrayHelper.h"
 #include "../../src/lib/common/utilities/Guid.h"
 #include "../../src/lib/common/utilities/traits.h"
@@ -128,6 +129,30 @@ int main() {
 
         for (auto elem : *arr5) {
             cout << type_name(elem) << "#" << static_cast<int>(elem) << " ";
+        }
+
+        cout << endl;
+    }
+
+    {
+        auto arr6 = make_jagged_array_dynamic<int, 3>(2, 3, 4);
+
+        (*(*(*arr6)[0])[0])[0] = 2;
+        (*(*(*arr6)[0])[1])[0] = 5;
+        (*(*(*arr6)[0])[0])[2] = 6;
+
+        cout << "Array 6 items: ";
+
+        for (const auto &a : *arr6) {
+            for (const auto &b : *a) {
+                for (auto elem : *b) {
+                    cout << type_name(elem) << "#" << static_cast<int>(elem) << " ";
+                }
+
+                cout << " ; ";
+            }
+
+            cout << endl;
         }
 
         cout << endl;

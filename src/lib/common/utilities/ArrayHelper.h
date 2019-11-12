@@ -8,7 +8,7 @@
 
 #include "static_class.h"
 #include "runtime_array.h"
-#include "runtime_jagged_array_2.h"
+#include "runtime_jagged_array.h"
 
 namespace common_lib::utilities {
 

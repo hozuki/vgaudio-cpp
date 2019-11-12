@@ -6,7 +6,7 @@
 
 #include "CriHcaQuality.h"
 #include "../../../common/utilities/runtime_array.h"
-#include "../../../common/utilities/runtime_jagged_array_2.h"
+#include "../../../common/utilities/runtime_jagged_array.h"
 
 namespace vgaudio::utilities {
     struct Crc16;
