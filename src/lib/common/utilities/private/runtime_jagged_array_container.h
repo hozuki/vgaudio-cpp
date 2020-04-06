@@ -137,7 +137,7 @@ namespace common_lib::utilities {
 
     private:
 
-        array_ptr<jarray_ptr<value_type, Rank - 1>> _arrays;
+        array_ptr <jarray_ptr<value_type, Rank - 1>> _arrays;
 
         void checkIndex(difference_type index) const noexcept(false) {
             if (index < 0 || index >= size()) {
@@ -214,21 +214,6 @@ namespace common_lib::utilities {
 
     };
 
-    template<typename T, size_t Rank, typename TDim, typename... TDims>
-    jarray_ptr<T, Rank> make_jagged_array_dynamic_helper__(TDim dim, TDims... dims) {
-        static_assert(Rank > 2);
-        static_assert(std::is_convertible<TDim, size_t>::value);
-
-        auto arr = make_shared<runtime_jagged_array<T, Rank>>(dim);
-
-        for (auto i = 0; i < dim; i += 1) {
-            auto a = make_jagged_array_dynamic_helper__<T, Rank - 1, TDims...>(dims...);
-            (*arr)[i] = a;
-        }
-
-        return arr;
-    }
-
     template<typename T, size_t Rank, typename TDim1, typename TDim2>
     jarray_ptr<T, Rank> make_jagged_array_dynamic_helper__(TDim1 dim1, TDim2 dim2) {
         static_assert(Rank == 2);
@@ -239,6 +224,21 @@ namespace common_lib::utilities {
 
         for (auto i = 0; i < dim1; i += 1) {
             auto a = make_array_dynamic<T>(dim2);
+            (*arr)[i] = a;
+        }
+
+        return arr;
+    }
+
+    template<typename T, size_t Rank, typename TDim, typename... TDims>
+    jarray_ptr<T, Rank> make_jagged_array_dynamic_helper__(TDim dim, TDims... dims) {
+        static_assert(Rank > 2);
+        static_assert(std::is_convertible<TDim, size_t>::value);
+
+        auto arr = make_shared<runtime_jagged_array<T, Rank>>(dim);
+
+        for (auto i = 0; i < dim; i += 1) {
+            auto a = make_jagged_array_dynamic_helper__<T, Rank - 1, TDims...>(dims...);
             (*arr)[i] = a;
         }
 

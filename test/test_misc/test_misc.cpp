@@ -7,7 +7,6 @@
 #include "../../src/api/vgaudio.h"
 #include "../../src/lib/common/utilities/runtime_array.h"
 #include "../../src/lib/common/utilities/runtime_jagged_array.h"
-#include "../../src/lib/common/utilities/runtime_jagged_array.h"
 #include "../../src/lib/common/utilities/ArrayHelper.h"
 #include "../../src/lib/common/utilities/Guid.h"
 #include "../../src/lib/common/utilities/traits.h"
