@@ -1,4 +1,5 @@
 #include <cassert>
+#include <cstring>
 
 #include "../../common/utilities/TypeHelper.h"
 #include "../../common/io/File.h"

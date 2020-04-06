@@ -214,14 +214,6 @@ namespace common_lib::utilities {
 
     };
 
-    template<typename T, size_t Rank, typename... TDims>
-    jarray_ptr<T, Rank> make_jagged_array_dynamic(TDims... dims) {
-        static_assert(Rank >= 2);
-        static_assert(sizeof...(dims) == Rank);
-
-        return make_jagged_array_dynamic_helper__<T, Rank, TDims...>(dims...);
-    }
-
     template<typename T, size_t Rank, typename TDim, typename... TDims>
     jarray_ptr<T, Rank> make_jagged_array_dynamic_helper__(TDim dim, TDims... dims) {
         static_assert(Rank > 2);
@@ -251,6 +243,14 @@ namespace common_lib::utilities {
         }
 
         return arr;
+    }
+
+    template<typename T, size_t Rank, typename... TDims>
+    jarray_ptr<T, Rank> make_jagged_array_dynamic(TDims... dims) {
+        static_assert(Rank >= 2);
+        static_assert(sizeof...(dims) == Rank);
+
+        return make_jagged_array_dynamic_helper__<T, Rank, TDims...>(dims...);
     }
 
 }

@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "CriHcaTables.h"
 #include "CriHcaConstants.h"
 #include "CriHcaChannel.h"

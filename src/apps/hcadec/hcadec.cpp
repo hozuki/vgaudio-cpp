@@ -1,4 +1,5 @@
 #include <string>
+#include <cstring>
 #include <cinttypes>
 
 #include <argparse.hpp>

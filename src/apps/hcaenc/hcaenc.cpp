@@ -1,4 +1,5 @@
 #include <string>
+#include <cstring>
 
 #include <argparse.hpp>
 #include <vgaudio.h>
