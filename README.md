@@ -4,6 +4,13 @@ A C++ port of [VGAudio](https://github.com/Thealexbarney/VGAudio).
 
 And some modern C++ practice.
 
+**Downloads:**
+
+| Platform | Latest Artifact |
+|---|---|
+| Windows (VS 2019) | [Link](https://ci.appveyor.com/api/projects/hozuki/vgaudio-cpp/artifacts/vgaudio-vc16-latest.zip?job=Image%3A%20Visual%20Studio%202019) |
+| Ubuntu 18.04 Bionic | [Link](https://ci.appveyor.com/api/projects/hozuki/vgaudio-cpp/artifacts/vgaudio-bionic-latest.zip?job=Image%3A%20Ubuntu) |
+
 ## Prerequisites
 
 ### Compiler

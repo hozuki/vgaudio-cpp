@@ -1,7 +1,4 @@
 version: 0.1.{build}
-branches:
-  only:
-    - master
 image:
   - Visual Studio 2019
   - Ubuntu

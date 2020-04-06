@@ -13,6 +13,10 @@ Copy-Item -Path "${source}/*" -Destination $BinDir -Recurse
 
 & 7z a "${zipPath}" "bin/*" -r
 
-[String]$zipName = "vgaudio-bionic-${env:APPVEYOR_BUILD_VERSION}_${env:APPVEYOR_REPO_COMMIT}.zip"
+[String]$zipNameVersioned = "vgaudio-bionic-${env:APPVEYOR_BUILD_VERSION}_${env:APPVEYOR_REPO_COMMIT}.zip"
 
-Push-AppveyorArtifact $zipPath -FileName $zipName -DeploymentName "Ubuntu builds"
+Push-AppveyorArtifact $zipPath -FileName $zipNameVersioned -DeploymentName "Ubuntu builds"
+
+[String]$zipNameFixed = "vgaudio-bionic-latest.zip"
+
+Push-AppveyorArtifact $zipPath -FileName $zipNameFixed -DeploymentName "Ubuntu builds (fixed naming)"
