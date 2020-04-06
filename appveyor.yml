@@ -1,0 +1,18 @@
+branches:
+  only:
+    - master
+image:
+  - Visual Studio 2019
+  - Ubuntu
+shallow_clone: true
+matrix:
+  fast_finish: true
+install:
+  - pwsh: ./scripts/ci-install.ps1
+build_script:
+  - pwsh: ./scripts/ci-build.ps1
+after_build:
+  - pwsh: ./scripts/ci-after_build.ps1
+artifacts:
+  - path: 'dist/*.zip'
+test: false

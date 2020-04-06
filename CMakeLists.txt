@@ -4,6 +4,7 @@ project(vgaudio)
 include(ExternalProject)
 
 include(cmake/common_defines.cmake)
+include(cmake/project_directories.cmake)
 
 include(cmake/project_options.cmake)
 
