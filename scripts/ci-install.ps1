@@ -5,5 +5,5 @@ cd ../..
 
 if ($isLinux)
 {
-    sudo apt install zlib1g-dev -y
+    sudo apt install zlib1g-dev p7zip-full -y
 }
