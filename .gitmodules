@@ -4,3 +4,6 @@
 [submodule "ext/mingw-std-threads"]
 	path = ext/mingw-std-threads
 	url = https://github.com/meganz/mingw-std-threads
+[submodule "ext/zlib"]
+	path = ext/zlib
+	url = https://github.com/madler/zlib
