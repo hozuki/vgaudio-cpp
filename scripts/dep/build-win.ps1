@@ -10,13 +10,16 @@ cd x64
 cd ../..
 
 $zlibBuildDir = Join-Path $PSScriptRoot "../../ext/zlib/build" -Resolve
-$zlibBinDir = Join-Path $zlibBuildDir "bin"
-$zlibBinDll = Join-Path $zlibBinDir "zlib1.dll"
+$zlibBins = @(
+    Join-Path (Join-Path $zlibBuildDir "bin") "zlib1.dll"
+    Join-Path (Join-Path $zlibBuildDir "lib") "zlib.lib"
+    Join-Path (Join-Path $zlibBuildDir "lib") "zlibstatic.lib"
+)
 
 Remove-Item $zlibBuildDir -Recurse
 msbuild build\x86\vgaudio.sln /p:Configuration=Release
-Copy-Item $zlibBinDll (Join-Path $pwd "build/x86/cmake-build-release/Release" -Resolve)
+Copy-Item $zlibBins (Join-Path $pwd "build/x86/cmake-build-release/Release" -Resolve)
 
 Remove-Item $zlibBuildDir -Recurse
 msbuild build\x64\vgaudio.sln /p:Configuration=Release
-Copy-Item $zlibBinDll (Join-Path $pwd "build/x64/cmake-build-release/Release" -Resolve)
+Copy-Item $zlibBins (Join-Path $pwd "build/x64/cmake-build-release/Release" -Resolve)
