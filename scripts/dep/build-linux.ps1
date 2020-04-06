@@ -1,6 +1,7 @@
-mkdir build -ErrorAction SilentlyContinue
+& mkdir build
 cd build
-& cmake -G "UNIX" -D CMAKE_BUILD_TYPE=Release -D CMAKE_WORKING_DIR="$pwd" ..
+& cmake -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Release -D CMAKE_WORKING_DIR="$pwd" ..
 make
+make install
 
 cd ..

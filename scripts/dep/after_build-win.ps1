@@ -4,10 +4,10 @@ mkdir $BinDir -ErrorAction SilentlyContinue
 
 function Copy-BuiltBinaries([String]$subDir)
 {
-    $destination = Join-Path $BinDir $subDir
+    [String]$destination = Join-Path $BinDir $subDir
     mkdir $destination -ErrorAction SilentlyContinue
 
-    $source = Join-Path $ProjDir "build/${subDir}/cmake-build-release/Release" -Resolve
+    [String]$source = Join-Path $ProjDir "build/${subDir}/cmake-build-release/Release" -Resolve
     Copy-Item -Path "${source}/*" -Destination $destination -Recurse
 }
 
