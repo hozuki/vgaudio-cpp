@@ -46,6 +46,8 @@ Guid::Guid(uint32_t d1, uint16_t d2, uint16_t d3, uint16_t d4, uint32_t d5l, uin
 
 Guid::Guid(uint32_t d1, uint16_t d2, uint16_t d3, uint16_t d4, uint64_t d5) noexcept
     : data1(d1), data2(d2), data3(d3) {
+    *const_cast<uint16_t *>(reinterpret_cast<const uint16_t *>(data4)) = d4;
+    memcpy(data4 + 2, &d5, 6);
 }
 
 Guid::Guid(uint32_t d1, uint32_t d2, uint32_t d3, uint32_t d4) noexcept {

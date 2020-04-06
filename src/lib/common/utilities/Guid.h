@@ -6,7 +6,7 @@
 
 namespace common_lib::utilities {
 
-    struct Guid {
+    struct Guid final {
 
     public:
 
