@@ -7,7 +7,7 @@ using namespace std;
 using namespace common_lib::utilities;
 
 static inline size_t HashCombine(size_t seed, size_t h) {
-    return seed ^ (h + 0x9e3779b9 + (seed << 6) + (seed >> 2));
+    return seed ^ (h + 0x9e3779b9u + (seed << 6u) + (seed >> 2u));
 }
 
 Guid::Guid() noexcept {
@@ -63,7 +63,7 @@ Guid::Guid(const uint8_t data[16]) {
 }
 
 bool Guid::operator==(const Guid &other) {
-    return data1 == other.data1 && data2 == other.data2 && data3 == other.data3 && memcmp(data4, other.data4, 4) == 0;
+    return data1 == other.data1 && data2 == other.data2 && data3 == other.data3 && memcmp(data4, other.data4, 8) == 0;
 }
 
 bool Guid::operator!=(const Guid &other) {
