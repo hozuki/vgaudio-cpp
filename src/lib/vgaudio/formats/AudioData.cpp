@@ -4,7 +4,10 @@
 #include "AudioData.h"
 
 using namespace std;
+using namespace common_lib::utilities;
 using namespace vgaudio::formats;
+using namespace vgaudio::formats::pcm16;
+using namespace vgaudio::codecs;
 
 AudioData::AudioData(const shared_ptr<IAudioFormat> &format) {
     addFormat(format);

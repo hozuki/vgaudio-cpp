@@ -7,25 +7,23 @@
 
 namespace vgaudio::utilities {
 
-    using namespace common_lib::utilities;
-
     struct BitReader final {
 
     private:
 
-        array_ptr<uint8_t> _buffer;
+        common_lib::utilities::array_ptr<uint8_t> _buffer;
         size_t _position;
 
     public:
 
-        explicit BitReader(const array_ptr<uint8_t> &buffer);
+        explicit BitReader(const common_lib::utilities::array_ptr<uint8_t> &buffer);
 
         ~BitReader() = default;
 
-        void SetBuffer(const array_ptr<uint8_t> &buffer);
+        void SetBuffer(const common_lib::utilities::array_ptr<uint8_t> &buffer);
 
         [[nodiscard]]
-        array_ptr<uint8_t> getBuffer() const;
+        common_lib::utilities::array_ptr<uint8_t> getBuffer() const;
 
         [[nodiscard]]
         size_t getLengthBits() const;

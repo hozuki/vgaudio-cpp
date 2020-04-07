@@ -1,5 +1,6 @@
 #include <algorithm>
 
+#include "../../../common/io/Stream.h"
 #include "../../../common/io/BinaryReader.h"
 #include "RiffParser.h"
 #include "WaveFormatTags.h"

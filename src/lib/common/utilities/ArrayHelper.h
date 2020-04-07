@@ -72,7 +72,7 @@ namespace common_lib::utilities {
 
         template<typename T, size_t N>
         static array_ptr<T> arrayToDynamic(const narray_ptr<T, N> &arr) {
-            return make_shared<runtime_array_wrapper<T, N>>(arr);
+            return std::make_shared<runtime_array_wrapper<T, N>>(arr);
         }
 
         template<typename T>

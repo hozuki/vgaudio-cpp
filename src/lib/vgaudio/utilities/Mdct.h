@@ -1,14 +1,10 @@
 #pragma once
 
 #include <cstdint>
-#include <memory>
 
 #include "../../common/utilities/runtime_array.h"
 
 namespace vgaudio::utilities {
-
-    using namespace std;
-    using namespace common_lib::utilities;
 
     struct Mdct final {
 
@@ -25,12 +21,12 @@ namespace vgaudio::utilities {
 
     private:
 
-        array_ptr<double> _mdctPrevious;
-        array_ptr<double> _imdctPrevious;
-        array_ptr<double> _imdctWindow;
+        common_lib::utilities::array_ptr<double> _mdctPrevious;
+        common_lib::utilities::array_ptr<double> _imdctPrevious;
+        common_lib::utilities::array_ptr<double> _imdctWindow;
 
-        array_ptr<double> _scratchMdct;
-        array_ptr<double> _scratchDct;
+        common_lib::utilities::array_ptr<double> _scratchMdct;
+        common_lib::utilities::array_ptr<double> _scratchDct;
 
     private:
 
@@ -44,27 +40,27 @@ namespace vgaudio::utilities {
 
     public:
 
-        Mdct(int32_t mdctBits, const array_ptr<double> &window, double scale = 1);
+        Mdct(int32_t mdctBits, const common_lib::utilities::array_ptr<double> &window, double scale = 1);
 
         ~Mdct() = default;
 
     public:
 
-        void RunMdct(const array_ptr<double> &input, const array_ptr<double> &output);
+        void RunMdct(const common_lib::utilities::array_ptr<double> &input, const common_lib::utilities::array_ptr<double> &output);
 
-        void RunImdct(const array_ptr<double> &input, const array_ptr<double> &output);
-
-    private:
-
-        void Dct4(const array_ptr<double> &input, const array_ptr<double> &output);
-
-        void Dct4Slow(const array_ptr<double> &input, const array_ptr<double> &output);
+        void RunImdct(const common_lib::utilities::array_ptr<double> &input, const common_lib::utilities::array_ptr<double> &output);
 
     private:
 
-        static void GenerateTrigTables(int32_t sizeBits, array_ptr<double> &sin, array_ptr<double> &cos);
+        void Dct4(const common_lib::utilities::array_ptr<double> &input, const common_lib::utilities::array_ptr<double> &output);
 
-        static array_ptr<int32_t> GenerateShuffleTable(int32_t sizeBits);
+        void Dct4Slow(const common_lib::utilities::array_ptr<double> &input, const common_lib::utilities::array_ptr<double> &output);
+
+    private:
+
+        static void GenerateTrigTables(int32_t sizeBits, common_lib::utilities::array_ptr<double> &sin, common_lib::utilities::array_ptr<double> &cos);
+
+        static common_lib::utilities::array_ptr<int32_t> GenerateShuffleTable(int32_t sizeBits);
 
     };
 

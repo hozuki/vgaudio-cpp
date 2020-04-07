@@ -15,6 +15,7 @@
 
 using namespace std;
 using namespace common_lib::utilities;
+using namespace vgaudio::codecs;
 using namespace vgaudio::codecs::crihca;
 using namespace vgaudio::formats;
 using namespace vgaudio::formats::pcm16;

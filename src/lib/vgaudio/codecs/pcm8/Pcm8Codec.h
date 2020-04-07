@@ -7,21 +7,19 @@
 
 namespace vgaudio::codecs::pcm8 {
 
-    using namespace common_lib::utilities;
-
     struct Pcm8Codec {
 
         IMPLEMENT_STATIC_CLASS(Pcm8Codec);
 
     public:
 
-        static array_ptr<uint8_t> encodeUnsigned(const array_ptr<int16_t> &array);
+        static common_lib::utilities::array_ptr<uint8_t> encodeUnsigned(const common_lib::utilities::array_ptr<int16_t> &array);
 
-        static array_ptr<int16_t> decodeUnsigned(const array_ptr<uint8_t> &array);
+        static common_lib::utilities::array_ptr<int16_t> decodeUnsigned(const common_lib::utilities::array_ptr<uint8_t> &array);
 
-        static array_ptr<uint8_t> encodeSigned(const array_ptr<int16_t> &array);
+        static common_lib::utilities::array_ptr<uint8_t> encodeSigned(const common_lib::utilities::array_ptr<int16_t> &array);
 
-        static array_ptr<int16_t> decodeSigned(const array_ptr<uint8_t> &array);
+        static common_lib::utilities::array_ptr<int16_t> decodeSigned(const common_lib::utilities::array_ptr<uint8_t> &array);
 
     };
 

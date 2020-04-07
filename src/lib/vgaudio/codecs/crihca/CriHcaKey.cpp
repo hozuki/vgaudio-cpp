@@ -180,7 +180,7 @@ CriHcaKey::CriHcaKey(CriHcaKeyType type) {
             _decryptionTable = CreateDecryptionTableType1();
             break;
         default:
-            throw invalid_argument(StrHelper::format("unsupported key type for this constructor: %" PRId32, static_cast<int32_t>(type)));
+            throw std::invalid_argument(StrHelper::format("unsupported key type for this constructor: %" PRId32, static_cast<int32_t>(type)));
     }
 
     _keyCode = 0;

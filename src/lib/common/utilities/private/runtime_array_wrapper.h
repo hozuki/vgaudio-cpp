@@ -9,8 +9,6 @@
 
 namespace common_lib::utilities {
 
-    using namespace std;
-
     template<typename T, size_t N>
     struct runtime_array_wrapper : public runtime_array<T> {
 
@@ -31,11 +29,11 @@ namespace common_lib::utilities {
 
     private:
 
-        shared_ptr<array<T, N>> _array;
+        std::shared_ptr<std::array<T, N>> _array;
 
     public:
 
-        explicit runtime_array_wrapper(const shared_ptr<array<T, N>> &arr)
+        explicit runtime_array_wrapper(const std::shared_ptr<std::array<T, N>> &arr)
             : _array(arr) {
         }
 

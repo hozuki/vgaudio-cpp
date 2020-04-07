@@ -12,10 +12,6 @@ namespace vgaudio::codecs {
 
 namespace vgaudio::formats::pcm16 {
 
-    using namespace std;
-    using namespace vgaudio::formats;
-    using namespace vgaudio::codecs;
-
     struct Pcm16FormatBuilder;
 
     struct Pcm16Format : public AudioFormatBase {
@@ -24,40 +20,40 @@ namespace vgaudio::formats::pcm16 {
 
     private:
 
-        jarray2_ptr<int16_t> _channels;
+        common_lib::utilities::jarray2_ptr<int16_t> _channels;
 
     public:
 
-        explicit Pcm16Format(const shared_ptr<Pcm16FormatBuilder> &builder);
+        explicit Pcm16Format(const std::shared_ptr<Pcm16FormatBuilder> &builder);
 
-        Pcm16Format(const jarray2_ptr<int16_t> &channels, int32_t sampleRate);
+        Pcm16Format(const common_lib::utilities::jarray2_ptr<int16_t> &channels, int32_t sampleRate);
 
         Pcm16Format();
 
         ~Pcm16Format() override = default;
 
         [[nodiscard]]
-        jarray2_ptr<int16_t> getChannels() const;
+        common_lib::utilities::jarray2_ptr<int16_t> getChannels() const;
 
-        shared_ptr<Pcm16Format> toPcm16() override;
+        std::shared_ptr<Pcm16Format> toPcm16() override;
 
-        shared_ptr<IAudioFormat> encodeFromPcm16(const shared_ptr<Pcm16Format> &pcm16) override;
+        std::shared_ptr<vgaudio::formats::IAudioFormat> encodeFromPcm16(const std::shared_ptr<Pcm16Format> &pcm16) override;
 
-        shared_ptr<AudioFormatBaseBuilder> getCloneBuilder() override;
+        std::shared_ptr<AudioFormatBaseBuilder> getCloneBuilder() override;
 
-        static shared_ptr<Pcm16FormatBuilder> getBuilder(const jarray2_ptr<int16_t> &channels, int32_t sampleRate);
+        static std::shared_ptr<Pcm16FormatBuilder> getBuilder(const common_lib::utilities::jarray2_ptr<int16_t> &channels, int32_t sampleRate);
 
     protected:
 
-        shared_ptr<AudioFormatBase> addInternal(const shared_ptr<IAudioFormat> &pcm16) override;
+        std::shared_ptr<AudioFormatBase> addInternal(const std::shared_ptr<vgaudio::formats::IAudioFormat> &pcm16) override;
 
-        shared_ptr<AudioFormatBase> getChannelsInternal(const array_ptr<int32_t> &channelRange) override;
-
-        [[nodiscard]]
-        bool canAcceptAudioFormat(const IAudioFormat *format) const override;
+        std::shared_ptr<AudioFormatBase> getChannelsInternal(const common_lib::utilities::array_ptr<int32_t> &channelRange) override;
 
         [[nodiscard]]
-        bool canAcceptConfig(const CodecParameters *config) const override;
+        bool canAcceptAudioFormat(const vgaudio::formats::IAudioFormat *format) const override;
+
+        [[nodiscard]]
+        bool canAcceptConfig(const vgaudio::codecs::CodecParameters *config) const override;
 
     };
 

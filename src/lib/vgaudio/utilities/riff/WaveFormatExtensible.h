@@ -11,10 +11,6 @@ namespace common_lib::io {
 
 namespace vgaudio::utilities::riff {
 
-    using namespace std;
-    using namespace common_lib::utilities;
-    using namespace common_lib::io;
-
     struct RiffParser;
 
     struct WaveFormatExtensible final {
@@ -24,14 +20,14 @@ namespace vgaudio::utilities::riff {
         int32_t _size;
         int32_t _validBitsPerSample;
         uint32_t _channelMask;
-        Guid _subFormat;
-        array_ptr<uint8_t> _extra;
+        common_lib::utilities::Guid _subFormat;
+        common_lib::utilities::array_ptr<uint8_t> _extra;
 
     public:
 
         ~WaveFormatExtensible() = default;
 
-        static shared_ptr<WaveFormatExtensible> parse(const shared_ptr<RiffParser> &parser, const shared_ptr<BinaryReader> &reader);
+        static std::shared_ptr<WaveFormatExtensible> parse(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
         [[nodiscard]]
         int32_t getSize() const;
@@ -54,18 +50,18 @@ namespace vgaudio::utilities::riff {
         void setChannelMask(uint32_t mask);
 
         [[nodiscard]]
-        Guid getSubFormat() const;
+        common_lib::utilities::Guid getSubFormat() const;
 
-        void setSubFormat(const Guid &format);
+        void setSubFormat(const common_lib::utilities::Guid &format);
 
         [[nodiscard]]
-        array_ptr<uint8_t> getExtra() const;
+        common_lib::utilities::array_ptr<uint8_t> getExtra() const;
 
-        void setExtra(const array_ptr<uint8_t> &extra);
+        void setExtra(const common_lib::utilities::array_ptr<uint8_t> &extra);
 
     private:
 
-        explicit WaveFormatExtensible(const shared_ptr<BinaryReader> &reader);
+        explicit WaveFormatExtensible(const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
     };
 

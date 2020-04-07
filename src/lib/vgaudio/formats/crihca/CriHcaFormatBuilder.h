@@ -11,10 +11,6 @@ namespace vgaudio::codecs::crihca {
 
 namespace vgaudio::formats::crihca {
 
-    using namespace std;
-    using namespace common_lib::utilities;
-    using namespace vgaudio::codecs::crihca;
-
     struct CriHcaFormat;
 
     struct CriHcaFormatBuilder : public AudioFormatBaseBuilder {
@@ -23,25 +19,25 @@ namespace vgaudio::formats::crihca {
 
     private:
 
-        jarray2_ptr<uint8_t> _audioData;
-        shared_ptr<HcaInfo> _hca;
+        common_lib::utilities::jarray2_ptr<uint8_t> _audioData;
+        std::shared_ptr<vgaudio::codecs::crihca::HcaInfo> _hca;
 
     public:
 
-        CriHcaFormatBuilder(const jarray2_ptr<uint8_t> &audioData, const shared_ptr<HcaInfo> &hca);
+        CriHcaFormatBuilder(const common_lib::utilities::jarray2_ptr<uint8_t> &audioData, const std::shared_ptr<vgaudio::codecs::crihca::HcaInfo> &hca);
 
         ~CriHcaFormatBuilder() override = default;
 
         [[nodiscard]]
-        jarray2_ptr<uint8_t> getAudioData() const;
+        common_lib::utilities::jarray2_ptr<uint8_t> getAudioData() const;
 
         [[nodiscard]]
-        shared_ptr<HcaInfo> getHca() const;
+        std::shared_ptr<vgaudio::codecs::crihca::HcaInfo> getHca() const;
 
         [[nodiscard]]
         int32_t getChannelCount() const override;
 
-        shared_ptr<IAudioFormat> build() override;
+        std::shared_ptr<IAudioFormat> build() override;
 
     };
 

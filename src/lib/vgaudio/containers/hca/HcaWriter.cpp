@@ -13,6 +13,7 @@ using namespace std;
 using namespace vgaudio::containers;
 using namespace vgaudio::containers::hca;
 using namespace vgaudio::codecs::crihca;
+using namespace vgaudio::formats;
 using namespace vgaudio::formats::crihca;
 using namespace vgaudio::utilities;
 using namespace common_lib::utilities;

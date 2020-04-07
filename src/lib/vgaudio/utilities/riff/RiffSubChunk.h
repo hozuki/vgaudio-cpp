@@ -13,23 +13,19 @@ namespace common_lib::io {
 
 namespace vgaudio::utilities::riff {
 
-    using namespace std;
-    using namespace common_lib::utilities;
-    using namespace common_lib::io;
-
     struct RiffSubChunk {
 
         DECLARE_ROOT_CLASS(RiffSubChunk);
 
     private:
 
-        string _subChunkId;
+        std::string _subChunkId;
         int32_t _subChunkSize;
-        array_ptr<uint8_t> _extra;
+        common_lib::utilities::array_ptr<uint8_t> _extra;
 
     public:
 
-        explicit RiffSubChunk(const shared_ptr<BinaryReader> &reader);
+        explicit RiffSubChunk(const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
         virtual ~RiffSubChunk() = default;
 
@@ -44,9 +40,9 @@ namespace vgaudio::utilities::riff {
         void setSubChunkSize(int32_t size);
 
         [[nodiscard]]
-        array_ptr<uint8_t> getExtra() const;
+        common_lib::utilities::array_ptr<uint8_t> getExtra() const;
 
-        void setExtra(const array_ptr<uint8_t> &extra);
+        void setExtra(const common_lib::utilities::array_ptr<uint8_t> &extra);
 
     };
 

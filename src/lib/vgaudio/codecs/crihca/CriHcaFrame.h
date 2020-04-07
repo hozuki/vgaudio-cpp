@@ -10,9 +10,6 @@ namespace vgaudio::codecs::crihca {
     struct HcaInfo;
     struct CriHcaChannel;
 
-    using namespace std;
-    using namespace common_lib::utilities;
-
     struct CriHcaFrame final {
 
     private:
@@ -21,26 +18,26 @@ namespace vgaudio::codecs::crihca {
 
     private:
 
-        shared_ptr<HcaInfo> _hca;
-        array_ptr<shared_ptr<CriHcaChannel>> _channels;
-        narray_ptr<uint8_t, C::SamplesPerSubframe> _athCurve;
+        std::shared_ptr<HcaInfo> _hca;
+        common_lib::utilities::array_ptr<std::shared_ptr<CriHcaChannel>> _channels;
+        common_lib::utilities::narray_ptr<uint8_t, C::SamplesPerSubframe> _athCurve;
         int32_t _acceptableNoiseLevel;
         int32_t _evaluationBoundary;
 
     public:
 
-        explicit CriHcaFrame(const shared_ptr<HcaInfo> &hca);
+        explicit CriHcaFrame(const std::shared_ptr<HcaInfo> &hca);
 
         ~CriHcaFrame() = default;
 
         [[nodiscard]]
-        shared_ptr<HcaInfo> getHca() const;
+        std::shared_ptr<HcaInfo> getHca() const;
 
         [[nodiscard]]
-        array_ptr<shared_ptr<CriHcaChannel>> getChannels() const;
+        common_lib::utilities::array_ptr<std::shared_ptr<CriHcaChannel>> getChannels() const;
 
         [[nodiscard]]
-        narray_ptr<uint8_t, C::SamplesPerSubframe> getAthCurve() const;
+        common_lib::utilities::narray_ptr<uint8_t, C::SamplesPerSubframe> getAthCurve() const;
 
         [[nodiscard]]
         int32_t getAcceptableNoiseLevel() const;

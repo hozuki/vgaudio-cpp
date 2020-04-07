@@ -8,13 +8,11 @@
 
 namespace common_lib::utilities {
 
-    using namespace std;
-
     template<typename T, size_t Rank>
     struct runtime_jagged_array;
 
     template<typename T, size_t Rank>
-    using jarray_ptr = shared_ptr<runtime_jagged_array<T, Rank>>;
+    using jarray_ptr = std::shared_ptr<runtime_jagged_array<T, Rank>>;
 
     template<typename T>
     struct runtime_jagged_array<T, 0> {
@@ -222,7 +220,7 @@ namespace common_lib::utilities {
             static_assert(std::is_convertible<TDim1, size_t>::value);
             static_assert(std::is_convertible<TDim2, size_t>::value);
 
-            auto arr = make_shared<runtime_jagged_array<T, Rank>>(dim1);
+            auto arr = std::make_shared<runtime_jagged_array<T, Rank>>(dim1);
 
             for (auto i = 0; i < dim1; i += 1) {
                 auto a = make_array_dynamic<T>(dim2);
@@ -237,7 +235,7 @@ namespace common_lib::utilities {
             static_assert(Rank > 2);
             static_assert(std::is_convertible<TDim, size_t>::value);
 
-            auto arr = make_shared<runtime_jagged_array<T, Rank>>(dim);
+            auto arr = std::make_shared<runtime_jagged_array<T, Rank>>(dim);
 
             for (auto i = 0; i < dim; i += 1) {
                 auto a = make_jagged_array_dynamic_helper<T, Rank - 1, TDims...>(dims...);

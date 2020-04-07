@@ -1,5 +1,7 @@
 #pragma once
 
+#include <type_traits>
+
 namespace common_lib::utilities {
 
     // https://stackoverflow.com/a/7110361

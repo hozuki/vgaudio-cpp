@@ -4,10 +4,6 @@
 
 namespace vgaudio::utilities::riff {
 
-    using namespace std;
-    using namespace common_lib::utilities;
-    using namespace common_lib::io;
-
     struct RiffParser;
 
     struct WaveSmplChunk : public RiffSubChunk {
@@ -41,13 +37,13 @@ namespace vgaudio::utilities::riff {
         int32_t _smpteFormat;
         int32_t _smpteOffset;
         int32_t _samplerData;
-        array_ptr<SampleLoop> _loops;
+        common_lib::utilities::array_ptr<SampleLoop> _loops;
 
     public:
 
         ~WaveSmplChunk() override = default;
 
-        static shared_ptr<WaveSmplChunk> parse(const shared_ptr<RiffParser> &parser, const shared_ptr<BinaryReader> &reader);
+        static std::shared_ptr<WaveSmplChunk> parse(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
         [[nodiscard]]
         int32_t getManufacturer() const;
@@ -93,13 +89,13 @@ namespace vgaudio::utilities::riff {
         void setSamplerData(int32_t data);
 
         [[nodiscard]]
-        array_ptr<SampleLoop> getLoops() const;
+        common_lib::utilities::array_ptr<SampleLoop> getLoops() const;
 
-        void setLoops(const array_ptr<SampleLoop> &loops);
+        void setLoops(const common_lib::utilities::array_ptr<SampleLoop> &loops);
 
     protected:
 
-        WaveSmplChunk(const shared_ptr<RiffParser> &parser, const shared_ptr<BinaryReader> &reader);
+        WaveSmplChunk(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
     };
 

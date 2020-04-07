@@ -12,9 +12,11 @@
 #include "HcaReader.h"
 
 using namespace std;
+using namespace common_lib::utilities;
 using namespace vgaudio::utilities;
 using namespace vgaudio::containers::hca;
 using namespace vgaudio::codecs::crihca;
+using namespace vgaudio::formats;
 using namespace vgaudio::formats::crihca;
 using namespace common_lib::io;
 

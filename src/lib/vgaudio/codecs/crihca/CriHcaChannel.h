@@ -13,9 +13,6 @@ namespace vgaudio::utilities {
 
 namespace vgaudio::codecs::crihca {
 
-    using namespace vgaudio::utilities;
-    using namespace common_lib::utilities;
-
     struct CriHcaChannel final {
 
     private:
@@ -30,17 +27,17 @@ namespace vgaudio::codecs::crihca {
 
         ChannelType type;
         int32_t codedScaleFactorCount;
-        jnarray2_ptr<double, C::SubframesPerFrame, C::SamplesPerSubframe> pcmFloat;
-        jnarray2_ptr<double, C::SubframesPerFrame, C::SamplesPerSubframe> spectra;
-        jnarray2_ptr<double, C::SamplesPerSubframe, C::SubframesPerFrame> scaledSpectra;
-        jnarray2_ptr<int32_t, C::SubframesPerFrame, C::SamplesPerSubframe> quantizedSpectra;
-        narray_ptr<double, C::SamplesPerSubframe> gain;
-        narray_ptr<int32_t, C::SubframesPerFrame> intensity;
-        narray_ptr<int32_t, 8> hfrScales;
-        narray_ptr<double, 8> hfrGroupAverageSpectra;
-        shared_ptr<Mdct> mdct;
-        narray_ptr<int32_t, C::SamplesPerSubframe> scaleFactors;
-        narray_ptr<int32_t, C::SamplesPerSubframe> resolution;
+        common_lib::utilities::jnarray2_ptr<double, C::SubframesPerFrame, C::SamplesPerSubframe> pcmFloat;
+        common_lib::utilities::jnarray2_ptr<double, C::SubframesPerFrame, C::SamplesPerSubframe> spectra;
+        common_lib::utilities::jnarray2_ptr<double, C::SamplesPerSubframe, C::SubframesPerFrame> scaledSpectra;
+        common_lib::utilities::jnarray2_ptr<int32_t, C::SubframesPerFrame, C::SamplesPerSubframe> quantizedSpectra;
+        common_lib::utilities::narray_ptr<double, C::SamplesPerSubframe> gain;
+        common_lib::utilities::narray_ptr<int32_t, C::SubframesPerFrame> intensity;
+        common_lib::utilities::narray_ptr<int32_t, 8> hfrScales;
+        common_lib::utilities::narray_ptr<double, 8> hfrGroupAverageSpectra;
+        std::shared_ptr<vgaudio::utilities::Mdct> mdct;
+        common_lib::utilities::narray_ptr<int32_t, C::SamplesPerSubframe> scaleFactors;
+        common_lib::utilities::narray_ptr<int32_t, C::SamplesPerSubframe> resolution;
         int32_t headerLengthBits;
         int32_t scaleFactorDeltaBits;
 

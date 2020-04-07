@@ -8,8 +8,6 @@
 
 namespace common_lib::io {
 
-    using namespace common_lib::utilities;
-
     struct Stream {
 
         DECLARE_ROOT_CLASS(Stream);
@@ -20,11 +18,11 @@ namespace common_lib::io {
 
         virtual int32_t read(void *buffer, size_t bufferSize, int32_t offset, int32_t count);
 
-        virtual int32_t read(const array_ptr<uint8_t> &buffer, int32_t offset, int32_t count);
+        virtual int32_t read(const common_lib::utilities::array_ptr<uint8_t> &buffer, int32_t offset, int32_t count);
 
         virtual int32_t write(const void *buffer, size_t bufferSize, int32_t offset, int32_t count);
 
-        virtual int32_t write(const array_ptr<uint8_t> &buffer, int32_t offset, int32_t count);
+        virtual int32_t write(const common_lib::utilities::array_ptr<uint8_t> &buffer, int32_t offset, int32_t count);
 
         virtual void flush();
 
@@ -47,9 +45,9 @@ namespace common_lib::io {
         [[nodiscard]]
         virtual bool canSeek() const;
 
-        void copyTo(const shared_ptr<Stream> &destination);
+        void copyTo(const std::shared_ptr<Stream> &destination);
 
-        void copyTo(const shared_ptr<Stream> &destination, size_t bufferSize);
+        void copyTo(const std::shared_ptr<Stream> &destination, size_t bufferSize);
 
     protected:
 

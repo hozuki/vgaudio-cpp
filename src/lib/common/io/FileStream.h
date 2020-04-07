@@ -9,8 +9,6 @@
 
 namespace common_lib::io {
 
-    using namespace std;
-
     struct FileStream : public Stream {
 
         DECLARE_CLASS(FileStream, Stream);

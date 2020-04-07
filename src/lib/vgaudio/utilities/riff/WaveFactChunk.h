@@ -4,10 +4,6 @@
 
 namespace vgaudio::utilities::riff {
 
-    using namespace std;
-    using namespace common_lib::utilities;
-    using namespace common_lib::io;
-
     struct RiffParser;
 
     struct WaveFactChunk : public RiffSubChunk {
@@ -22,7 +18,7 @@ namespace vgaudio::utilities::riff {
 
         ~WaveFactChunk() override = default;
 
-        static shared_ptr<WaveFactChunk> parse(const shared_ptr<RiffParser> &parser, const shared_ptr<BinaryReader> &reader);
+        static std::shared_ptr<WaveFactChunk> parse(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
         [[nodiscard]]
         int32_t getSampleCount() const;
@@ -31,7 +27,7 @@ namespace vgaudio::utilities::riff {
 
     protected:
 
-        WaveFactChunk(const shared_ptr<RiffParser> &parser, const shared_ptr<BinaryReader> &reader);
+        WaveFactChunk(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
     };
 

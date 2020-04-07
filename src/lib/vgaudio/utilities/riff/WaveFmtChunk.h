@@ -4,10 +4,6 @@
 
 namespace vgaudio::utilities::riff {
 
-    using namespace std;
-    using namespace common_lib::utilities;
-    using namespace common_lib::io;
-
     struct RiffParser;
     struct WaveFormatExtensible;
 
@@ -23,13 +19,13 @@ namespace vgaudio::utilities::riff {
         int32_t _averageBytesPerSecond;
         int32_t _blockAlign;
         int32_t _bitsPerSample;
-        shared_ptr<WaveFormatExtensible> _extensible;
+        std::shared_ptr<WaveFormatExtensible> _extensible;
 
     public:
 
         ~WaveFmtChunk() override = default;
 
-        static shared_ptr<WaveFmtChunk> parse(const shared_ptr<RiffParser> &parser, const shared_ptr<BinaryReader> &reader);
+        static std::shared_ptr<WaveFmtChunk> parse(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
         [[nodiscard]]
         int32_t getFormatTag() const;
@@ -62,13 +58,13 @@ namespace vgaudio::utilities::riff {
         void setBitsPerSample(int32_t bitsPerSample);
 
         [[nodiscard]]
-        shared_ptr<WaveFormatExtensible> getExtensible() const;
+        std::shared_ptr<WaveFormatExtensible> getExtensible() const;
 
-        void setExtensible(const shared_ptr<WaveFormatExtensible> &extensible);
+        void setExtensible(const std::shared_ptr<WaveFormatExtensible> &extensible);
 
     protected:
 
-        WaveFmtChunk(const shared_ptr<RiffParser> &parser, const shared_ptr<BinaryReader> &reader);
+        WaveFmtChunk(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
     };
 

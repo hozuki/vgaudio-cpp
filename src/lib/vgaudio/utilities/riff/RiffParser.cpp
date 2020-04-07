@@ -1,6 +1,7 @@
 #include <algorithm>
 
 #include "../../../common/utilities/macros.h"
+#include "../../../common/io/Stream.h"
 #include "../../../common/io/BinaryReader.h"
 #include "../../../common/utilities/EndianHelper.h"
 #include "RiffChunk.h"

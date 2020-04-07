@@ -8,10 +8,6 @@
 
 namespace common_lib::io::compression {
 
-    using namespace std;
-    using namespace common_lib::utilities;
-    using namespace common_lib::io;
-
     struct IDeflater;
     struct IInflater;
 
@@ -21,7 +17,7 @@ namespace common_lib::io::compression {
 
     private:
 
-        shared_ptr<Stream> _baseStream;
+        std::shared_ptr<Stream> _baseStream;
         CompressionMode _mode;
         int32_t _level;
         IDeflater *_deflater;
@@ -34,14 +30,14 @@ namespace common_lib::io::compression {
 
     public:
 
-        explicit DeflateStream(const shared_ptr<Stream> &stream, CompressionMode mode);
+        explicit DeflateStream(const std::shared_ptr<Stream> &stream, CompressionMode mode);
 
-        explicit DeflateStream(const shared_ptr<Stream> &stream, CompressionMode mode, int32_t level);
+        explicit DeflateStream(const std::shared_ptr<Stream> &stream, CompressionMode mode, int32_t level);
 
         ~DeflateStream() override;
 
         [[nodiscard]]
-        shared_ptr<Stream> getBaseStream() const;
+        std::shared_ptr<Stream> getBaseStream() const;
 
         [[nodiscard]]
         CompressionMode getCompressionMode() const;

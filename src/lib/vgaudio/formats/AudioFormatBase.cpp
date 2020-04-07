@@ -5,7 +5,10 @@
 #include "AudioFormatBase.h"
 
 using namespace std;
+using namespace common_lib::utilities;
 using namespace vgaudio::formats;
+using namespace vgaudio::formats::pcm16;
+using namespace vgaudio::codecs;
 
 AudioFormatBase::AudioFormatBase()
     : _sampleRate(0), _channelCount(0), _unalignedSampleCount(0),
@@ -23,7 +26,7 @@ AudioFormatBase::AudioFormatBase(const shared_ptr<AudioFormatBaseBuilder> &build
     _tracks = builder->getTracks();
 
     if (_tracks == nullptr || _tracks->empty()) {
-        _tracks = AudioTrack::getDefaultTrackList(getChannelCount());
+        _tracks = AudioTrack::getDefaultTrackList(_channelCount);
     }
 }
 

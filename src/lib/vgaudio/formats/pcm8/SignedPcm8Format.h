@@ -4,9 +4,6 @@
 
 namespace vgaudio::formats::pcm8 {
 
-    using namespace std;
-    using namespace common_lib::utilities;
-
     struct SignedPcm8Format : Pcm8FormatBase {
 
         DECLARE_CLASS(SignedPcm8Format, Pcm8FormatBase);
@@ -15,9 +12,9 @@ namespace vgaudio::formats::pcm8 {
 
         SignedPcm8Format() = default;
 
-        SignedPcm8Format(const jarray2_ptr<uint8_t> &channels, int32_t sampleRate);
+        SignedPcm8Format(const common_lib::utilities::jarray2_ptr<uint8_t> &channels, int32_t sampleRate);
 
-        explicit SignedPcm8Format(const shared_ptr<Pcm8FormatBuilder> &builder);
+        explicit SignedPcm8Format(const std::shared_ptr<Pcm8FormatBuilder> &builder);
 
         ~SignedPcm8Format() override = default;
 
@@ -27,16 +24,16 @@ namespace vgaudio::formats::pcm8 {
     protected:
 
         [[nodiscard]]
-        function<array_ptr<uint8_t>(const array_ptr<int16_t> &)> getEncodeFunction() const override;
+        std::function<common_lib::utilities::array_ptr<uint8_t>(const common_lib::utilities::array_ptr<int16_t> &)> getEncodeFunction() const override;
 
         [[nodiscard]]
-        function<array_ptr<int16_t>(const array_ptr<uint8_t> &)> getDecodeFunction() const override;
+        std::function<common_lib::utilities::array_ptr<int16_t>(const common_lib::utilities::array_ptr<uint8_t> &)> getDecodeFunction() const override;
 
         [[nodiscard]]
-        bool canAcceptAudioFormat(const IAudioFormat *format) const override;
+        bool canAcceptAudioFormat(const vgaudio::formats::IAudioFormat *format) const override;
 
         [[nodiscard]]
-        bool canAcceptConfig(const CodecParameters *config) const override;
+        bool canAcceptConfig(const vgaudio::codecs::CodecParameters *config) const override;
 
     };
 

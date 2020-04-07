@@ -8,6 +8,7 @@ namespace common_lib::io {
 
 namespace vgaudio::utilities {
 
+    using namespace std;
     using namespace common_lib::io;
     using namespace common_lib::utilities;
 

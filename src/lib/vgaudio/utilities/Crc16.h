@@ -6,13 +6,11 @@
 
 namespace vgaudio::utilities {
 
-    using namespace common_lib::utilities;
-
     struct Crc16 final {
 
     private:
 
-        narray_ptr<uint16_t, 256> _table;
+        common_lib::utilities::narray_ptr<uint16_t, 256> _table;
 
     public:
 
@@ -20,10 +18,10 @@ namespace vgaudio::utilities {
 
         ~Crc16() = default;
 
-        uint16_t compute(const array_ptr<uint8_t> &data, size_t size);
+        uint16_t compute(const common_lib::utilities::array_ptr<uint8_t> &data, size_t size);
 
         template<size_t N>
-        uint16_t compute(const narray_ptr<uint8_t, N> &data, size_t size);
+        uint16_t compute(const common_lib::utilities::narray_ptr<uint8_t, N> &data, size_t size);
 
         uint16_t compute(const uint8_t *data, size_t size);
 

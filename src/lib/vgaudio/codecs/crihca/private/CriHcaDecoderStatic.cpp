@@ -11,6 +11,8 @@
 
 using C = CriHcaConstants;
 
+using namespace vgaudio::utilities;
+
 static void RunImdct(const shared_ptr<CriHcaFrame> &frame) {
     for (auto sf = 0; sf < C::SubframesPerFrame; sf += 1) {
         for (const auto &channel : *frame->getChannels()) {

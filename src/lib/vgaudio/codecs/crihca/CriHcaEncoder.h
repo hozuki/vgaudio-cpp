@@ -19,47 +19,43 @@ namespace vgaudio::codecs::crihca {
     struct CriHcaFrame;
     struct HcaInfo;
 
-    using namespace std;
-    using namespace common_lib::utilities;
-    using namespace vgaudio::utilities;
-
     struct CriHcaEncoder final {
 
     private:
 
-        queue <array_ptr<uint8_t>> _hcaOutputBuffer;
+        std::queue<common_lib::utilities::array_ptr<uint8_t>> _hcaOutputBuffer;
 
-        shared_ptr<HcaInfo> _hca;
+        std::shared_ptr<HcaInfo> _hca;
         CriHcaQuality _quality;
         int32_t _bitrate;
         int32_t _cutoffFrequency;
 
-        array_ptr<shared_ptr<CriHcaChannel>> _channels;
-        shared_ptr<CriHcaFrame> _frame;
-        shared_ptr<Crc16> _crc;
+        common_lib::utilities::array_ptr<std::shared_ptr<CriHcaChannel>> _channels;
+        std::shared_ptr<CriHcaFrame> _frame;
+        std::shared_ptr<vgaudio::utilities::Crc16> _crc;
 
-        jarray2_ptr<int16_t> _pcmBuffer;
+        common_lib::utilities::jarray2_ptr<int16_t> _pcmBuffer;
         size_t _bufferPosition;
         int32_t _bufferPreSamples;
         int32_t _samplesProcessed;
         int32_t _framesProcessed;
         int32_t _postSamples;
-        jarray2_ptr<int16_t> _postAudio;
+        common_lib::utilities::jarray2_ptr<int16_t> _postAudio;
 
     public:
 
         ~CriHcaEncoder() = default;
 
-        static shared_ptr<CriHcaEncoder> createNew(const shared_ptr<CriHcaParameters> &config);
+        static std::shared_ptr<CriHcaEncoder> createNew(const std::shared_ptr<CriHcaParameters> &config);
 
-        void initialize(const shared_ptr<CriHcaParameters> &config);
+        void initialize(const std::shared_ptr<CriHcaParameters> &config);
 
-        int32_t encode(const jarray2_ptr<int16_t> &pcm, const array_ptr<uint8_t> &hcaOut);
+        int32_t encode(const common_lib::utilities::jarray2_ptr<int16_t> &pcm, const common_lib::utilities::array_ptr<uint8_t> &hcaOut);
 
-        array_ptr<uint8_t> getPendingFrame();
+        common_lib::utilities::array_ptr<uint8_t> getPendingFrame();
 
         [[nodiscard]]
-        shared_ptr<HcaInfo> getHca() const;
+        std::shared_ptr<HcaInfo> getHca() const;
 
         [[nodiscard]]
         CriHcaQuality getQuality() const;
@@ -86,7 +82,7 @@ namespace vgaudio::codecs::crihca {
 
         CriHcaEncoder();
 
-        void setHca(const shared_ptr<HcaInfo> &hca);
+        void setHca(const std::shared_ptr<HcaInfo> &hca);
 
         void setQuality(CriHcaQuality quality);
 
@@ -98,17 +94,17 @@ namespace vgaudio::codecs::crihca {
 
     private:
 
-        int32_t encodePreAudio(const jarray2_ptr<int16_t> &pcm, const array_ptr<uint8_t> &hcaOut, int32_t framesOutput);
+        int32_t encodePreAudio(const common_lib::utilities::jarray2_ptr<int16_t> &pcm, const common_lib::utilities::array_ptr<uint8_t> &hcaOut, int32_t framesOutput);
 
-        int32_t encodeMainAudio(const jarray2_ptr<int16_t> &pcm, const array_ptr<uint8_t> &hcaOut, int32_t framesOutput, int32_t &pcmPosition);
+        int32_t encodeMainAudio(const common_lib::utilities::jarray2_ptr<int16_t> &pcm, const common_lib::utilities::array_ptr<uint8_t> &hcaOut, int32_t framesOutput, int32_t &pcmPosition);
 
-        int32_t encodePostAudio(const jarray2_ptr<int16_t> &pcm, const array_ptr<uint8_t> &hcaOut, int32_t framesOutput);
+        int32_t encodePostAudio(const common_lib::utilities::jarray2_ptr<int16_t> &pcm, const common_lib::utilities::array_ptr<uint8_t> &hcaOut, int32_t framesOutput);
 
-        void saveLoopAudio(const jarray2_ptr<int16_t> &pcm);
+        void saveLoopAudio(const common_lib::utilities::jarray2_ptr<int16_t> &pcm);
 
-        int32_t outputFrame(int32_t framesOutput, const array_ptr<uint8_t> &hcaOut);
+        int32_t outputFrame(int32_t framesOutput, const common_lib::utilities::array_ptr<uint8_t> &hcaOut);
 
-        void encodeFrame(const jarray2_ptr<int16_t> &pcm, const array_ptr<uint8_t> &hcaOut);
+        void encodeFrame(const common_lib::utilities::jarray2_ptr<int16_t> &pcm, const common_lib::utilities::array_ptr<uint8_t> &hcaOut);
 
     };
 

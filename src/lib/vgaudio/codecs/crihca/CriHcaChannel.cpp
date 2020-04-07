@@ -6,6 +6,8 @@
 #include "CriHcaTables.h"
 #include "CriHcaChannel.h"
 
+using namespace common_lib::utilities;
+using namespace vgaudio::utilities;
 using namespace vgaudio::codecs::crihca;
 
 using C = CriHcaConstants;

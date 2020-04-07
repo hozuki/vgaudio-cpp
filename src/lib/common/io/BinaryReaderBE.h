@@ -6,15 +6,13 @@
 
 namespace common_lib::io {
 
-    using namespace std;
-
     struct BinaryReaderBE : public BinaryReader {
 
         DECLARE_CLASS(BinaryReaderBE, BinaryReader);
 
     public:
 
-        explicit BinaryReaderBE(const shared_ptr<Stream> &stream);
+        explicit BinaryReaderBE(const std::shared_ptr<Stream> &stream);
 
         ~BinaryReaderBE() override = default;
 

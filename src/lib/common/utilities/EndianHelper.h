@@ -13,16 +13,13 @@ namespace common_lib::io {
 
 namespace common_lib::utilities {
 
-    using namespace std;
-    using namespace common_lib::io;
-
     struct EndianHelper {
 
         IMPLEMENT_STATIC_CLASS(EndianHelper);
 
-        static shared_ptr<BinaryReader> createBinaryReader(const shared_ptr<Stream> &stream, Endianess endian);
+        static std::shared_ptr<common_lib::io::BinaryReader> createBinaryReader(const std::shared_ptr<common_lib::io::Stream> &stream, Endianess endian);
 
-        static shared_ptr<BinaryWriter> createBinaryWriter(const shared_ptr<Stream> &stream, Endianess endian);
+        static std::shared_ptr<common_lib::io::BinaryWriter> createBinaryWriter(const std::shared_ptr<common_lib::io::Stream> &stream, Endianess endian);
 
     };
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <memory>
 
 #include "../utilities/type_sys.h"
 #include "Stream.h"
@@ -8,16 +9,13 @@
 
 namespace common_lib::io {
 
-    using namespace std;
-    using namespace common_lib::utilities;
-
     struct MemoryStream : public Stream {
 
         DECLARE_CLASS(MemoryStream, Stream);
 
     private:
 
-        array_ptr<uint8_t> _buffer;
+        common_lib::utilities::array_ptr<uint8_t> _buffer;
         bool _writable;
         bool _canResize;
         int64_t _length;
@@ -27,11 +25,11 @@ namespace common_lib::io {
 
         MemoryStream();
 
-        explicit MemoryStream(const array_ptr<uint8_t> &buffer);
+        explicit MemoryStream(const common_lib::utilities::array_ptr<uint8_t> &buffer);
 
         explicit MemoryStream(size_t initialCapacity);
 
-        MemoryStream(const array_ptr<uint8_t> &buffer, bool writable);
+        MemoryStream(const common_lib::utilities::array_ptr<uint8_t> &buffer, bool writable);
 
         MemoryStream(const void *buffer, size_t count);
 
@@ -40,7 +38,7 @@ namespace common_lib::io {
         ~MemoryStream() override = default;
 
         [[nodiscard]]
-        array_ptr<uint8_t> toArray();
+        common_lib::utilities::array_ptr<uint8_t> toArray();
 
         int32_t read(void *buffer, size_t bufferSize, int32_t offset, int32_t count) override;
 
@@ -62,7 +60,7 @@ namespace common_lib::io {
         void setCapacity(int64_t capacity);
 
         [[nodiscard]]
-        array_ptr<uint8_t> getBuffer() const;
+        common_lib::utilities::array_ptr<uint8_t> getBuffer() const;
 
         [[nodiscard]]
         bool canRead() const override;
@@ -73,7 +71,7 @@ namespace common_lib::io {
         [[nodiscard]]
         bool canSeek() const override;
 
-        void writeTo(const shared_ptr<Stream> &stream);
+        void writeTo(const std::shared_ptr<Stream> &stream);
 
     private:
 

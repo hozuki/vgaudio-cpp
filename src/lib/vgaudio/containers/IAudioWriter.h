@@ -17,22 +17,17 @@ namespace vgaudio::containers {
 
     struct Configuration;
 
-    using namespace std;
-    using namespace vgaudio::formats;
-    using namespace common_lib::io;
-    using namespace common_lib::utilities;
-
     struct IAudioWriter {
 
         virtual ~IAudioWriter() = default;
 
-        virtual void writeToStream(const shared_ptr<IAudioFormat> &audio, const shared_ptr<Stream> &stream, const shared_ptr<Configuration> &config) = 0;
+        virtual void writeToStream(const std::shared_ptr<vgaudio::formats::IAudioFormat> &audio, const std::shared_ptr<common_lib::io::Stream> &stream, const std::shared_ptr<Configuration> &config) = 0;
 
-        virtual array_ptr<uint8_t> getFile(const shared_ptr<IAudioFormat> &audio, const shared_ptr<Stream> &stream, const shared_ptr<Configuration> &config);
+        virtual common_lib::utilities::array_ptr<uint8_t> getFile(const std::shared_ptr<vgaudio::formats::IAudioFormat> &audio, const std::shared_ptr<common_lib::io::Stream> &stream, const std::shared_ptr<Configuration> &config);
 
-        virtual void writeToStream(const shared_ptr<AudioData> &audio, const shared_ptr<Stream> &stream, const shared_ptr<Configuration> &config) = 0;
+        virtual void writeToStream(const std::shared_ptr<vgaudio::formats::AudioData> &audio, const std::shared_ptr<common_lib::io::Stream> &stream, const std::shared_ptr<Configuration> &config) = 0;
 
-        virtual array_ptr<uint8_t> getFile(const shared_ptr<AudioData> &audio, const shared_ptr<Stream> &stream, const shared_ptr<Configuration> &config);
+        virtual common_lib::utilities::array_ptr<uint8_t> getFile(const std::shared_ptr<vgaudio::formats::AudioData> &audio, const std::shared_ptr<common_lib::io::Stream> &stream, const std::shared_ptr<Configuration> &config);
 
     protected:
 

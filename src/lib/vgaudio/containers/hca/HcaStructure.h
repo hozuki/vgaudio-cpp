@@ -13,11 +13,6 @@ namespace vgaudio::codecs::crihca {
 
 namespace vgaudio::containers::hca {
 
-    using namespace std;
-    using namespace common_lib::utilities;
-    using namespace vgaudio::containers;
-    using namespace vgaudio::codecs::crihca;
-
     struct HcaStructure : public IStructure {
 
         HcaStructure();
@@ -26,11 +21,11 @@ namespace vgaudio::containers::hca {
 
         int32_t version;
         int32_t headerSize;
-        shared_ptr<HcaInfo> hca;
-        shared_ptr<CriHcaKey> encryptionKey;
+        std::shared_ptr<vgaudio::codecs::crihca::HcaInfo> hca;
+        std::shared_ptr<vgaudio::codecs::crihca::CriHcaKey> encryptionKey;
         int32_t reserved1;
         int32_t reserved2;
-        jarray2_ptr<uint8_t> audioData;
+        common_lib::utilities::jarray2_ptr<uint8_t> audioData;
 
     };
 

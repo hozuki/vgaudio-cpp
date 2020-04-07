@@ -5,18 +5,15 @@
 
 namespace vgaudio::utilities::riff {
 
-    using namespace std;
-    using namespace common_lib::utilities;
-
     struct MediaSubtypes {
 
         IMPLEMENT_STATIC_CLASS(MediaSubtypes);
 
     public:
 
-        static const Guid Pcm;
+        static const common_lib::utilities::Guid Pcm;
 
-        static const Guid Atrac9;
+        static const common_lib::utilities::Guid Atrac9;
 
     };
 

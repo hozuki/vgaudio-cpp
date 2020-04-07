@@ -4,10 +4,6 @@
 
 namespace vgaudio::utilities::riff {
 
-    using namespace std;
-    using namespace common_lib::utilities;
-    using namespace common_lib::io;
-
     struct RiffParser;
 
     struct WaveDataChunk : public RiffSubChunk {
@@ -16,22 +12,22 @@ namespace vgaudio::utilities::riff {
 
     private:
 
-        array_ptr<uint8_t> _data;
+        common_lib::utilities::array_ptr<uint8_t> _data;
 
     public:
 
         ~WaveDataChunk() override = default;
 
-        static shared_ptr<WaveDataChunk> parse(const shared_ptr<RiffParser> &parser, const shared_ptr<BinaryReader> &reader);
+        static std::shared_ptr<WaveDataChunk> parse(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
         [[nodiscard]]
-        array_ptr<uint8_t> getData() const;
+        common_lib::utilities::array_ptr<uint8_t> getData() const;
 
-        void setData(const array_ptr<uint8_t> &data);
+        void setData(const common_lib::utilities::array_ptr<uint8_t> &data);
 
     protected:
 
-        WaveDataChunk(const shared_ptr<RiffParser> &parser, const shared_ptr<BinaryReader> &reader);
+        WaveDataChunk(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
     };
 

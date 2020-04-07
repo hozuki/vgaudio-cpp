@@ -13,8 +13,6 @@ namespace common_lib::utilities {
     template<typename T>
     struct runtime_array;
 
-    using namespace std;
-
     template<typename T>
     struct runtime_array_container : public runtime_array<T> {
 

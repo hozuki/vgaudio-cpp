@@ -11,6 +11,7 @@ using namespace std;
 using namespace vgaudio::formats;
 using namespace vgaudio::formats::pcm16;
 using namespace common_lib::utilities;
+using namespace vgaudio::codecs;
 
 Pcm16Format::Pcm16Format(const shared_ptr<Pcm16FormatBuilder> &builder)
     : MyBase(builder) {

@@ -8,8 +8,6 @@
 
 namespace common_lib::utilities {
 
-    using namespace std;
-
     template<typename T, size_t N = 1, typename TIter = typename std::array<T, N>::iterator>
     struct IteratorWrapper {
 

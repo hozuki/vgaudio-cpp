@@ -11,30 +11,27 @@ namespace vgaudio::containers {
 
     struct Configuration;
 
-    using namespace std;
-    using namespace vgaudio::formats;
-
     struct AudioWithConfig final {
 
     private:
 
-        shared_ptr<IAudioFormat> _audioFormat;
-        shared_ptr<Configuration> _configuration;
+        std::shared_ptr<vgaudio::formats::IAudioFormat> _audioFormat;
+        std::shared_ptr<Configuration> _configuration;
 
     public:
 
-        AudioWithConfig(const shared_ptr<IAudioFormat> &audioFormat, const shared_ptr<Configuration> &config);
+        AudioWithConfig(const std::shared_ptr<vgaudio::formats::IAudioFormat> &audioFormat, const std::shared_ptr<Configuration> &config);
 
         ~AudioWithConfig() = default;
 
         [[nodiscard]]
-        shared_ptr<IAudioFormat> getAudioFormat() const;
+        std::shared_ptr<vgaudio::formats::IAudioFormat> getAudioFormat() const;
 
         [[nodiscard]]
-        shared_ptr<Configuration> getConfiguration() const;
+        std::shared_ptr<Configuration> getConfiguration() const;
 
         [[nodiscard]]
-        shared_ptr<AudioData> getAudio() const;
+        std::shared_ptr<vgaudio::formats::AudioData> getAudio() const;
 
     };
 

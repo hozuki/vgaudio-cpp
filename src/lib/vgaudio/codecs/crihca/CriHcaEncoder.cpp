@@ -15,6 +15,7 @@
 
 using namespace std;
 using namespace common_lib::utilities;
+using namespace vgaudio::utilities;
 using namespace vgaudio::codecs::crihca;
 
 using C = CriHcaConstants;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <memory>
 
 #include "../Configuration.h"
 #include "../../codecs/crihca/CriHcaQuality.h"
@@ -10,10 +11,6 @@ namespace vgaudio::codecs::crihca {
 }
 
 namespace vgaudio::containers::hca {
-
-    using namespace std;
-    using namespace vgaudio::containers;
-    using namespace vgaudio::codecs::crihca;
 
     struct HcaConfiguration : public Configuration {
 
@@ -27,8 +24,8 @@ namespace vgaudio::containers::hca {
 
         ~HcaConfiguration() override = default;
 
-        shared_ptr<CriHcaKey> encryptionKey;
-        CriHcaQuality quality;
+        std::shared_ptr<vgaudio::codecs::crihca::CriHcaKey> encryptionKey;
+        vgaudio::codecs::crihca::CriHcaQuality quality;
         int32_t bitrate;
         bool limitBitrate;
 

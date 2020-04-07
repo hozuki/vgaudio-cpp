@@ -3,10 +3,12 @@
 #include <memory>
 #include <string>
 
-#include "Stream.h"
 #include "../utilities/type_sys.h"
+#include "../utilities/runtime_array.h"
 
 namespace common_lib::io {
+
+    struct Stream;
 
     struct BinaryWriter {
 
@@ -14,22 +16,22 @@ namespace common_lib::io {
 
     private:
 
-        shared_ptr<Stream> _stream;
+        std::shared_ptr<Stream> _stream;
 
     public:
 
-        explicit BinaryWriter(const shared_ptr<Stream> &stream);
+        explicit BinaryWriter(const std::shared_ptr<Stream> &stream);
 
         virtual ~BinaryWriter() = default;
 
         [[nodiscard]]
-        shared_ptr<Stream> getBaseStream() const;
+        std::shared_ptr<Stream> getBaseStream() const;
 
         virtual int32_t write(const void *buffer, size_t bufferSize, int32_t offset, int32_t count);
 
-        int32_t write(const array_ptr<uint8_t> &buffer, int32_t count);
+        int32_t write(const common_lib::utilities::array_ptr<uint8_t> &buffer, int32_t count);
 
-        int32_t write(const array_ptr<uint8_t> &buffer, int32_t offset, int32_t count);
+        int32_t write(const common_lib::utilities::array_ptr<uint8_t> &buffer, int32_t offset, int32_t count);
 
         virtual int32_t write(uint8_t value);
 

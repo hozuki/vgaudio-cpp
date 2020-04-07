@@ -48,15 +48,19 @@ namespace common_lib::utilities {
         return std::shared_ptr<typename std::remove_reference<decltype(*arr)>::type>(arr);
     }
 
-    template<typename... Ts, typename U = std::common_type_t<Ts...>>
-    static void make_array_dynamic_with_helper__([[maybe_unused]] const array_ptr<U> &arr, [[maybe_unused]] size_t index) {
-        // Do nothing, end of recursion
-    }
+    namespace __internal {
 
-    template<typename T, typename... Ts, typename U = std::common_type_t<T, Ts...>>
-    static void make_array_dynamic_with_helper__(const array_ptr<U> &arr, size_t index, T t, Ts &&... ts) {
-        (*arr)[index] = t;
-        make_array_dynamic_with_helper__(arr, index + 1, ts...);
+        template<typename... Ts, typename U = std::common_type_t<Ts...>>
+        static void make_array_dynamic_with_helper([[maybe_unused]] const array_ptr<U> &arr, [[maybe_unused]] size_t index) {
+            // Do nothing, end of recursion
+        }
+
+        template<typename T, typename... Ts, typename U = std::common_type_t<T, Ts...>>
+        static void make_array_dynamic_with_helper(const array_ptr<U> &arr, size_t index, T t, Ts &&... ts) {
+            (*arr)[index] = t;
+            make_array_dynamic_with_helper(arr, index + 1, ts...);
+        }
+
     }
 
     template<typename... Ts, typename U = std::common_type_t<Ts...>>
@@ -65,14 +69,14 @@ namespace common_lib::utilities {
         auto arr = make_array_dynamic<U>(count);
 
         // TODO: Edge cases when index overflows...
-        make_array_dynamic_with_helper__(arr, 0, ts...);
+        __internal::make_array_dynamic_with_helper(arr, 0, ts...);
 
         return arr;
     }
 
     template<typename T, size_t count>
     narray_ptr<T, count> make_array_static() {
-        return std::make_shared<array<T, count>>();
+        return std::make_shared<std::array<T, count>>();
     }
 
 }

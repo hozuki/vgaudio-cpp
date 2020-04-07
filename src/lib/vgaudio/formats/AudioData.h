@@ -16,55 +16,50 @@ namespace vgaudio::formats {
 
     struct IAudioFormat;
 
-    using namespace std;
-    using namespace vgaudio::codecs;
-    using namespace common_lib::utilities;
-    using namespace vgaudio::formats::pcm16;
-
     struct AudioData final {
 
     private:
 
-        unordered_map<type_index, shared_ptr<IAudioFormat>> _formats;
+        std::unordered_map<std::type_index, std::shared_ptr<IAudioFormat>> _formats;
 
     public:
 
-        explicit AudioData(const shared_ptr<IAudioFormat> &format);
+        explicit AudioData(const std::shared_ptr<IAudioFormat> &format);
 
         ~AudioData() = default;
 
-        vector<shared_ptr<IAudioFormat>> getAllFormats();
+        std::vector<std::shared_ptr<IAudioFormat>> getAllFormats();
 
-        vector<type_index> listAvailableFormats();
+        std::vector<std::type_index> listAvailableFormats();
 
         void setLoop(bool loop);
 
         void setLoop(bool loop, int32_t loopStart, int32_t loopEnd);
 
-        static shared_ptr<AudioData> combine(const array_ptr<shared_ptr<AudioData>> &audio);
+        static std::shared_ptr<AudioData> combine(const common_lib::utilities::array_ptr<std::shared_ptr<AudioData>> &audio);
 
     private:
 
-        void addFormat(const shared_ptr<IAudioFormat> &format);
+        void addFormat(const std::shared_ptr<IAudioFormat> &format);
 
-        void createPcm16(const shared_ptr<CodecParameters> &config = nullptr);
+        void createPcm16(const std::shared_ptr<vgaudio::codecs::CodecParameters> &config = nullptr);
 
         template<typename TAudioFormat, typename AudioFormat = typename std::enable_if<std::is_base_of<IAudioFormat, TAudioFormat>::value, TAudioFormat>::type>
-        static shared_ptr<AudioFormat> getAudioFormat(const shared_ptr<AudioData> &audioData) {
-            const auto key = type_index(typeid(AudioFormat));
+        static std::shared_ptr<AudioFormat> getAudioFormat(const std::shared_ptr<AudioData> &audioData) {
+            const auto key = std::type_index(typeid(AudioFormat));
             auto iter = audioData->_formats.find(key);
 
             if (iter == audioData->_formats.end()) {
                 return nullptr;
             } else {
-                return dynamic_pointer_cast<AudioFormat>(iter->second);
+                return std::dynamic_pointer_cast<AudioFormat>(iter->second);
             }
         }
 
         template<typename TAudioFormat, typename AudioFormat = typename std::enable_if<std::is_base_of<IAudioFormat, TAudioFormat>::value, TAudioFormat>::type>
-        static void createFormat(const shared_ptr<AudioData> &audioData, const shared_ptr<CodecParameters> &config = nullptr) {
-            auto pcm = getAudioFormat<Pcm16Format>(audioData);
-            auto format = dynamic_pointer_cast<IAudioFormat>(make_shared<AudioFormat>());
+        static void createFormat(const std::shared_ptr<AudioData> &audioData, const std::shared_ptr<vgaudio::codecs::CodecParameters> &config = nullptr) {
+            auto pcm = getAudioFormat<vgaudio::formats::pcm16::Pcm16Format>(audioData);
+            auto format = std::dynamic_pointer_cast<IAudioFormat>(std::make_shared<AudioFormat>());
             auto encoded = format->encodeFromPcm16(pcm, config);
             audioData->addFormat(encoded);
         }
@@ -72,7 +67,7 @@ namespace vgaudio::formats {
     public:
 
         template<typename TAudioFormat, typename AudioFormat = typename std::enable_if<std::is_base_of<IAudioFormat, TAudioFormat>::value, TAudioFormat>::type>
-        static shared_ptr<AudioFormat> getFormat(const shared_ptr<AudioData> &audioData, const shared_ptr<CodecParameters> &config = nullptr) {
+        static std::shared_ptr<AudioFormat> getFormat(const std::shared_ptr<AudioData> &audioData, const std::shared_ptr<vgaudio::codecs::CodecParameters> &config = nullptr) {
             auto format = getAudioFormat<TAudioFormat, AudioFormat>(audioData);
 
             if (format != nullptr) {

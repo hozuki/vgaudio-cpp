@@ -8,8 +8,6 @@
 
 namespace vgaudio::codecs::crihca {
 
-    using namespace common_lib::utilities;
-
     struct CriHcaKey final {
 
         DECLARE_ROOT_CLASS(CriHcaKey);
@@ -24,8 +22,8 @@ namespace vgaudio::codecs::crihca {
 
         CriHcaKeyType _keyType;
         uint64_t _keyCode;
-        narray_ptr<uint8_t, 256> _decryptionTable;
-        narray_ptr<uint8_t, 256> _encryptionTable;
+        common_lib::utilities::narray_ptr<uint8_t, 256> _decryptionTable;
+        common_lib::utilities::narray_ptr<uint8_t, 256> _encryptionTable;
 
     public:
 
@@ -39,10 +37,10 @@ namespace vgaudio::codecs::crihca {
         void getKeyCode(uint32_t &key1, uint32_t &key2) const;
 
         [[nodiscard]]
-        narray_ptr<uint8_t, 256> getDecryptionTable() const;
+        common_lib::utilities::narray_ptr<uint8_t, 256> getDecryptionTable() const;
 
         [[nodiscard]]
-        narray_ptr<uint8_t, 256> getEncryptionTable() const;
+        common_lib::utilities::narray_ptr<uint8_t, 256> getEncryptionTable() const;
 
     };
 

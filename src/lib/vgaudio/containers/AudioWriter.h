@@ -8,15 +8,11 @@
 #include "../../common/io/Stream.h"
 #include "../../common/io/MemoryStream.h"
 #include "Configuration.h"
-#include "AudioWithConfig.h"
-#include "IStructure.h"
 #include "../formats/AudioData.h"
 #include "../../common/utilities/runtime_array.h"
 #include "../../common/utilities/type_sys.h"
 
 namespace vgaudio::containers {
-
-    using namespace std;
 
     template<
         typename TConfig,
@@ -28,100 +24,100 @@ namespace vgaudio::containers {
 
     private:
 
-        shared_ptr<Config> _configuration;
-        shared_ptr<AudioData> _audioData;
+        std::shared_ptr<Config> _configuration;
+        std::shared_ptr<vgaudio::formats::AudioData> _audioData;
 
     public:
 
         ~AudioWriter() override = default;
 
-        void writeToStream(const shared_ptr<IAudioFormat> &audio, const shared_ptr<Stream> &stream, const shared_ptr<Config> &config) {
-            auto audioData = make_shared<AudioData>(audio);
+        void writeToStream(const std::shared_ptr<vgaudio::formats::IAudioFormat> &audio, const std::shared_ptr<common_lib::io::Stream> &stream, const std::shared_ptr<Config> &config) {
+            auto audioData = std::make_shared<vgaudio::formats::AudioData>(audio);
             return writeStream(audioData, stream, config);
         }
 
-        array_ptr<uint8_t> getFile(const shared_ptr<IAudioFormat> &audio, const shared_ptr<Stream> &stream, const shared_ptr<Config> &config) {
-            auto audioData = make_shared<AudioData>(audio);
+        common_lib::utilities::array_ptr<uint8_t> getFile(const std::shared_ptr<vgaudio::formats::IAudioFormat> &audio, const std::shared_ptr<common_lib::io::Stream> &stream, const std::shared_ptr<Config> &config) {
+            auto audioData = std::make_shared<vgaudio::formats::AudioData>(audio);
             return getByteArray(audioData, config);
         }
 
-        void writeToStream(const shared_ptr<AudioData> &audio, const shared_ptr<Stream> &stream, const shared_ptr<Config> &config) {
+        void writeToStream(const std::shared_ptr<vgaudio::formats::AudioData> &audio, const std::shared_ptr<common_lib::io::Stream> &stream, const std::shared_ptr<Config> &config) {
             return writeStream(audio, stream, config);
         }
 
-        array_ptr<uint8_t> getFile(const shared_ptr<AudioData> &audio, const shared_ptr<Stream> &stream, const shared_ptr<Config> &config) {
+        common_lib::utilities::array_ptr<uint8_t> getFile(const std::shared_ptr<vgaudio::formats::AudioData> &audio, const std::shared_ptr<common_lib::io::Stream> &stream, const std::shared_ptr<Config> &config) {
             return getByteArray(audio, config);
         }
 
     protected:
 
         AudioWriter() {
-            _configuration = make_shared<Config>();
+            _configuration = std::make_shared<Config>();
         }
 
         [[nodiscard]]
-        shared_ptr<AudioData> getAudioStream() const {
+        std::shared_ptr<vgaudio::formats::AudioData> getAudioStream() const {
             return _audioData;
         }
 
-        void setAudioStream(const shared_ptr<AudioData> &audioData) {
+        void setAudioStream(const std::shared_ptr<vgaudio::formats::AudioData> &audioData) {
             _audioData = audioData;
         }
 
         [[nodiscard]]
-        shared_ptr<Config> getConfiguration() const {
+        std::shared_ptr<Config> getConfiguration() const {
             return _configuration;
         }
 
-        void setConfiguration(const shared_ptr<Config> &configuration) {
+        void setConfiguration(const std::shared_ptr<Config> &configuration) {
             _configuration = configuration;
         }
 
         virtual int32_t getFileSize() = 0;
 
-        virtual void setupWriter(const shared_ptr<AudioData> &audio) = 0;
+        virtual void setupWriter(const std::shared_ptr<vgaudio::formats::AudioData> &audio) = 0;
 
-        virtual void writeStream(const shared_ptr<Stream> &stream) = 0;
+        virtual void writeStream(const std::shared_ptr<common_lib::io::Stream> &stream) = 0;
 
     private:
 
-        void writeToStream(const shared_ptr<IAudioFormat> &audio, const shared_ptr<Stream> &stream, const shared_ptr<Configuration> &config) final {
-            auto cfg = dynamic_pointer_cast<Config>(config);
+        void writeToStream(const std::shared_ptr<vgaudio::formats::IAudioFormat> &audio, const std::shared_ptr<common_lib::io::Stream> &stream, const std::shared_ptr<Configuration> &config) final {
+            auto cfg = std::dynamic_pointer_cast<Config>(config);
             return writeToStream(audio, stream, cfg);
         }
 
-        array_ptr<uint8_t> getFile(const shared_ptr<IAudioFormat> &audio, const shared_ptr<Stream> &stream, const shared_ptr<Configuration> &config) final {
-            auto cfg = dynamic_pointer_cast<Config>(config);
+        common_lib::utilities::array_ptr<uint8_t> getFile(const std::shared_ptr<vgaudio::formats::IAudioFormat> &audio, const std::shared_ptr<common_lib::io::Stream> &stream, const std::shared_ptr<Configuration> &config) final {
+            auto cfg = std::dynamic_pointer_cast<Config>(config);
             return getFile(audio, stream, cfg);
         }
 
-        void writeToStream(const shared_ptr<AudioData> &audio, const shared_ptr<Stream> &stream, const shared_ptr<Configuration> &config) final {
-            auto cfg = dynamic_pointer_cast<Config>(config);
+        void writeToStream(const std::shared_ptr<vgaudio::formats::AudioData> &audio, const std::shared_ptr<common_lib::io::Stream> &stream, const std::shared_ptr<Configuration> &config) final {
+            auto cfg = std::dynamic_pointer_cast<Config>(config);
             return writeToStream(audio, stream, cfg);
         }
 
-        array_ptr<uint8_t> getFile(const shared_ptr<AudioData> &audio, const shared_ptr<Stream> &stream, const shared_ptr<Configuration> &config) final {
-            auto cfg = dynamic_pointer_cast<Config>(config);
+        common_lib::utilities::array_ptr<uint8_t> getFile(const std::shared_ptr<vgaudio::formats::AudioData> &audio, const std::shared_ptr<common_lib::io::Stream> &stream, const std::shared_ptr<Configuration> &config) final {
+            auto cfg = std::dynamic_pointer_cast<Config>(config);
             return getFile(audio, stream, cfg);
         }
 
-        array_ptr<uint8_t> getByteArray(const shared_ptr<AudioData> &audio, const shared_ptr<Config> &config) {
+        common_lib::utilities::array_ptr<uint8_t> getByteArray(const std::shared_ptr<vgaudio::formats::AudioData> &audio, const std::shared_ptr<Config> &config) {
             if (config != nullptr) {
                 setConfiguration(config);
             }
 
             setupWriter(audio);
 
-            shared_ptr<MemoryStream> stream = nullptr;
-            array_ptr<uint8_t> file = nullptr;
+            std::shared_ptr<common_lib::io::MemoryStream> stream = nullptr;
+            common_lib::utilities::array_ptr<uint8_t> file = nullptr;
 
             const auto fileSize = getFileSize();
 
             if (fileSize < 0) {
-                stream = make_shared<MemoryStream>();
+                stream = std::make_shared<common_lib::io::MemoryStream>();
             } else {
-                file = make_array_dynamic<uint8_t>(fileSize);
-                stream = make_shared<MemoryStream>(file);
+                file = common_lib::utilities::make_array_dynamic<uint8_t>(fileSize);
+                stream = std::make_shared<common_lib::io::MemoryStream>(file);
             }
 
             writeStream(stream);
@@ -133,7 +129,7 @@ namespace vgaudio::containers {
             }
         }
 
-        void writeStream(const shared_ptr<AudioData> &audio, const shared_ptr<Stream> &stream, const shared_ptr<Config> &config) {
+        void writeStream(const std::shared_ptr<vgaudio::formats::AudioData> &audio, const std::shared_ptr<common_lib::io::Stream> &stream, const std::shared_ptr<Config> &config) {
             if (config != nullptr) {
                 setConfiguration(config);
             }

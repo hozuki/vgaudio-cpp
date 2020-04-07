@@ -4,8 +4,6 @@
 
 namespace common_lib::io::compression {
 
-    using namespace std;
-
     struct IInflater {
 
     public:

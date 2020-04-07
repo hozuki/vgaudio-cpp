@@ -13,7 +13,7 @@ namespace common_lib::io {
 
     public:
 
-        explicit BinaryWriterLE(const shared_ptr<Stream> &stream);
+        explicit BinaryWriterLE(const std::shared_ptr<Stream> &stream);
 
         ~BinaryWriterLE() override = default;
 

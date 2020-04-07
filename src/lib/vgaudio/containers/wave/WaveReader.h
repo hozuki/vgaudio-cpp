@@ -10,10 +10,6 @@ namespace vgaudio::utilities::riff {
 
 namespace vgaudio::containers::wave {
 
-    using namespace std;
-    using namespace vgaudio::containers;
-    using namespace vgaudio::utilities::riff;
-
     struct WaveReader : public AudioReader<WaveStructure, WaveConfiguration> {
 
         DECLARE_CLASS_TEMPLATE(WaveReader, AudioReader, WaveStructure, WaveConfiguration);
@@ -26,13 +22,13 @@ namespace vgaudio::containers::wave {
 
     protected:
 
-        shared_ptr<WaveStructure> readFile(const shared_ptr<Stream> &stream, bool readAudioData) override;
+        std::shared_ptr<WaveStructure> readFile(const std::shared_ptr<common_lib::io::Stream> &stream, bool readAudioData) override;
 
-        shared_ptr<IAudioFormat> toAudioStream(const shared_ptr<WaveStructure> &structure) override;
+        std::shared_ptr<vgaudio::formats::IAudioFormat> toAudioStream(const std::shared_ptr<WaveStructure> &structure) override;
 
     private:
 
-        static void validateWaveFile(const shared_ptr<RiffParser> &parser) noexcept(false);
+        static void validateWaveFile(const std::shared_ptr<vgaudio::utilities::riff::RiffParser> &parser) noexcept(false);
 
     };
 

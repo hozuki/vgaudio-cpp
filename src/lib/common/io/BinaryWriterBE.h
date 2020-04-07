@@ -7,15 +7,13 @@
 
 namespace common_lib::io {
 
-    using namespace std;
-
     struct BinaryWriterBE : BinaryWriter {
 
         DECLARE_CLASS(BinaryWriterBE, BinaryWriter);
 
     public:
 
-        explicit BinaryWriterBE(const shared_ptr<Stream> &stream);
+        explicit BinaryWriterBE(const std::shared_ptr<Stream> &stream);
 
         ~BinaryWriterBE() override = default;
 

@@ -10,16 +10,13 @@ namespace common_lib::io {
 
 namespace vgaudio::utilities::riff {
 
-    using namespace std;
-    using namespace common_lib::io;
-
     struct RiffChunk final {
 
     private:
 
-        string _chunkId;
+        std::string _chunkId;
         int32_t _size;
-        string _type;
+        std::string _type;
 
     private:
 
@@ -29,12 +26,12 @@ namespace vgaudio::utilities::riff {
 
         ~RiffChunk() = default;
 
-        static shared_ptr<RiffChunk> parse(const shared_ptr<BinaryReader> &reader);
+        static std::shared_ptr<RiffChunk> parse(const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
         [[nodiscard]]
-        string getChunkId() const;
+        std::string getChunkId() const;
 
-        void setChunkId(const string &id);
+        void setChunkId(const std::string &id);
 
         [[nodiscard]]
         int32_t getSize() const;
@@ -42,9 +39,9 @@ namespace vgaudio::utilities::riff {
         void setSize(int32_t size);
 
         [[nodiscard]]
-        string getType() const;
+        std::string getType() const;
 
-        void setType(const string &type);
+        void setType(const std::string &type);
 
     };
 

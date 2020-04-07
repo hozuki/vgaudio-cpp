@@ -17,10 +17,12 @@
 
 using namespace std;
 using namespace common_lib::utilities;
+using namespace common_lib::io;
 using namespace vgaudio::containers;
 using namespace vgaudio::containers::wave;
 using namespace vgaudio::utilities;
 using namespace vgaudio::utilities::riff;
+using namespace vgaudio::formats;
 using namespace vgaudio::formats::pcm16;
 using namespace vgaudio::formats::pcm8;
 

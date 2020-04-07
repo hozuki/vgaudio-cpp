@@ -10,9 +10,6 @@ namespace vgaudio {
 
 namespace vgaudio::containers {
 
-    using namespace std;
-    using namespace vgaudio;
-
     struct Configuration {
 
         DECLARE_ROOT_CLASS(Configuration);
@@ -23,7 +20,7 @@ namespace vgaudio::containers {
 
         virtual ~Configuration() = default;
 
-        shared_ptr<IProgressReport> progress;
+        std::shared_ptr<vgaudio::IProgressReport> progress;
 
         bool trimFile;
 

@@ -17,26 +17,21 @@ namespace vgaudio::containers {
 
     struct AudioWithConfig;
 
-    using namespace std;
-    using namespace vgaudio::formats;
-    using namespace common_lib::io;
-    using namespace common_lib::utilities;
-
     struct IAudioReader {
 
         virtual ~IAudioReader() = default;
 
-        virtual shared_ptr<IAudioFormat> readFormat(const shared_ptr<Stream> &stream) = 0;
+        virtual std::shared_ptr<vgaudio::formats::IAudioFormat> readFormat(const std::shared_ptr<common_lib::io::Stream> &stream) = 0;
 
-        virtual shared_ptr<IAudioFormat> readFormat(const array_ptr<uint8_t> &file);
+        virtual std::shared_ptr<vgaudio::formats::IAudioFormat> readFormat(const common_lib::utilities::array_ptr<uint8_t> &file);
 
-        virtual shared_ptr<AudioData> read(const shared_ptr<Stream> &stream) = 0;
+        virtual std::shared_ptr<vgaudio::formats::AudioData> read(const std::shared_ptr<common_lib::io::Stream> &stream) = 0;
 
-        virtual shared_ptr<AudioData> read(const array_ptr<uint8_t> &file);
+        virtual std::shared_ptr<vgaudio::formats::AudioData> read(const common_lib::utilities::array_ptr<uint8_t> &file);
 
-        virtual shared_ptr<AudioWithConfig> readWithConfig(const shared_ptr<Stream> &stream) = 0;
+        virtual std::shared_ptr<AudioWithConfig> readWithConfig(const std::shared_ptr<common_lib::io::Stream> &stream) = 0;
 
-        virtual shared_ptr<AudioWithConfig> readWithConfig(const array_ptr<uint8_t> &file);
+        virtual std::shared_ptr<AudioWithConfig> readWithConfig(const common_lib::utilities::array_ptr<uint8_t> &file);
 
     protected:
 

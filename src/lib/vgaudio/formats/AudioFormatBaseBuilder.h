@@ -11,8 +11,6 @@ namespace vgaudio::formats {
     struct IAudioFormat;
     struct AudioTrack;
 
-    using namespace std;
-
     struct AudioFormatBaseBuilder {
 
         DECLARE_ROOT_CLASS(AudioFormatBaseBuilder);
@@ -24,7 +22,7 @@ namespace vgaudio::formats {
         int32_t _loopEnd;
         int32_t _sampleCount;
         int32_t _sampleRate;
-        shared_ptr<list<shared_ptr<AudioTrack>>> _tracks;
+        std::shared_ptr<std::list<std::shared_ptr<AudioTrack>>> _tracks;
 
     protected:
 
@@ -65,15 +63,15 @@ namespace vgaudio::formats {
         [[nodiscard]]
         decltype(_tracks) getTracks() const;
 
-        void setTracks(const shared_ptr<list<shared_ptr<AudioTrack>>> &tracks);
+        void setTracks(const std::shared_ptr<std::list<std::shared_ptr<AudioTrack>>> &tracks);
 
-        virtual shared_ptr<IAudioFormat> build() = 0;
+        virtual std::shared_ptr<IAudioFormat> build() = 0;
 
         virtual void withLoop(bool loop);
 
         virtual void withLoop(bool loop, int32_t loopStart, int32_t loopEnd);
 
-        virtual void withTracks(const shared_ptr<list<shared_ptr<AudioTrack>>> &tracks);
+        virtual void withTracks(const std::shared_ptr<std::list<std::shared_ptr<AudioTrack>>> &tracks);
 
     };
 

@@ -15,10 +15,6 @@
 
 namespace vgaudio::containers {
 
-    using namespace std;
-    using namespace common_lib::utilities;
-    using namespace common_lib::io;
-
     template<
         typename TStructure, typename TConfig,
         typename Structure = typename std::enable_if<std::is_base_of<IStructure, TStructure>::value, TStructure>::type,
@@ -32,65 +28,65 @@ namespace vgaudio::containers {
 
         ~AudioReader() override = default;
 
-        shared_ptr<IAudioFormat> readFormat(const shared_ptr<Stream> &stream) final {
+        std::shared_ptr<vgaudio::formats::IAudioFormat> readFormat(const std::shared_ptr<common_lib::io::Stream> &stream) final {
             return readStream(stream)->getAudioFormat();
         }
 
-        shared_ptr<IAudioFormat> readFormat(const array_ptr<uint8_t> &file) final {
+        std::shared_ptr<vgaudio::formats::IAudioFormat> readFormat(const common_lib::utilities::array_ptr<uint8_t> &file) final {
             return readByteArray(file)->getAudioFormat();
         }
 
-        shared_ptr<AudioData> read(const shared_ptr<Stream> &stream) final {
+        std::shared_ptr<vgaudio::formats::AudioData> read(const std::shared_ptr<common_lib::io::Stream> &stream) final {
             return readStream(stream)->getAudio();
         }
 
-        shared_ptr<AudioData> read(const array_ptr<uint8_t> &file) final {
+        std::shared_ptr<vgaudio::formats::AudioData> read(const common_lib::utilities::array_ptr<uint8_t> &file) final {
             return readByteArray(file)->getAudio();
         }
 
-        shared_ptr<AudioWithConfig> readWithConfig(const shared_ptr<Stream> &stream) final {
+        std::shared_ptr<AudioWithConfig> readWithConfig(const std::shared_ptr<common_lib::io::Stream> &stream) final {
             return readStream(stream);
         }
 
-        shared_ptr<AudioWithConfig> readWithConfig(const array_ptr<uint8_t> &file) final {
+        std::shared_ptr<AudioWithConfig> readWithConfig(const common_lib::utilities::array_ptr<uint8_t> &file) final {
             return readByteArray(file);
         }
 
-        shared_ptr<Structure> readMetadata(const shared_ptr<Stream> &stream) {
+        std::shared_ptr<Structure> readMetadata(const std::shared_ptr<common_lib::io::Stream> &stream) {
             return readStructure(stream, false);
         }
 
     protected:
 
-        virtual shared_ptr<Config> getConfiguration(const shared_ptr<Structure> &structure) {
-            return make_shared<Config>();
+        virtual std::shared_ptr<Config> getConfiguration(const std::shared_ptr<Structure> &structure) {
+            return std::make_shared<Config>();
         }
 
-        shared_ptr<Structure> readFile(const shared_ptr<Stream> &stream) {
+        std::shared_ptr<Structure> readFile(const std::shared_ptr<common_lib::io::Stream> &stream) {
             return readFile(stream, false);
         }
 
-        virtual shared_ptr<Structure> readFile(const shared_ptr<Stream> &stream, bool readAudioData) = 0;
+        virtual std::shared_ptr<Structure> readFile(const std::shared_ptr<common_lib::io::Stream> &stream, bool readAudioData) = 0;
 
-        virtual shared_ptr<IAudioFormat> toAudioStream(const shared_ptr<Structure> &structure) = 0;
+        virtual std::shared_ptr<vgaudio::formats::IAudioFormat> toAudioStream(const std::shared_ptr<Structure> &structure) = 0;
 
     private:
 
-        shared_ptr<AudioWithConfig> readByteArray(const array_ptr<uint8_t> &file) {
-            auto stream = make_shared<MemoryStream>(file, false);
+        std::shared_ptr<AudioWithConfig> readByteArray(const common_lib::utilities::array_ptr<uint8_t> &file) {
+            auto stream = std::make_shared<common_lib::io::MemoryStream>(file, false);
             return readStream(stream);
         }
 
-        shared_ptr<AudioWithConfig> readStream(const shared_ptr<Stream> &stream) {
+        std::shared_ptr<AudioWithConfig> readStream(const std::shared_ptr<common_lib::io::Stream> &stream) {
             auto structure = readStructure(stream);
 
             auto audioStream = toAudioStream(structure);
             auto config = getConfiguration(structure);
 
-            return make_shared<AudioWithConfig>(audioStream, config);
+            return std::make_shared<AudioWithConfig>(audioStream, config);
         }
 
-        shared_ptr<Structure> readStructure(const shared_ptr<Stream> &stream, bool readAudioData = true) {
+        std::shared_ptr<Structure> readStructure(const std::shared_ptr<common_lib::io::Stream> &stream, bool readAudioData = true) {
             if (!stream->canSeek()) {
                 throw std::runtime_error("a seekable stream is required");
             }

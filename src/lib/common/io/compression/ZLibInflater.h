@@ -10,8 +10,6 @@ struct z_stream_s;
 
 namespace common_lib::io::compression {
 
-    using namespace std;
-
     typedef int z_error_code;
     typedef int z_flush_code;
 
@@ -29,7 +27,7 @@ namespace common_lib::io::compression {
 
     public:
 
-        ZLibInflater(int32_t windowBits);
+        explicit ZLibInflater(int32_t windowBits);
 
         ~ZLibInflater() override;
 

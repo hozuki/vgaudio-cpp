@@ -13,17 +13,13 @@ namespace vgaudio::utilities::riff {
 
 namespace vgaudio::containers::wave {
 
-    using namespace std;
-    using namespace common_lib::utilities;
-    using namespace vgaudio::utilities::riff;
-
     struct WaveStructure : public IStructure {
 
         WaveStructure();
 
         ~WaveStructure() override = default;
 
-        vector<shared_ptr<RiffSubChunk>> riffSubChunks;
+        std::vector<std::shared_ptr<vgaudio::utilities::riff::RiffSubChunk>> riffSubChunks;
 
         int32_t channelCount;
         int32_t sampleRate;
@@ -33,8 +29,8 @@ namespace vgaudio::containers::wave {
         int32_t loopStart;
         int32_t loopEnd;
 
-        jarray2_ptr<int16_t> audioData16;
-        jarray2_ptr<uint8_t> audioData8;
+        common_lib::utilities::jarray2_ptr<int16_t> audioData16;
+        common_lib::utilities::jarray2_ptr<uint8_t> audioData8;
 
     };
 

@@ -8,9 +8,6 @@
 
 namespace vgaudio::utilities {
 
-    using namespace std;
-    using namespace common_lib::utilities;
-
     struct ArrayUnpacker {
 
         IMPLEMENT_STATIC_CLASS(ArrayUnpacker);
@@ -123,7 +120,7 @@ namespace vgaudio::utilities {
         };
 
         // type index, pointer to data (may be pointer of pointers), sizes of each rank
-        static array_ptr<std::tuple<TypeIndex, ArrayWrapper<>>> unpackArray(const void *packedArrays, size_t size);
+        static common_lib::utilities::array_ptr<std::tuple<TypeIndex, ArrayWrapper<>>> unpackArray(const void *packedArrays, size_t size);
 
         static void releaseWrappedArray(TypeIndex typeIndex, ArrayWrapper<> wrapper);
 

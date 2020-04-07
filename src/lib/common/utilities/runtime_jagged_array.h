@@ -24,7 +24,7 @@ namespace common_lib::utilities {
     // For compatibility
     template<typename T>
     jarray2_ptr<T> make_jagged_array_2_dynamic(size_t dim1) {
-        return make_shared<runtime_jagged_array<T, 2>>(dim1);
+        return std::make_shared<runtime_jagged_array<T, 2>>(dim1);
     }
 
     template<typename T, size_t dim1, size_t dim2>

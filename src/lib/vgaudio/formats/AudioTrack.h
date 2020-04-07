@@ -6,8 +6,6 @@
 
 namespace vgaudio::formats {
 
-    using namespace std;
-
     struct AudioTrack {
 
     private:
@@ -63,7 +61,7 @@ namespace vgaudio::formats {
 
         void setFlags(int32_t flags);
 
-        static shared_ptr<list<shared_ptr<AudioTrack>>> getDefaultTrackList(int32_t channelCount);
+        static std::shared_ptr<std::list<std::shared_ptr<AudioTrack>>> getDefaultTrackList(int32_t channelCount);
 
     };
 

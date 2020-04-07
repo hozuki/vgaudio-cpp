@@ -1,6 +1,7 @@
 #include <algorithm>
 
 #include "BinaryWriter.h"
+#include "Stream.h"
 
 using namespace std;
 using namespace common_lib::utilities;

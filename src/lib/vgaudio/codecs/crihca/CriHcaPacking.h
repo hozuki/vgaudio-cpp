@@ -15,17 +15,13 @@ namespace vgaudio::codecs::crihca {
 
     struct CriHcaFrame;
 
-    using namespace std;
-    using namespace common_lib::utilities;
-    using namespace vgaudio::utilities;
-
     struct CriHcaPacking {
 
         IMPLEMENT_STATIC_CLASS(CriHcaPacking);
 
-        static bool unpackFrame(const shared_ptr<CriHcaFrame> &frame, const shared_ptr<BitReader> &reader);
+        static bool unpackFrame(const std::shared_ptr<CriHcaFrame> &frame, const std::shared_ptr<vgaudio::utilities::BitReader> &reader);
 
-        static void packFrame(const shared_ptr<CriHcaFrame> &frame, const shared_ptr<Crc16> &crc, const array_ptr<uint8_t> &outBuffer);
+        static void packFrame(const std::shared_ptr<CriHcaFrame> &frame, const std::shared_ptr<vgaudio::utilities::Crc16> &crc, const common_lib::utilities::array_ptr<uint8_t> &outBuffer);
 
         static int32_t calculateResolution(int32_t scaleFactor, int32_t noiseLevel);
 
