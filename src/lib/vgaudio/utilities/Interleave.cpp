@@ -78,3 +78,47 @@ void Interleave::interleave(const jarray2_ptr<uint8_t> &inputs, const shared_ptr
         }
     }
 }
+
+jarray2_ptr<uint8_t> Interleave::deinterleave(const shared_ptr<Stream> &input, int32_t length, int32_t interleaveSize, int32_t outputCount, int32_t outputSize) {
+    if (input->canSeek()) {
+        const auto remainingLength = input->getLength() - input->getPosition();
+
+        if (remainingLength < length) {
+            throw std::runtime_error("Specified length is greater than remaining bytes in the stream.");
+        }
+    }
+
+    if (length % outputCount != 0) {
+        throw std::invalid_argument("Input length should be multiples of output count.");
+    }
+
+    const int32_t inputSize = length / outputCount;
+
+    if (outputSize < 0) {
+        outputSize = inputSize;
+    }
+
+    const auto inBlockCount = IntHelper::divideByRoundUp(inputSize, interleaveSize);
+    const auto outBlockCount = IntHelper::divideByRoundUp(outputSize, interleaveSize);
+    const auto lastInputInterleaveSize = inputSize - (inBlockCount - 1) * interleaveSize;
+    const auto lastOutputInterleaveSize = outputSize - (outBlockCount - 1) * interleaveSize;
+    const auto blocksToCopy = std::min(inBlockCount, outBlockCount);
+
+    const auto outputs = make_jagged_array_2_dynamic<uint8_t>(outputCount, outputSize);
+
+    for (auto b = 0; b < blocksToCopy; b += 1) {
+        const auto currentInputInterleaveSize = b == inBlockCount - 1 ? lastInputInterleaveSize : interleaveSize;
+        const auto currentOutputInterleaveSize = b == outBlockCount - 1 ? lastOutputInterleaveSize : interleaveSize;
+        const auto bytesToCopy = std::min(currentInputInterleaveSize, currentOutputInterleaveSize);
+
+        for (auto o = 0; o < outputCount; o += 1) {
+            input->read((*outputs)[o], interleaveSize * b, bytesToCopy);
+
+            if (bytesToCopy < currentInputInterleaveSize) {
+                input->setPosition(input->getPosition() + currentInputInterleaveSize - bytesToCopy);
+            }
+        }
+    }
+
+    return outputs;
+}

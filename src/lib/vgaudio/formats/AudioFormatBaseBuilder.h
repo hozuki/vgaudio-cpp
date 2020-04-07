@@ -53,7 +53,7 @@ namespace vgaudio::formats {
         [[nodiscard]]
         decltype(_sampleCount) getSampleCount() const;
 
-        void setSampleCount(decltype(_sampleCount) count);
+        void setSampleCount(decltype(_sampleCount) sampleCount);
 
         [[nodiscard]]
         decltype(_sampleRate) getSampleRate() const;

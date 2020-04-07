@@ -1,8 +1,10 @@
 #pragma once
 
 #include <cstdint>
+#include <type_traits>
 
 #include "static_class.h"
+#include "runtime_array.h"
 
 namespace common_lib::utilities {
 
@@ -15,6 +17,22 @@ namespace common_lib::utilities {
         static uint8_t combineNibbles(uint8_t high, uint8_t low);
 
         static int32_t getNextMultiple(int32_t value, int32_t multiple);
+
+        static uint8_t getHighNibble(uint8_t value);
+
+        static uint8_t getLowNibble(uint8_t value);
+
+        static int8_t getHighNibbleSigned(uint8_t value);
+
+        static int8_t getLowNibbleSigned(int8_t value);
+
+        static array_ptr<int32_t> getPrimes(int32_t maxPrime);
+
+        // https://stackoverflow.com/a/4609795
+        template<typename T, typename TValue = typename std::enable_if<std::is_signed<T>::value, T>::type>
+        static int sgn(const T &value) {
+            return (TValue(0) < value) - (value < TValue(0));
+        }
 
     };
 

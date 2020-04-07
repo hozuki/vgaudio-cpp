@@ -34,11 +34,13 @@ jarray2_ptr<uint8_t> CriHcaFormat::getAudioData() const {
 }
 
 shared_ptr<Pcm16Format> CriHcaFormat::toPcm16() {
-    return toPcm16(make_shared<CodecParameters>());
+    const auto cfg = make_shared<CodecParameters>();
+    return toPcm16(cfg);
 }
 
 shared_ptr<Pcm16Format> CriHcaFormat::toPcm16(const shared_ptr<CodecParameters> &config) {
-    return toPcm16(make_shared<CriHcaParameters>(*config));
+    const auto cfg = make_shared<CriHcaParameters>(*config);
+    return toPcm16(cfg);
 }
 
 shared_ptr<Pcm16Format> CriHcaFormat::toPcm16(const shared_ptr<CriHcaParameters> &config) {

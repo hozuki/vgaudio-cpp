@@ -16,8 +16,6 @@ namespace vgaudio::containers::hca {
 
     struct HcaReader : public AudioReader<HcaStructure, HcaConfiguration> {
 
-        using A = AudioReader<HcaStructure, HcaConfiguration>;
-
         DECLARE_CLASS_TEMPLATE(HcaReader, AudioReader, HcaStructure, HcaConfiguration);
 
     private:

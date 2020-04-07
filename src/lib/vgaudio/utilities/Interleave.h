@@ -61,6 +61,8 @@ namespace vgaudio::utilities {
 
         static void interleave(const common_lib::utilities::jarray2_ptr<uint8_t> &inputs, const std::shared_ptr<common_lib::io::Stream> &output, int32_t interleaveSize, int32_t outputSize = -1);
 
+        static common_lib::utilities::jarray2_ptr<uint8_t> deinterleave(const std::shared_ptr<common_lib::io::Stream> &input, int32_t length, int32_t interleaveSize, int32_t outputCount, int32_t outputSize = -1);
+
     };
 
 }

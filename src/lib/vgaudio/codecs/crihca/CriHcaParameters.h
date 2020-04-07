@@ -18,6 +18,10 @@ namespace vgaudio::codecs::crihca {
 
         explicit CriHcaParameters(const CodecParameters &source);
 
+        CriHcaParameters(const CriHcaParameters &) = default;
+
+        CriHcaParameters(CriHcaParameters &&) = default;
+
         ~CriHcaParameters() override = default;
 
         CriHcaQuality quality;

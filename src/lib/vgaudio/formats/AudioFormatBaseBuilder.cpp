@@ -38,8 +38,8 @@ decltype(AudioFormatBaseBuilder::_sampleCount) AudioFormatBaseBuilder::getSample
     return _sampleCount;
 }
 
-void AudioFormatBaseBuilder::setSampleCount(decltype(_sampleCount) count) {
-    _sampleCount = count;
+void AudioFormatBaseBuilder::setSampleCount(decltype(_sampleCount) sampleCount) {
+    _sampleCount = sampleCount;
 }
 
 void AudioFormatBaseBuilder::setTracks(const shared_ptr<list<shared_ptr<AudioTrack>>> &tracks) {

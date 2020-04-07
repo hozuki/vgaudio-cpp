@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <cstddef>
 #include <cassert>
 #include <algorithm>
 #include <vector>
@@ -9,6 +10,7 @@
 #include "static_class.h"
 #include "runtime_array.h"
 #include "runtime_jagged_array.h"
+#include "compare.h"
 
 namespace common_lib::utilities {
 
@@ -92,8 +94,11 @@ namespace common_lib::utilities {
             const auto size = lst.size();
             auto arr = make_array_dynamic<T>(size);
 
-            for (auto i = 0; i < size; i += 1) {
-                (*arr)[i] = lst[i];
+            size_t index = 0;
+
+            for (const auto &value : lst) {
+                (*arr)[index] = value;
+                index += 1;
             }
 
             return arr;
@@ -116,15 +121,18 @@ namespace common_lib::utilities {
             const auto size = lst.size();
             auto arr = make_jagged_array_2_dynamic<T>(size);
 
-            for (auto i = 0; i < size; i += 1) {
-                (*arr)[i] = lst[i];
+            size_t index = 0;
+
+            for (const auto &value : lst) {
+                (*arr)[index] = value;
+                index += 1;
             }
 
             return arr;
         }
 
         template<typename T>
-        array_ptr<T> concat(const array_ptr<T> &array1, const array_ptr<T> &array2) {
+        static array_ptr<T> concat(const array_ptr<T> &array1, const array_ptr<T> &array2) {
             const auto s1 = array1->size();
             const auto s2 = array2->size();
 
@@ -172,6 +180,59 @@ namespace common_lib::utilities {
             }
 
             return array_to_dynamic(arr);
+        }
+
+        // From .NET Array.BinarySearch() implementation
+        template<typename T, typename Compare = common_lib::utilities::compare<T>>
+        static ptrdiff_t binarySearch(const array_ptr<T> &array, ptrdiff_t index, ptrdiff_t count, const T &value, Compare compare = Compare()) {
+            ptrdiff_t lo = index;
+            ptrdiff_t hi = index + count - 1;
+
+            while (lo <= hi) {
+                const auto i = lo + ((hi - lo) >> 1);
+                const auto c = compare((*array)[i], value);
+
+                if (c == 0) {
+                    return i;
+                } else if (c < 0) {
+                    lo = i + 1;
+                } else {
+                    hi = i - 1;
+                }
+            }
+
+            return ~lo;
+        }
+
+        template<typename T>
+        static ptrdiff_t binarySearch(const array_ptr<T> &array, const T &value) {
+            return binarySearch(array, 0, array->size(), value);
+        }
+
+        template<typename T, size_t Dim, typename Compare = common_lib::utilities::compare<T>>
+        static ptrdiff_t binarySearch(const narray_ptr<T, Dim> &array, ptrdiff_t index, ptrdiff_t count, const T &value, Compare compare = Compare()) {
+            ptrdiff_t lo = index;
+            ptrdiff_t hi = index + count - 1;
+
+            while (lo <= hi) {
+                const auto i = lo + ((hi - lo) >> 1);
+                const auto c = compare((*array)[i], value);
+
+                if (c == 0) {
+                    return i;
+                } else if (c < 0) {
+                    lo = i + 1;
+                } else {
+                    hi = i - 1;
+                }
+            }
+
+            return ~lo;
+        }
+
+        template<typename T, size_t Dim>
+        static ptrdiff_t binarySearch(const narray_ptr<T, Dim> &array, const T &value) {
+            return binarySearch(array, 0, array->size(), value);
         }
 
     };
