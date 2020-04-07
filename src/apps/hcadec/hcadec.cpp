@@ -12,7 +12,7 @@ static void SetProgramArguments(argparse::ArgumentParser &program);
 static uint64_t GetEncryptionKeyParams(argparse::ArgumentParser &program);
 
 int main(int argc, const char *argv[]) {
-    const std::string strProgramName("hcaenc");
+    const std::string strProgramName("hcadec");
     argparse::ArgumentParser program(strProgramName);
 
     SetProgramArguments(program);
@@ -62,42 +62,42 @@ static void SetProgramArguments(argparse::ArgumentParser &program) {
         .help("path of output wave file");
     program.add_argument("--key-hex")
         .default_value(static_cast<uint64_t>(0))
-        .help("Decryption key (hex)")
+        .help("decryption key (hex)")
         .action([](const std::string &value) {
             uint64_t result = std::stoull(value, nullptr, 16);
             return result;
         });
     program.add_argument("--key", "-k")
         .default_value(static_cast<uint64_t>(0))
-        .help("Decryption key")
+        .help("decryption key")
         .action([](const std::string &value) {
             uint64_t result = std::stoull(value, nullptr, 10);
             return result;
         });
     program.add_argument("--lower-key-hex", "-a")
         .default_value(static_cast<uint32_t>(0))
-        .help("Decryption key (lower 32 bits, hex)")
+        .help("decryption key (lower 32 bits, hex)")
         .action([](const std::string &value) {
             uint32_t result = std::stoull(value, nullptr, 16);
             return result;
         });
     program.add_argument("--higher-key-hex", "-b")
         .default_value(static_cast<uint32_t>(0))
-        .help("Decryption key (higher 32 bits, hex)")
+        .help("decryption key (higher 32 bits, hex)")
         .action([](const std::string &value) {
             uint32_t result = std::stoull(value, nullptr, 16);
             return result;
         });
     program.add_argument("--sub-key", "-s")
         .default_value(static_cast<uint16_t>(0))
-        .help("Decryption sub-key")
+        .help("decryption sub-key")
         .action([](const std::string &value) {
             uint16_t result = std::stoull(value, nullptr, 10);
             return result;
         });
     program.add_argument("--sub-key-hex")
         .default_value(static_cast<uint16_t>(0))
-        .help("Decryption sub-key (hex)")
+        .help("decryption sub-key (hex)")
         .action([](const std::string &value) {
             uint16_t result = std::stoull(value, nullptr, 16);
             return result;
