@@ -21,34 +21,34 @@ int main() {
 
 void testDeflate() {
     size_t deflateOutSize = 0;
-    auto deflateOut = CreateResultBuffer();
+    auto deflateOut = vgaUtilCreateByteBuffer();
     size_t inflateOutSize = 0;
-    auto inflateOut = CreateResultBuffer();
+    auto inflateOut = vgaUtilCreateByteBuffer();
 
     auto_defer([&deflateOut, &inflateOut] {
-        DestroyResultBuffer(&deflateOut);
-        DestroyResultBuffer(&inflateOut);
+        vgaUtilDestroyByteBuffer(&deflateOut);
+        vgaUtilDestroyByteBuffer(&inflateOut);
     });
 
     char src[] = "hello, world!";
 
-    DeflateData(src, sizeof(src), 0, deflateOut, &deflateOutSize); // .NET does not have zlib footer (4 bytes ADLER32)
+    vgaUtilDeflateData(src, sizeof(src), 0, deflateOut, &deflateOutSize); // .NET does not have zlib footer (4 bytes ADLER32)
 
     {
-        auto deflateArray = make_array_dynamic<uint8_t>(static_cast<const uint8_t *>(GetResultBufferData(deflateOut)), deflateOutSize, false, false);
+        auto deflateArray = make_array_dynamic<uint8_t>(static_cast<const uint8_t *>(vgaUtilGetByteBufferData(deflateOut)), deflateOutSize, false, false);
         inspect("deflated data", deflateArray);
     }
 
-    InflateData(GetResultBufferData(deflateOut), deflateOutSize, 8, inflateOut, &inflateOutSize);
+    vgaUtilInflateData(vgaUtilGetByteBufferData(deflateOut), deflateOutSize, 8, inflateOut, &inflateOutSize);
 
     printf("Original size: %zu\n", sizeof(src));
 
     char ss[sizeof(src)] = {0};
-    memcpy(ss, GetResultBufferData(inflateOut), sizeof(ss));
+    memcpy(ss, vgaUtilGetByteBufferData(inflateOut), sizeof(ss));
     ss[sizeof(ss) - 1] = '\0';
     printf("%s\n", ss);
 
-    if (strcmp(src, static_cast<const char *>(GetResultBufferData(inflateOut))) == 0) {
+    if (strcmp(src, static_cast<const char *>(vgaUtilGetByteBufferData(inflateOut))) == 0) {
         cout << "Deflate passed";
     } else {
         cout << "Deflate failed";

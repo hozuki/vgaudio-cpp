@@ -39,14 +39,14 @@ struct TypeB : public TypeA {
 template<typename T>
 string type_name(const T &t) {
     char buf[129] = {0};
-    vgaDemangleSymbolName(typeid(t).name(), buf, sizeof(buf));
+    vgaUtilDemangleSymbolName(typeid(t).name(), buf, sizeof(buf));
     return string(buf);
 }
 
 template<typename T>
 string type_name() {
     char buf[129] = {0};
-    vgaDemangleSymbolName(typeid(T).name(), buf, sizeof(buf));
+    vgaUtilDemangleSymbolName(typeid(T).name(), buf, sizeof(buf));
     return string(buf);
 }
 

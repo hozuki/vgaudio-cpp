@@ -33,7 +33,7 @@ int main(int argc, const char *argv[]) {
     const auto dstPath = program.get<std::string>("hca-out");
     const auto quality = program.get<CRIHCA_QUALITY>("--quality");
 
-    if (!vgaFileExists(srcPath.c_str())) {
+    if (!vgaUtilFileExists(srcPath.c_str())) {
         fprintf(stderr, "Input file '%s' does not exist\n", srcPath.c_str());
         return 1;
     }
@@ -45,7 +45,7 @@ int main(int argc, const char *argv[]) {
 
     config.quality = quality;
 
-    EncodeHcaFile(srcPath.c_str(), dstPath.c_str(), &config);
+    vgaEncodeHcaFile(srcPath.c_str(), dstPath.c_str(), &config);
 
     fprintf(stdout, "\nDone.\n");
 

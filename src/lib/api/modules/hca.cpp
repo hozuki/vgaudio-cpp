@@ -26,9 +26,9 @@ using namespace vgaudio::formats::crihca;
 using namespace vgaudio::containers::hca;
 using namespace vgaudio::containers::wave;
 
-VGA_API_IMPL(int32_t) EncodeHcaFile(const char *inputWave, const char *outputHca, const HCA_ENCODE_CONFIG *config) {
-    const auto inputFileStream = make_shared<FileStream>(inputWave, "rb");
-    const auto outputFileStream = make_shared<FileStream>(outputHca, "wb");
+VGA_API_IMPL(int32_t) vgaEncodeHcaFile(const char *waveFileIn, const char *hcaFileOut, const HCA_ENCODE_CONFIG *config) {
+    const auto inputFileStream = make_shared<FileStream>(waveFileIn, "rb");
+    const auto outputFileStream = make_shared<FileStream>(hcaFileOut, "wb");
 
     const auto waveReader = make_shared<WaveReader>();
     const auto hcaWriter = make_shared<HcaWriter>();
@@ -55,9 +55,9 @@ VGA_API_IMPL(int32_t) EncodeHcaFile(const char *inputWave, const char *outputHca
     return 0;
 }
 
-VGA_API_IMPL(int32_t) DecodeHcaFile(const char *inputHca, const char *outputWave, const HCA_DECODE_CONFIG *config) {
-    const auto inputFileStream = make_shared<FileStream>(inputHca, "rb");
-    const auto outputFileStream = make_shared<FileStream>(outputWave, "wb");
+VGA_API_IMPL(int32_t) vgaDecodeHcaFile(const char *hcaFileIn, const char *waveFileOut, const HCA_DECODE_CONFIG *config) {
+    const auto inputFileStream = make_shared<FileStream>(hcaFileIn, "rb");
+    const auto outputFileStream = make_shared<FileStream>(waveFileOut, "wb");
 
     const auto hcaReader = make_shared<HcaReader>();
     const auto waveWriter = make_shared<WaveWriter>();

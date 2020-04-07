@@ -214,35 +214,39 @@ namespace common_lib::utilities {
 
     };
 
-    template<typename T, size_t Rank, typename TDim1, typename TDim2>
-    jarray_ptr<T, Rank> make_jagged_array_dynamic_helper__(TDim1 dim1, TDim2 dim2) {
-        static_assert(Rank == 2);
-        static_assert(std::is_convertible<TDim1, size_t>::value);
-        static_assert(std::is_convertible<TDim2, size_t>::value);
+    namespace __internal {
 
-        auto arr = make_shared<runtime_jagged_array<T, Rank>>(dim1);
+        template<typename T, size_t Rank, typename TDim1, typename TDim2>
+        jarray_ptr<T, Rank> make_jagged_array_dynamic_helper(TDim1 dim1, TDim2 dim2) {
+            static_assert(Rank == 2);
+            static_assert(std::is_convertible<TDim1, size_t>::value);
+            static_assert(std::is_convertible<TDim2, size_t>::value);
 
-        for (auto i = 0; i < dim1; i += 1) {
-            auto a = make_array_dynamic<T>(dim2);
-            (*arr)[i] = a;
+            auto arr = make_shared<runtime_jagged_array<T, Rank>>(dim1);
+
+            for (auto i = 0; i < dim1; i += 1) {
+                auto a = make_array_dynamic<T>(dim2);
+                (*arr)[i] = a;
+            }
+
+            return arr;
         }
 
-        return arr;
-    }
+        template<typename T, size_t Rank, typename TDim, typename... TDims>
+        jarray_ptr<T, Rank> make_jagged_array_dynamic_helper(TDim dim, TDims... dims) {
+            static_assert(Rank > 2);
+            static_assert(std::is_convertible<TDim, size_t>::value);
 
-    template<typename T, size_t Rank, typename TDim, typename... TDims>
-    jarray_ptr<T, Rank> make_jagged_array_dynamic_helper__(TDim dim, TDims... dims) {
-        static_assert(Rank > 2);
-        static_assert(std::is_convertible<TDim, size_t>::value);
+            auto arr = make_shared<runtime_jagged_array<T, Rank>>(dim);
 
-        auto arr = make_shared<runtime_jagged_array<T, Rank>>(dim);
+            for (auto i = 0; i < dim; i += 1) {
+                auto a = make_jagged_array_dynamic_helper<T, Rank - 1, TDims...>(dims...);
+                (*arr)[i] = a;
+            }
 
-        for (auto i = 0; i < dim; i += 1) {
-            auto a = make_jagged_array_dynamic_helper__<T, Rank - 1, TDims...>(dims...);
-            (*arr)[i] = a;
+            return arr;
         }
 
-        return arr;
     }
 
     template<typename T, size_t Rank, typename... TDims>
@@ -250,7 +254,7 @@ namespace common_lib::utilities {
         static_assert(Rank >= 2);
         static_assert(sizeof...(dims) == Rank);
 
-        return make_jagged_array_dynamic_helper__<T, Rank, TDims...>(dims...);
+        return __internal::make_jagged_array_dynamic_helper<T, Rank, TDims...>(dims...);
     }
 
 }

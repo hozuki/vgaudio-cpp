@@ -34,7 +34,7 @@ int main(int argc, const char *argv[]) {
     const auto dstPath = program.get<std::string>("wave-out");
     const auto key = GetEncryptionKeyParams(program);
 
-    if (!vgaFileExists(srcPath.c_str())) {
+    if (!vgaUtilFileExists(srcPath.c_str())) {
         fprintf(stderr, "Input file '%s' does not exist\n", srcPath.c_str());
         return 1;
     }
@@ -46,7 +46,7 @@ int main(int argc, const char *argv[]) {
 
     config.key = key;
 
-    DecodeHcaFile(srcPath.c_str(), dstPath.c_str(), &config);
+    vgaDecodeHcaFile(srcPath.c_str(), dstPath.c_str(), &config);
 
     fprintf(stdout, "\nDone.\n");
 

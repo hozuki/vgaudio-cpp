@@ -5,8 +5,8 @@
 #include "../../common/io/MemoryStream.h"
 #include "../../common/io/compression/DeflateStream.h"
 #include "../../../api/modules/deflate.h"
-#include "../../../api/modules/result_buffer.h"
-#include "result_buffer.h"
+#include "../../../api/modules/vga_byte_buffer.h"
+#include "vga_byte_buffer_impl.h"
 
 using namespace std;
 using namespace common_lib::utilities;
@@ -15,7 +15,7 @@ using namespace common_lib::io::compression;
 
 constexpr size_t DefaultDeflateBufferSize = 4096;
 
-VGA_API_IMPL(void) DeflateData(const void *data, size_t dataSize, size_t bufferSize, result_buffer *output, size_t *outputSize) {
+VGA_API_IMPL(void) vgaUtilDeflateData(const void *data, size_t dataSize, size_t bufferSize, vga_byte_buffer *output, size_t *outputSize) {
     if (output == nullptr) {
         return;
     }
@@ -36,17 +36,17 @@ VGA_API_IMPL(void) DeflateData(const void *data, size_t dataSize, size_t bufferS
 
     auto outBuffer = outMemory->toArray();
 
-    AllocResultBuffer(output, outBuffer->size());
+    vgaUtilAllocByteBuffer(output, outBuffer->size());
 
     if (outputSize != nullptr) {
         *outputSize = outBuffer->size();
     }
     if (!outBuffer->empty()) {
-        memcpy(GetResultBufferData(output), outBuffer->data(), outBuffer->size());
+        memcpy(vgaUtilGetByteBufferData(output), outBuffer->data(), outBuffer->size());
     }
 }
 
-VGA_API_IMPL(void) InflateData(const void *data, size_t dataSize, size_t bufferSize, result_buffer *output, size_t *outputSize) {
+VGA_API_IMPL(void) vgaUtilInflateData(const void *data, size_t dataSize, size_t bufferSize, vga_byte_buffer *output, size_t *outputSize) {
     if (output == nullptr) {
         return;
     }
@@ -67,12 +67,12 @@ VGA_API_IMPL(void) InflateData(const void *data, size_t dataSize, size_t bufferS
 
     auto outBuffer = outMemory->toArray();
 
-    AllocResultBuffer(output, outBuffer->size());
+    vgaUtilAllocByteBuffer(output, outBuffer->size());
 
     if (outputSize != nullptr) {
         *outputSize = outBuffer->size();
     }
     if (!outBuffer->empty()) {
-        memcpy(GetResultBufferData(output), outBuffer->data(), outBuffer->size());
+        memcpy(vgaUtilGetByteBufferData(output), outBuffer->data(), outBuffer->size());
     }
 }

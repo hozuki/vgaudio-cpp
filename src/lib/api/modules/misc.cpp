@@ -9,9 +9,10 @@ using namespace std;
 using namespace common_lib::utilities;
 using namespace common_lib::io;
 
-VGA_API_IMPL(size_t)vgaDemangleSymbolName(const char *name, char *buffer, size_t bufferSize) {
+VGA_API_IMPL(size_t)vgaUtilDemangleSymbolName(const char *name, char *buffer, size_t bufferSize) {
     assert(name != nullptr);
     assert(buffer != nullptr);
+    assert(bufferSize > 0);
 
     const auto str = TypeHelper::demangle(name);
     const auto size = str.size() + 1;
@@ -26,6 +27,6 @@ VGA_API_IMPL(size_t)vgaDemangleSymbolName(const char *name, char *buffer, size_t
     return size;
 }
 
-VGA_API_IMPL(vga_bool) vgaFileExists(const char *filePath) {
+VGA_API_IMPL(vga_bool) vgaUtilFileExists(const char *filePath) {
     return File::exists(filePath);
 }

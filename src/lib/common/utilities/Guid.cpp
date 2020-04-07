@@ -1,3 +1,7 @@
+#if defined(_MSC_VER)
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
 #include <cstring>
 #include <cinttypes>
 
@@ -80,8 +84,6 @@ std::size_t Guid::getHashCode() const {
 }
 
 std::string Guid::toString() const {
-    char buf[37] = {0};
-
     const uint32_t part1 = data1;
     const uint16_t part2 = data2;
     const uint16_t part3 = data3;
@@ -91,7 +93,10 @@ std::string Guid::toString() const {
     const uint64_t part5_hi = *reinterpret_cast<const uint32_t *>(data4 + 4);
     const uint64_t part5 = part5_lo | (part5_hi << 16u);
 
-    sprintf(buf, "%08" PRIx32 "-%04" PRIx16 "-%04" PRIx16 "-%04" PRIx16 "-%012" PRIx64, part1, part2, part3, part4, part5);
+    static const char formatString[] = "%08" PRIx32 "-%04" PRIx16 "-%04" PRIx16 "-%04" PRIx16 "-%012" PRIx64;
+    char buf[37] = {0};
+
+    snprintf(buf, sizeof(buf), formatString, part1, part2, part3, part4, part5);
 
     return std::string(buf);
 }

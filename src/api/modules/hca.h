@@ -29,6 +29,6 @@ typedef struct _HCA_DECODE_CONFIG {
     uint64_t key;
 } HCA_DECODE_CONFIG;
 
-VGA_C_API_DECL(int32_t) EncodeHcaFile(const char *inputWave, const char *outputHca, const HCA_ENCODE_CONFIG *config);
+VGA_C_API_DECL(int32_t) vgaEncodeHcaFile(const char *waveFileIn, const char *hcaFileOut, const HCA_ENCODE_CONFIG *config);
 
-VGA_C_API_DECL(int32_t) DecodeHcaFile(const char *inputHca, const char *outputWave, const HCA_DECODE_CONFIG *config);
+VGA_C_API_DECL(int32_t) vgaDecodeHcaFile(const char *hcaFileIn, const char *waveFileOut, const HCA_DECODE_CONFIG *config);

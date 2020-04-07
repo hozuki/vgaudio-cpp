@@ -1,8 +1,7 @@
 #pragma once
 
-typedef void *vga_handle;
-
+#include "modules/vga_handle.h"
 #include "modules/misc.h"
-#include "modules/result_buffer.h"
+#include "modules/vga_byte_buffer.h"
 #include "modules/deflate.h"
 #include "modules/hca.h"
