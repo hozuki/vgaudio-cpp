@@ -17,7 +17,7 @@ And some modern C++ practice.
 
 A compiler toolchain that supports C++17.
 
-Tested:
+Supports:
 
 - MSVC 2019 (19.2x)
 - Cygwin (GCC 7.4.0)
