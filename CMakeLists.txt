@@ -8,7 +8,7 @@ include(cmake/project_directories.cmake)
 
 include(cmake/project_options.cmake)
 
-include(cmake/project_targets.cmake)
+include(project_targets.cmake)
 
 include(cmake/project_prebuild.cmake)
 
