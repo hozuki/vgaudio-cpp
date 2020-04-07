@@ -52,7 +52,7 @@ For generator names please read [the manual](https://cmake.org/cmake/help/latest
 CMake options:
 
 | Option | Description | Default |
-|--|--|--|
+|---|---|---|
 | `VGAUDIO_APPS_DYNAMIC_LINKING` | Use dynamic linking instead of static linking for applications | `FALSE` |
 
 ## License
