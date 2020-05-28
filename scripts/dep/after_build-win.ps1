@@ -21,10 +21,10 @@ mkdir $DistDir -ErrorAction SilentlyContinue
 
 & 7z a "${zipPath}" "bin\*.*" -r
 
-[String]$zipNameVersioned = "vgaudio-vc16-${env:APPVEYOR_BUILD_VERSION}_${env:APPVEYOR_REPO_COMMIT}.zip"
+[String]$zipNameVersioned = "vgaudio-vc14.2-${env:APPVEYOR_BUILD_VERSION}_${env:APPVEYOR_REPO_COMMIT}.zip"
 
 Push-AppveyorArtifact $zipPath -FileName $zipNameVersioned -DeploymentName "Windows builds"
 
-[String]$zipNameFixed = "vgaudio-vc16-latest.zip"
+[String]$zipNameFixed = "vgaudio-vc14.2-latest.zip"
 
 Push-AppveyorArtifact $zipPath -FileName $zipNameFixed -DeploymentName "Windows builds (fixed naming)"
