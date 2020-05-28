@@ -77,8 +77,9 @@ static narray_ptr<uint8_t, 256> ShuffleTable(narray_ptr<uint8_t, 256> tableIn) {
     for (auto i = 0; i < 256; i += 1) {
         x += 17;
 
-        if ((*table)[x] != 0 && (*tableIn)[x] != 0xff) {
+        if ((*tableIn)[x] != 0 && (*tableIn)[x] != 0xff) {
             (*table)[outPos] = (*tableIn)[x];
+            outPos += 1;
         }
     }
 
