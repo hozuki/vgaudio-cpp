@@ -88,7 +88,7 @@ public:
 
 template<typename T>
 vga_handle create_vga_object(const std::shared_ptr<T> &ptr, VgaObjectType type) {
-    const auto ptrConv = new vga_shared_ptr_conv_impl(ptr);
+    const auto ptrConv = new vga_shared_ptr_conv_impl<T>(ptr);
     const auto object = new vga_object();
 
     object->type = type;
