@@ -52,7 +52,7 @@ namespace common_lib {
 
             template<typename T>
             static constexpr const T &clamp(const T &value, const T &min, const T &max) {
-                assert(!(min < max));
+                assert(!(max < min));
                 return value < min ? min : (max < value ? max : value);
             }
 
