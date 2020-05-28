@@ -4,9 +4,14 @@ A C++ port of [VGAudio](https://github.com/Thealexbarney/VGAudio).
 
 And some modern C++ practice.
 
+[![AppVeyor](https://img.shields.io/appveyor/ci/hozuki/vgaudio-cpp.svg)](https://ci.appveyor.com/project/hozuki/vgaudio-cpp)
+[![GitHub contributors](https://img.shields.io/github/contributors/hozuki/vgaudio-cpp.svg)](https://github.com/hozuki/vgaudio-cpp/graphs/contributors)
+[![GitHub (pre-)release](https://img.shields.io/github/release/hozuki/vgaudio-cpp/all.svg)](https://github.com/hozuki/vgaudio-cpp/releases)
+[![Github All Releases](https://img.shields.io/github/downloads/hozuki/vgaudio-cpp/total.svg)](https://github.com/hozuki/vgaudio-cpp/releases)
+
 **Downloads:**
 
-| Platform | Latest Artifact |
+| Platform | Latest CI Artifact |
 |---|---|
 | Windows (VS 2019) | [Link](https://ci.appveyor.com/api/projects/hozuki/vgaudio-cpp/artifacts/vgaudio-vc16-latest.zip?job=Image%3A%20Visual%20Studio%202019) |
 | Ubuntu 18.04 Bionic | [Link](https://ci.appveyor.com/api/projects/hozuki/vgaudio-cpp/artifacts/vgaudio-bionic-latest.zip?job=Image%3A%20Ubuntu) |
