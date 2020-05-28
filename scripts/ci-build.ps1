@@ -1,3 +1,7 @@
+$projectRoot = Resolve-Path "../"
+
+Push-Location $projectRoot
+
 if ($isWindows)
 {
     $scriptPath = [System.IO.Path]::Combine($PSScriptRoot, "dep", "build-win.ps1")
@@ -15,3 +19,5 @@ else
 {
     Write-Error "Error: Platform not supported"
 }
+
+Pop-Location $projectRoot
