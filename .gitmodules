@@ -4,3 +4,6 @@
 [submodule "ext/zlib"]
 	path = ext/zlib
 	url = https://github.com/madler/zlib
+[submodule "ext/argparse"]
+	path = ext/argparse
+	url = https://github.com/jamolnng/argparse

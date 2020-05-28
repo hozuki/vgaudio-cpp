@@ -1,7 +1,17 @@
 #include <string>
 #include <cstring>
+#include <cassert>
 
-#include <argparse.hpp>
+// Fix for argparse
+#ifdef _MSC_VER
+
+#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+
+#include <experimental/filesystem>
+
+#endif
+
+#include <argparse.h>
 #include <vgaudio.h>
 
 using namespace std;
@@ -16,22 +26,44 @@ int main(int argc, const char *argv[]) {
 
     SetProgramArguments(program);
 
-    try {
-        program.parse_args(argc, argv);
-    } catch (const std::runtime_error &e) {
+    const auto errInfo = program.parse(argc, argv);
+
+    if (errInfo) {
         if (argc > 1) {
-            // Called with at least one parameter
-            fprintf(stderr, "%s\n\n", e.what());
+            fprintf(stderr, "%s\n\n", errInfo.what().c_str());
         }
 
         program.print_help();
 
-        return 0;
+        return -1;
     }
 
     const auto srcPath = program.get<std::string>("wave-in");
     const auto dstPath = program.get<std::string>("hca-out");
-    const auto quality = program.get<CRIHCA_QUALITY>("--quality");
+
+    CRIHCA_QUALITY quality;
+
+    if (program.exists("quality")) {
+        const auto s = program.get<std::string>("quality");
+        auto n = std::stoi(s);
+
+        switch (n) {
+            case CRIHCA_QUALITY_NOT_SET:
+            case CRIHCA_QUALITY_HIGHEST:
+            case CRIHCA_QUALITY_HIGH:
+            case CRIHCA_QUALITY_MIDDLE:
+            case CRIHCA_QUALITY_LOW:
+            case CRIHCA_QUALITY_LOWEST:
+                break;
+            default:
+                n = CRIHCA_QUALITY_NOT_SET;
+                break;
+        }
+
+        quality = static_cast<CRIHCA_QUALITY>(n);
+    } else {
+        quality = CRIHCA_QUALITY_NOT_SET;
+    }
 
     if (!vgaUtilFileExists(srcPath.c_str())) {
         fprintf(stderr, "Input file '%s' does not exist\n", srcPath.c_str());
@@ -53,33 +85,19 @@ int main(int argc, const char *argv[]) {
 }
 
 static void SetProgramArguments(argparse::ArgumentParser &program) {
-    program.add_argument("wave-in")
-        .required()
-        .help("path of input wave file");
-    program.add_argument("hca-out")
-        .required()
-        .help("path of output HCA file");
-    program.add_argument("--quality", "-q")
-        .default_value(CRIHCA_QUALITY_NOT_SET)
-        .help("HCA quality (1 [highest] to 5 [lowest], 0 = default/high)")
-        .action([](const std::string &value) {
-            auto n = std::stoi(value);
-
-            switch (n) {
-                case CRIHCA_QUALITY_NOT_SET:
-                case CRIHCA_QUALITY_HIGHEST:
-                case CRIHCA_QUALITY_HIGH:
-                case CRIHCA_QUALITY_MIDDLE:
-                case CRIHCA_QUALITY_LOW:
-                case CRIHCA_QUALITY_LOWEST:
-                    break;
-                default:
-                    n = CRIHCA_QUALITY_NOT_SET;
-                    break;
-            }
-
-            return n;
-        });
+    program.add_argument()
+        .name("wave-in")
+        .position(0)
+        .required(true)
+        .description("path of input wave file");
+    program.add_argument()
+        .name("hca-out")
+        .position(1)
+        .required(true)
+        .description("path of output HCA file");
+    program.add_argument()
+        .names({"-q", "--quality"})
+        .description("HCA quality (1 [highest] to 5 [lowest], 0 = default/high)");
 }
 
 static const char *GetQualityDescription(CRIHCA_QUALITY quality) {
