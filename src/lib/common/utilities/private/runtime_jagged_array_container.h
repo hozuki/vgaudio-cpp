@@ -217,7 +217,7 @@ namespace common_lib {
 
             template<typename T, size_t Rank, typename TDim1, typename TDim2>
             jarray_ptr<T, Rank> make_jagged_array_dynamic_helper(TDim1 dim1, TDim2 dim2) {
-                static_assert(Rank == 2, "Rank == 2");
+                static_assert(Rank == 2, "Rank should be 2");
                 static_assert(std::is_convertible<TDim1, size_t>::value, "Dim1 should be able to be converted to size_t");
                 static_assert(std::is_convertible<TDim2, size_t>::value, "Dim2 should be able to be converted to size_t");
 
@@ -233,8 +233,8 @@ namespace common_lib {
 
             template<typename T, size_t Rank, typename TDim, typename... TDims>
             jarray_ptr<T, Rank> make_jagged_array_dynamic_helper(TDim dim, TDims... dims) {
-                static_assert(Rank > 2);
-                static_assert(std::is_convertible<TDim, size_t>::value);
+                static_assert(Rank > 2, "Rank should be more than 2");
+                static_assert(std::is_convertible<TDim, size_t>::value, "Dim should be able to be converted to size_t");
 
                 auto arr = std::make_shared<runtime_jagged_array<T, Rank>>(dim);
 
@@ -250,7 +250,7 @@ namespace common_lib {
 
         template<typename T, size_t Rank, typename... TDims>
         jarray_ptr<T, Rank> make_jagged_array_dynamic(TDims... dims) {
-            static_assert(Rank >= 2, "Rank >= 2");
+            static_assert(Rank >= 2, "Rank should be at least 2");
             static_assert(sizeof...(dims) == Rank, "Rank of dims should be equal");
 
             return __internal::make_jagged_array_dynamic_helper<T, Rank, TDims...>(dims...);
