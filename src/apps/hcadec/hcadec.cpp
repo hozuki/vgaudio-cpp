@@ -16,17 +16,16 @@ int main(int argc, const char *argv[]) {
 
     SetProgramArguments(program);
 
-    try {
-        program.parse(argc, argv);
-    } catch (const std::runtime_error &e) {
+    const auto errInfo = program.parse(argc, argv);
+
+    if (errInfo) {
         if (argc > 1) {
-            // Called with at least one parameter
-            fprintf(stderr, "%s\n\n", e.what());
+            fprintf(stderr, "%s\n\n", errInfo.what().c_str());
         }
 
         program.print_help();
 
-        return 0;
+        return -1;
     }
 
     const auto srcPath = program.get<std::string>("hca-in");
