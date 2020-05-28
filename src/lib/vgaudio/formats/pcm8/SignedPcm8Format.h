@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../../../common/utilities/_cxx17.h"
 #include "Pcm8FormatBase.h"
 
 namespace vgaudio {
@@ -20,21 +21,21 @@ namespace vgaudio {
 
                 ~SignedPcm8Format() override = default;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool isSigned() const override;
 
             protected:
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 std::function<common_lib::utilities::array_ptr<uint8_t>(const common_lib::utilities::array_ptr<int16_t> &)> getEncodeFunction() const override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 std::function<common_lib::utilities::array_ptr<int16_t>(const common_lib::utilities::array_ptr<uint8_t> &)> getDecodeFunction() const override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool canAcceptAudioFormat(const vgaudio::formats::IAudioFormat *format) const override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool canAcceptConfig(const vgaudio::codecs::CodecParameters *config) const override;
 
             };

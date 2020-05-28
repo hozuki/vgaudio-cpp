@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <functional>
 
+#include "../../../common/utilities/_cxx17.h"
 #include "../../../common/utilities/runtime_jagged_array.h"
 #include "../AudioFormatBase.h"
 
@@ -42,10 +43,10 @@ namespace vgaudio {
 
                 std::shared_ptr<IAudioFormat> encodeFromPcm16(const std::shared_ptr<vgaudio::formats::pcm16::Pcm16Format> &pcm16) override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 common_lib::utilities::jarray2_ptr<uint8_t> getChannels() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 virtual bool isSigned() const = 0;
 
             protected:
@@ -54,10 +55,10 @@ namespace vgaudio {
 
                 std::shared_ptr<AudioFormatBase> getChannelsInternal(const common_lib::utilities::array_ptr<int32_t> &channelRange) override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 virtual std::function<common_lib::utilities::array_ptr<uint8_t>(const common_lib::utilities::array_ptr<int16_t> &)> getEncodeFunction() const = 0;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 virtual std::function<common_lib::utilities::array_ptr<int16_t>(const common_lib::utilities::array_ptr<uint8_t> &)> getDecodeFunction() const = 0;
 
             public:

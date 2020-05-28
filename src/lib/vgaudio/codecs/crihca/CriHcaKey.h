@@ -2,6 +2,7 @@
 
 #include <cstdint>
 
+#include "../../../common/utilities/_cxx17.h"
 #include "../../../common/utilities/runtime_array.h"
 #include "../../../common/utilities/traits.h"
 #include "CriHcaKeyType.h"
@@ -29,7 +30,7 @@ namespace vgaudio {
 
             public:
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 CriHcaKeyType getKeyType() const;
 
                 uint64_t getKeyCode(uint64_t *pKey = nullptr) const;
@@ -38,10 +39,10 @@ namespace vgaudio {
 
                 void getKeyCode(uint32_t &key1, uint32_t &key2) const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 common_lib::utilities::narray_ptr<uint8_t, 256> getDecryptionTable() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 common_lib::utilities::narray_ptr<uint8_t, 256> getEncryptionTable() const;
 
             };

@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 
+#include "../utilities/_cxx17.h"
 #include "Stream.h"
 
 namespace common_lib {
@@ -49,19 +50,19 @@ namespace common_lib {
 
             void setLength(int64_t length) override;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             bool canRead() const override;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             bool canWrite() const override;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             bool canSeek() const override;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             const std::string &getFilePath() const;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             std::ios_base::openmode getOpenMode() const;
 
         private:

@@ -2,6 +2,7 @@
 
 #include <cstdint>
 
+#include "../../../common/utilities/_cxx17.h"
 #include "../AudioWriter.h"
 #include "WaveConfiguration.h"
 
@@ -41,49 +42,49 @@ namespace vgaudio {
 
             private:
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 WaveCodec getCodec() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getChannelCount() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getSampleCount() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getSampleRate() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool isLooping() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getLoopStart() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getLoopEnd() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getRiffChunkSize() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getFmtChunkSize() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getDataChunkSize() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getSmplChunkSize() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getBitDepth() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getBytesPerSample() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getBytesPerSecond() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getBlockAlign() const;
 
             protected:

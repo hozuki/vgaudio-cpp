@@ -3,6 +3,7 @@
 #include <memory>
 #include <string>
 
+#include "../utilities/_cxx17.h"
 #include "../utilities/type_sys.h"
 #include "../utilities/runtime_array.h"
 
@@ -25,7 +26,7 @@ namespace common_lib {
 
             virtual ~BinaryWriter() = default;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             std::shared_ptr<Stream> getBaseStream() const;
 
             virtual int32_t write(const void *buffer, size_t bufferSize, int32_t offset, int32_t count);

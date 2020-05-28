@@ -2,6 +2,7 @@
 
 #include <memory>
 
+#include "../../../common/utilities/_cxx17.h"
 #include "CriHcaConstants.h"
 #include "../../../common/utilities/runtime_array.h"
 
@@ -32,21 +33,21 @@ namespace vgaudio {
 
                 ~CriHcaFrame() = default;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 std::shared_ptr<HcaInfo> getHca() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 common_lib::utilities::array_ptr<std::shared_ptr<CriHcaChannel>> getChannels() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 common_lib::utilities::narray_ptr<uint8_t, C::SamplesPerSubframe> getAthCurve() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getAcceptableNoiseLevel() const;
 
                 void setAcceptableNoiseLevel(int32_t level);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getEvaluationBoundary() const;
 
                 void setEvaluationBoundary(int32_t boundary);

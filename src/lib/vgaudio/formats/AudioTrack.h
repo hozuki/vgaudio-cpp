@@ -4,6 +4,8 @@
 #include <list>
 #include <memory>
 
+#include "../../common/utilities/_cxx17.h"
+
 namespace vgaudio {
     namespace formats {
 
@@ -27,37 +29,37 @@ namespace vgaudio {
 
             AudioTrack(int32_t channelCount, int32_t channelLeft, int32_t channelRight);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int32_t getChannelCount() const;
 
             void setChannelCount(int32_t count);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int32_t getChannelLeft() const;
 
             void setChannelLeft(int32_t count);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int32_t getChannelRight() const;
 
             void setChannelRight(int32_t count);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int32_t getPanning() const;
 
             void setPanning(int32_t panning);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int32_t getVolume() const;
 
             void setVolume(int32_t volume);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int32_t getSurroundPanning() const;
 
             void setSurroundPanning(int32_t panning);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int32_t getFlags() const;
 
             void setFlags(int32_t flags);

@@ -2,6 +2,8 @@
 
 #include <memory>
 
+#include "../../common/utilities/_cxx17.h"
+
 namespace vgaudio {
     namespace formats {
         struct IAudioFormat;
@@ -27,13 +29,13 @@ namespace vgaudio {
 
             ~AudioWithConfig() = default;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             std::shared_ptr<vgaudio::formats::IAudioFormat> getAudioFormat() const;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             std::shared_ptr<Configuration> getConfiguration() const;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             std::shared_ptr<vgaudio::formats::AudioData> getAudio() const;
 
         };

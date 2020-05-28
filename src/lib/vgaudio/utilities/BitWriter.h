@@ -2,6 +2,7 @@
 
 #include <cstdint>
 
+#include "../../common/utilities/_cxx17.h"
 #include "../../common/utilities/runtime_array.h"
 
 namespace vgaudio {
@@ -22,18 +23,18 @@ namespace vgaudio {
 
             void SetBuffer(const common_lib::utilities::array_ptr<uint8_t> &buffer, size_t position = 0);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             common_lib::utilities::array_ptr<uint8_t> getBuffer() const;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             size_t getLengthBits() const;
 
             void setPosition(size_t position);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             size_t getPosition() const;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             size_t getRemaining() const;
 
             void alignPosition(int32_t multiple);

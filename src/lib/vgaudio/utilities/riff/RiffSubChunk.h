@@ -4,6 +4,7 @@
 #include <string>
 #include <memory>
 
+#include "../../../common/utilities/_cxx17.h"
 #include "../../../common/utilities/type_sys.h"
 #include "../../../common/utilities/runtime_array.h"
 
@@ -33,17 +34,17 @@ namespace vgaudio {
 
                 virtual ~RiffSubChunk() = default;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 std::string getSubChunkId() const;
 
                 void setSubChunkId(const std::string &id);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getSubChunkSize() const;
 
                 void setSubChunkSize(int32_t size);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 common_lib::utilities::array_ptr<uint8_t> getExtra() const;
 
                 void setExtra(const common_lib::utilities::array_ptr<uint8_t> &extra);

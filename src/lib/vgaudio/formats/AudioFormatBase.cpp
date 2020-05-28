@@ -147,7 +147,7 @@ shared_ptr<IAudioFormat> AudioFormatBase::encodeFromPcm16(const shared_ptr<Pcm16
     return encodeFromPcm16WithConfig(pcm16, getDerivedParameters(config));
 }
 
-shared_ptr<IAudioFormat> AudioFormatBase::encodeFromPcm16WithConfig(const shared_ptr<Pcm16Format> &pcm16, _CXX17_MAYBE_UNUSED const shared_ptr<CodecParameters> &config) {
+shared_ptr<IAudioFormat> AudioFormatBase::encodeFromPcm16WithConfig(const shared_ptr<Pcm16Format> &pcm16, _CXX17_ATTR_MAYBE_UNUSED const shared_ptr<CodecParameters> &config) {
     return encodeFromPcm16(pcm16);
 }
 

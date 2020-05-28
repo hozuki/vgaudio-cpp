@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <memory>
 
+#include "../../utilities/_cxx17.h"
 #include "../../utilities/type_sys.h"
 #include "IDeflater.h"
 
@@ -33,7 +34,7 @@ namespace common_lib {
 
                 ~ZLibDeflater() override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool needsInput() const override;
 
                 void setInput(const void *inputBuffer, size_t inputBufferSize, int32_t offset, int32_t count) override;
@@ -56,7 +57,7 @@ namespace common_lib {
 
                 void disposeInputBuffer();
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool isInputBufferCreated() const;
 
             };

@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <memory>
 
+#include "../../../common/utilities/_cxx17.h"
 #include "../../../common/utilities/runtime_array.h"
 #include "../../../common/utilities/runtime_jagged_array.h"
 #include "../AudioWriter.h"
@@ -59,7 +60,7 @@ namespace vgaudio {
 
             private:
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getHeaderSize() const;
 
                 void writeHeader(const std::shared_ptr<common_lib::io::Stream> &stream);

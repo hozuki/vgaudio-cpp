@@ -24,7 +24,7 @@ namespace common_lib {
 
         };
 
-        _CXX17_MAYBE_UNUSED
+        _CXX17_ATTR_MAYBE_UNUSED
         static _endianess_static_init _init;
 
         bool machine_is_big_endian() {

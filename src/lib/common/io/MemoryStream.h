@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <memory>
 
+#include "../utilities/_cxx17.h"
 #include "../utilities/type_sys.h"
 #include "Stream.h"
 #include "../utilities/runtime_array.h"
@@ -38,7 +39,7 @@ namespace common_lib {
 
             ~MemoryStream() override = default;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             common_lib::utilities::array_ptr<uint8_t> toArray();
 
             int32_t read(void *buffer, size_t bufferSize, int32_t offset, int32_t count) override;
@@ -55,21 +56,21 @@ namespace common_lib {
 
             void setLength(int64_t length) override;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int64_t getCapacity() const;
 
             void setCapacity(int64_t capacity);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             common_lib::utilities::array_ptr<uint8_t> getBuffer() const;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             bool canRead() const override;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             bool canWrite() const override;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             bool canSeek() const override;
 
             void writeTo(const std::shared_ptr<Stream> &stream);

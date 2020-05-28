@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <memory>
 
+#include "../../common/utilities/_cxx17.h"
 #include "../../common/utilities/runtime_array.h"
 
 namespace vgaudio {
@@ -22,22 +23,22 @@ namespace vgaudio {
 
             virtual ~IAudioFormat() = default;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             virtual int32_t getSampleCount() const = 0;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             virtual int32_t getSampleRate() const = 0;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             virtual int32_t getChannelCount() const = 0;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             virtual int32_t getLoopStart() const = 0;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             virtual int32_t getLoopEnd() const = 0;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             virtual bool isLooping() const = 0;
 
             virtual std::shared_ptr<IAudioFormat> withLoop(bool loop, int32_t loopStart, int32_t loopEnd) = 0;

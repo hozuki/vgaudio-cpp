@@ -2,6 +2,7 @@
 
 #include <memory>
 
+#include "../../../common/utilities/_cxx17.h"
 #include "../../../common/utilities/runtime_jagged_array.h"
 #include "../AudioFormatBaseBuilder.h"
 
@@ -34,13 +35,13 @@ namespace vgaudio {
 
                 ~CriHcaFormatBuilder() override = default;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 common_lib::utilities::jarray2_ptr<uint8_t> getAudioData() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 std::shared_ptr<vgaudio::codecs::crihca::HcaInfo> getHca() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getChannelCount() const override;
 
                 std::shared_ptr<IAudioFormat> build() override;

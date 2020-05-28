@@ -30,7 +30,7 @@ struct _HcaReader_Static_Init {
 
 };
 
-_CXX17_MAYBE_UNUSED
+_CXX17_ATTR_MAYBE_UNUSED
 static _HcaReader_Static_Init _init;
 
 static inline void ReadChunkId(const shared_ptr<BinaryReader> &reader, char *buffer, size_t size = 4) {

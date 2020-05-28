@@ -44,14 +44,14 @@ namespace common_lib {
 #if _CXX17_AVAILABLE
 
             template<typename T>
-            static constexpr const T &clamp(const T &value, const T &min, const T &max) {
+            static _CXX17_CONSTEXPR const T &clamp(const T &value, const T &min, const T &max) {
                 return std::clamp<T>(value, min, max);
             }
 
 #else
 
             template<typename T>
-            static constexpr const T &clamp(const T &value, const T &min, const T &max) {
+            static const T &clamp(const T &value, const T &min, const T &max) {
                 assert(!(max < min));
                 return value < min ? min : (max < value ? max : value);
             }

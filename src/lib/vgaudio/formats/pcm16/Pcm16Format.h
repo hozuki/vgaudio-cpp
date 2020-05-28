@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <memory>
 
+#include "../../../common/utilities/_cxx17.h"
 #include "../AudioFormatBase.h"
 #include "../../../common/utilities/runtime_jagged_array.h"
 
@@ -36,7 +37,7 @@ namespace vgaudio {
 
                 ~Pcm16Format() override = default;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 common_lib::utilities::jarray2_ptr<int16_t> getChannels() const;
 
                 std::shared_ptr<Pcm16Format> toPcm16() override;
@@ -53,10 +54,10 @@ namespace vgaudio {
 
                 std::shared_ptr<AudioFormatBase> getChannelsInternal(const common_lib::utilities::array_ptr<int32_t> &channelRange) override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool canAcceptAudioFormat(const vgaudio::formats::IAudioFormat *format) const override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool canAcceptConfig(const vgaudio::codecs::CodecParameters *config) const override;
 
             };

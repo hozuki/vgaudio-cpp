@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../../../common/utilities/_cxx17.h"
 #include "RiffSubChunk.h"
 
 namespace vgaudio {
@@ -47,50 +48,50 @@ namespace vgaudio {
 
                 static std::shared_ptr<WaveSmplChunk> parse(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getManufacturer() const;
 
                 void setManufacturer(int32_t manufacturer);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getProduct() const;
 
                 void setProduct(int32_t product);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getSamplePeriod() const;
 
                 void setSamplePeriod(int32_t period);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getMidiUnityNote() const;
 
                 void setMidiUnityNote(int32_t note);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getMidiPitchFraction() const;
 
                 void setMidiPitchFraction(int32_t fraction);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getSmpteFormat() const;
 
                 void setSmpteFormat(int32_t format);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getSmpteOffset() const;
 
                 void setSmpteOffset(int32_t offset);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getSampleLoopCount() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getSamplerData() const;
 
                 void setSamplerData(int32_t data);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 common_lib::utilities::array_ptr<SampleLoop> getLoops() const;
 
                 void setLoops(const common_lib::utilities::array_ptr<SampleLoop> &loops);

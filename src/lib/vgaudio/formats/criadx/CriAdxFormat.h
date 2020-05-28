@@ -2,6 +2,7 @@
 
 #include <memory>
 
+#include "../../../common/utilities/_cxx17.h"
 #include "../../../common/utilities/runtime_array.h"
 #include "../AudioFormatBase.h"
 #include "../../codecs/criadx/CriAdxType.h"
@@ -42,31 +43,31 @@ namespace vgaudio {
 
                 ~CriAdxFormat() override = default;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 common_lib::utilities::array_ptr<std::shared_ptr<CriAdxChannel>> getChannels() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int16_t getHighPassFrequency() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getFrameSize() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getAlignmentSamples() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getVersion() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 vgaudio::codecs::criadx::CriAdxType getType() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getSampleCount() const override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getLoopStart() const override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getLoopEnd() const override;
 
                 std::shared_ptr<vgaudio::formats::pcm16::Pcm16Format> toPcm16() override;
@@ -85,13 +86,13 @@ namespace vgaudio {
 
                 std::shared_ptr<AudioFormatBaseBuilder> getCloneBuilder() override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool canAcceptAudioFormat(const vgaudio::formats::IAudioFormat *format) const override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool canAcceptConfig(const vgaudio::codecs::CodecParameters *config) const override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 std::shared_ptr<vgaudio::codecs::CodecParameters> createConfig() const override;
 
             };

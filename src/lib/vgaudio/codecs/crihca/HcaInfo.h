@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <string>
 
+#include "../../../common/utilities/_cxx17.h"
 #include "CriHcaKeyType.h"
 
 namespace vgaudio {
@@ -54,13 +55,13 @@ namespace vgaudio {
 
                 std::string comment;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getLoopStartSample() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getLoopEndSample() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 size_t getCommentLength() const;
 
             };

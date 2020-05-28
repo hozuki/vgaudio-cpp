@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <memory>
 
+#include "../../utilities/_cxx17.h"
 #include "../../utilities/type_sys.h"
 #include "IInflater.h"
 
@@ -35,14 +36,14 @@ namespace common_lib {
 
                 int32_t getAvailableOutput() override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool needsInput() const override;
 
                 void setInput(const void *inputBuffer, size_t inputBufferSize, int32_t offset, int32_t count) override;
 
                 int32_t getInflateOutput(void *outputBuffer, size_t outputBufferSize, int32_t offset, int32_t count) override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool isFinished() const override;
 
             private:
@@ -59,7 +60,7 @@ namespace common_lib {
 
                 void disposeInputBuffer();
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool isInputBufferCreated() const;
 
             };

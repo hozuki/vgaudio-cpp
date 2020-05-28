@@ -5,6 +5,7 @@
 #include <iterator>
 #include <memory>
 
+#include "../_cxx17.h"
 #include "runtime_array_decl.h"
 
 namespace common_lib {
@@ -38,7 +39,7 @@ namespace common_lib {
                 : _array(arr) {
             }
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             bool empty() const override {
                 return _array->empty();
             }
@@ -75,12 +76,12 @@ namespace common_lib {
                 return _array->back();
             }
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             size_type size() const override {
                 return _array->size();
             }
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             size_type max_size() const override {
                 return _array->max_size();
             }

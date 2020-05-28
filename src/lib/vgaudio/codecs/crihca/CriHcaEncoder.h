@@ -5,6 +5,7 @@
 #include <queue>
 
 #include "CriHcaQuality.h"
+#include "../../../common/utilities/_cxx17.h"
 #include "../../../common/utilities/runtime_array.h"
 #include "../../../common/utilities/runtime_jagged_array.h"
 
@@ -58,28 +59,28 @@ namespace vgaudio {
 
                 common_lib::utilities::array_ptr<uint8_t> getPendingFrame();
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 std::shared_ptr<HcaInfo> getHca() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 CriHcaQuality getQuality() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getBitrate() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getCutoffFrequency() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 size_t getPendingFrameCount() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getFrameSize() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 size_t getBufferRemaining() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 size_t getFramesProcessed() const;
 
             private:

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../../../common/utilities/_cxx17.h"
 #include "RiffSubChunk.h"
 
 namespace vgaudio {
@@ -22,7 +23,7 @@ namespace vgaudio {
 
                 static std::shared_ptr<WaveFactChunk> parse(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getSampleCount() const;
 
                 void setSampleCount(int32_t sampleCount);

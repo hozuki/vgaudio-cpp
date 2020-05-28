@@ -2,6 +2,7 @@
 
 #include <cstdint>
 
+#include "../../../common/utilities/_cxx17.h"
 #include "../../../common/utilities/runtime_array.h"
 #include "../../../common/utilities/Guid.h"
 
@@ -33,32 +34,32 @@ namespace vgaudio {
 
                 static std::shared_ptr<WaveFormatExtensible> parse(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getSize() const;
 
                 void setSize(int32_t size);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getValidBitsPerSample() const;
 
                 void setValidBitsPerSample(int32_t bits);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getSamplesPerBlock() const;
 
                 void setSamplesPerBlock(int32_t samples);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 uint32_t getChannelMask() const;
 
                 void setChannelMask(uint32_t mask);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 common_lib::utilities::Guid getSubFormat() const;
 
                 void setSubFormat(const common_lib::utilities::Guid &format);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 common_lib::utilities::array_ptr<uint8_t> getExtra() const;
 
                 void setExtra(const common_lib::utilities::array_ptr<uint8_t> &extra);

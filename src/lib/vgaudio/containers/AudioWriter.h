@@ -4,6 +4,7 @@
 #include <memory>
 #include <type_traits>
 
+#include "../../common/utilities/_cxx17.h"
 #include "IAudioWriter.h"
 #include "../../common/io/Stream.h"
 #include "../../common/io/MemoryStream.h"
@@ -56,7 +57,7 @@ namespace vgaudio {
                 _configuration = std::make_shared<Config>();
             }
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             std::shared_ptr<vgaudio::formats::AudioData> getAudioStream() const {
                 return _audioData;
             }
@@ -65,7 +66,7 @@ namespace vgaudio {
                 _audioData = audioData;
             }
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             std::shared_ptr<Config> getConfiguration() const {
                 return _configuration;
             }

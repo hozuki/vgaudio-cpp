@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <memory>
 
+#include "../../utilities/_cxx17.h"
 #include "../Stream.h"
 #include "CompressionMode.h"
 
@@ -38,13 +39,13 @@ namespace common_lib {
 
                 ~DeflateStream() override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 std::shared_ptr<Stream> getBaseStream() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 CompressionMode getCompressionMode() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getCompressionLevel() const;
 
                 int32_t read(void *buffer, size_t bufferSize, int32_t offset, int32_t count) override;
@@ -53,10 +54,10 @@ namespace common_lib {
 
                 void flush() override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool canRead() const override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool canWrite() const override;
 
             private:

@@ -4,6 +4,8 @@
 #include <iterator>
 #include <type_traits>
 
+#include "../_cxx17.h"
+
 namespace common_lib {
     namespace utilities {
 
@@ -27,7 +29,7 @@ namespace common_lib {
 
             virtual ~runtime_array() = default;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             virtual bool empty() const = 0;
 
             virtual const_reference at(difference_type index) const = 0;
@@ -46,10 +48,10 @@ namespace common_lib {
 
             virtual reference back() = 0;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             virtual size_type size() const = 0;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             virtual size_type max_size() const = 0;
 
             virtual const_reference operator[](difference_type index) const = 0;

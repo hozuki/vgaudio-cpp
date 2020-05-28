@@ -44,7 +44,7 @@ namespace common_lib {
 
         // https://zh.cppreference.com/w/cpp/language/sizeof...
         template<typename... Ts>
-        constexpr auto make_array_static_with(Ts &&... ts)
+        _CXX17_ATTR_NODISCARD auto make_array_static_with(Ts &&... ts)
         -> narray_ptr<std::common_type_t<Ts...>, sizeof...(ts)> {
             auto arr = new std::array<std::common_type_t<Ts...>, sizeof...(ts)>{std::forward<Ts>(ts)...};
             return std::shared_ptr<typename std::remove_reference<decltype(*arr)>::type>(arr);
@@ -53,7 +53,7 @@ namespace common_lib {
         namespace __internal {
 
             template<typename... Ts, typename U = std::common_type_t<Ts...>>
-            static void make_array_dynamic_with_helper(_CXX17_MAYBE_UNUSED const array_ptr<U> &arr, _CXX17_MAYBE_UNUSED size_t index) {
+            static void make_array_dynamic_with_helper(_CXX17_ATTR_MAYBE_UNUSED const array_ptr<U> &arr, _CXX17_ATTR_MAYBE_UNUSED size_t index) {
                 // Do nothing, end of recursion
             }
 

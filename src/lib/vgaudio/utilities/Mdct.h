@@ -2,6 +2,7 @@
 
 #include <cstdint>
 
+#include "../../common/utilities/_cxx17.h"
 #include "../../common/utilities/runtime_array.h"
 
 namespace vgaudio {
@@ -11,13 +12,13 @@ namespace vgaudio {
 
         public:
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int32_t getMdctBits() const;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int32_t getMdctSize() const;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             double getScale() const;
 
         private:

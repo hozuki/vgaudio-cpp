@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <tuple>
 
+#include "../../common/utilities/_cxx17.h"
 #include "../../common/utilities/static_class.h"
 #include "../../common/utilities/runtime_array.h"
 
@@ -90,7 +91,7 @@ namespace vgaudio {
                     return *this;
                 }
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 size_t getLength() const {
                     return _length;
                 }
@@ -99,7 +100,7 @@ namespace vgaudio {
                     return _ptr;
                 }
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 const void *getPointer() const {
                     return _ptr;
                 }
@@ -108,12 +109,12 @@ namespace vgaudio {
                     return static_cast<T *>(_ptr);
                 }
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 const T *getTypedPointer() const {
                     return static_cast<const T *>(_ptr);
                 }
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 size_t getRank() const {
                     return _rank;
                 }

@@ -4,6 +4,8 @@
 #include <string>
 #include <memory>
 
+#include "../../../common/utilities/_cxx17.h"
+
 namespace common_lib {
     namespace io {
         struct BinaryReader;
@@ -32,17 +34,17 @@ namespace vgaudio {
 
                 static std::shared_ptr<RiffChunk> parse(const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 std::string getChunkId() const;
 
                 void setChunkId(const std::string &id);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getSize() const;
 
                 void setSize(int32_t size);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 std::string getType() const;
 
                 void setType(const std::string &type);

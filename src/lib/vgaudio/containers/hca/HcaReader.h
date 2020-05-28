@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <memory>
 
+#include "../../../common/utilities/_cxx17.h"
 #include "../../../common/utilities/runtime_array.h"
 #include "../AudioReader.h"
 #include "HcaStructure.h"
@@ -34,7 +35,7 @@ namespace vgaudio {
 
                 ~HcaReader() override = default;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 std::shared_ptr<vgaudio::codecs::crihca::CriHcaKey> getEncryptionKey() const;
 
                 void setEncryptionKey(const std::shared_ptr<vgaudio::codecs::crihca::CriHcaKey> &encryptionKey);

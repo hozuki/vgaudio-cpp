@@ -3,6 +3,7 @@
 #include <cstdint>
 
 #include "SeekOrigin.h"
+#include "../utilities/_cxx17.h"
 #include "../utilities/runtime_array.h"
 #include "../utilities/type_sys.h"
 
@@ -37,13 +38,13 @@ namespace common_lib {
 
             virtual void setLength(int64_t length);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             virtual bool canRead() const;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             virtual bool canWrite() const;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             virtual bool canSeek() const;
 
             void copyTo(const std::shared_ptr<Stream> &destination);

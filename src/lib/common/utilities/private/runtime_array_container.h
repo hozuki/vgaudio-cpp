@@ -6,6 +6,7 @@
 #include <type_traits>
 
 #include "../macros.h"
+#include "../_cxx17.h"
 #include "runtime_array_decl.h"
 #include "../type_sys.h"
 
@@ -93,7 +94,7 @@ namespace common_lib {
                 }
             }
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             bool empty() const override {
                 return _size == 0;
             }
@@ -132,17 +133,17 @@ namespace common_lib {
                 return at(size() - 1);
             }
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             size_type size() const override {
                 return _size;
             }
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             size_type max_size() const override {
                 return size();
             }
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             constexpr size_type elementSize() const {
                 return sizeof(T);
             }

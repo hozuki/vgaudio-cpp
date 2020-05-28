@@ -8,6 +8,7 @@
 #include <list>
 #include <type_traits>
 
+#include "../../../common/utilities/_cxx17.h"
 #include "../../../common/utilities/type_sys.h"
 
 namespace common_lib {
@@ -49,7 +50,7 @@ namespace vgaudio {
 
                 void parseRiff(const std::shared_ptr<common_lib::io::Stream> &file);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 std::vector<std::shared_ptr<RiffSubChunk>> getAllSubChunks() const;
 
                 std::shared_ptr<RiffSubChunk> getSubChunk(const std::string &id);
@@ -65,17 +66,17 @@ namespace vgaudio {
                     }
                 }
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 std::shared_ptr<RiffChunk> getRiffChunk() const;
 
                 void setRiffChunk(const std::shared_ptr<RiffChunk> &chunk);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool hasReadDataChunk() const;
 
                 void setReadDataChunk(bool read);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 std::function<std::shared_ptr<WaveFormatExtensible>(const std::shared_ptr<RiffParser> &, const std::shared_ptr<common_lib::io::BinaryReader> &)> getFormatExtensibleParser() const;
 
                 void setFormatExtensibleParser(const std::function<std::shared_ptr<WaveFormatExtensible>(const std::shared_ptr<RiffParser> &, const std::shared_ptr<common_lib::io::BinaryReader> &)> &p);

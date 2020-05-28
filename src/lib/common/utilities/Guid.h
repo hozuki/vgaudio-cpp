@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 
+#include "_cxx17.h"
+
 namespace common_lib {
     namespace utilities {
 
@@ -46,10 +48,10 @@ namespace common_lib {
 
             bool operator!=(const Guid &other);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             std::size_t getHashCode() const;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             std::string toString() const;
 
         };

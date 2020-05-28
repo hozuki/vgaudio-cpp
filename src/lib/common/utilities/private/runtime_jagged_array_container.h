@@ -4,6 +4,7 @@
 #include <memory>
 #include <type_traits>
 
+#include "../_cxx17.h"
 #include "../runtime_array.h"
 
 namespace common_lib {
@@ -59,7 +60,7 @@ namespace common_lib {
 
             ~runtime_jagged_array() = default;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             constexpr size_type rank() const {
                 return 2;
             }
@@ -74,17 +75,17 @@ namespace common_lib {
                 return _arrays->at(index1);
             }
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             bool empty() const {
                 return _arrays->empty();
             }
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             size_type size() const {
                 return _arrays->size();
             }
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             constexpr size_type elementSize() const {
                 return sizeof(value_type);
             }
@@ -157,7 +158,7 @@ namespace common_lib {
 
             ~runtime_jagged_array() = default;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             constexpr size_type rank() const {
                 return Rank;
             }
@@ -172,17 +173,17 @@ namespace common_lib {
                 return _arrays->at(index1);
             }
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             bool empty() const {
                 return _arrays->empty();
             }
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             size_type size() const {
                 return _arrays->size();
             }
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             constexpr size_type elementSize() const {
                 return sizeof(value_type);
             }

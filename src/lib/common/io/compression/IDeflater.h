@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <cstddef>
 
+#include "../../utilities/_cxx17.h"
+
 namespace common_lib {
     namespace io {
         namespace compression {
@@ -13,7 +15,7 @@ namespace common_lib {
 
                 virtual ~IDeflater() = default;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 virtual bool needsInput() const = 0;
 
                 virtual void setInput(const void *inputBuffer, size_t inputBufferSize, int32_t offset, int32_t count) = 0;

@@ -4,6 +4,7 @@
 #include <list>
 #include <memory>
 
+#include "../../common/utilities/_cxx17.h"
 #include "../../common/utilities/type_sys.h"
 
 namespace vgaudio {
@@ -33,35 +34,35 @@ namespace vgaudio {
 
             virtual ~AudioFormatBaseBuilder() = default;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             virtual int32_t getChannelCount() const = 0;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             decltype(_looping) isLooping() const;
 
             void setLooping(decltype(_looping) looping);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             decltype(_loopStart) getLoopStart() const;
 
             void setLoopStart(decltype(_loopStart) start);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             decltype(_loopEnd) getLoopEnd() const;
 
             void setLoopEnd(decltype(_loopEnd) end);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             decltype(_sampleCount) getSampleCount() const;
 
             void setSampleCount(decltype(_sampleCount) sampleCount);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             decltype(_sampleRate) getSampleRate() const;
 
             void setSampleRate(decltype(_sampleRate) sampleRate);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             decltype(_tracks) getTracks() const;
 
             void setTracks(const std::shared_ptr<std::list<std::shared_ptr<AudioTrack>>> &tracks);

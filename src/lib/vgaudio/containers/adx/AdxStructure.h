@@ -2,6 +2,7 @@
 
 #include <memory>
 
+#include "../../../common/utilities/_cxx17.h"
 #include "../IStructure.h"
 #include "../../codecs/criadx/CriAdxType.h"
 #include "../../../common/utilities/runtime_jagged_array.h"
@@ -46,10 +47,10 @@ namespace vgaudio {
                 common_lib::utilities::jarray2_ptr<int16_t> historySamples;
                 common_lib::utilities::jarray2_ptr<uint8_t> audioData;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getSamplesPerFrame() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getAudioDataLength() const;
 
             };

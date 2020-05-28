@@ -1,4 +1,5 @@
 #include "AdxWriter.h"
+#include "../../../common/utilities/_cxx17.h"
 #include "../../formats/criadx/CriAdxFormat.h"
 #include "../../formats/criadx/CriAdxHelpers.h"
 #include "../../formats/criadx/CriAdxChannel.h"
@@ -37,77 +38,77 @@ namespace vgaudio {
                         : _adpcm(adpcm), _config(config), _alignmentBytes(0) {
                     }
 
-                    [[nodiscard]]
+                    _CXX17_ATTR_NODISCARD
                     int32_t getFrameSize() const {
                         return _adpcm->getFrameSize();
                     }
 
-                    [[nodiscard]]
+                    _CXX17_ATTR_NODISCARD
                     int32_t getSamplesPerFrame() const {
                         return (getFrameSize() - 2) * 2;
                     }
 
-                    [[nodiscard]]
+                    _CXX17_ATTR_NODISCARD
                     int32_t getVersion() const {
                         return _adpcm->getVersion();
                     }
 
-                    [[nodiscard]]
+                    _CXX17_ATTR_NODISCARD
                     int32_t getSampleCount() const {
                         return _config->trimFile && _adpcm->isLooping() ? (_adpcm->getLoopEnd() + getSamplesPerFrame() * 3) : _adpcm->getSampleCount();
                     }
 
-                    [[nodiscard]]
+                    _CXX17_ATTR_NODISCARD
                     int32_t getFrameCount() const {
                         return IntHelper::divideByRoundUp(getSampleCount(), getSamplesPerFrame());
                     }
 
-                    [[nodiscard]]
+                    _CXX17_ATTR_NODISCARD
                     int32_t getChannelCount() const {
                         return _adpcm->getChannelCount();
                     }
 
-                    [[nodiscard]]
+                    _CXX17_ATTR_NODISCARD
                     int32_t getAlignmentBytes() const {
                         return _alignmentBytes;
                     }
 
-                    [[nodiscard]]
+                    _CXX17_ATTR_NODISCARD
                     int32_t getBaseHeaderSize() const {
                         return _adpcm->isLooping() ? (getVersion() == 4 ? 60 : 52) : (getVersion() == 4 ? 36 : 32);
                     }
 
-                    [[nodiscard]]
+                    _CXX17_ATTR_NODISCARD
                     int32_t getHeaderSize() const {
                         return getBaseHeaderSize() + getAlignmentBytes();
                     }
 
-                    [[nodiscard]]
+                    _CXX17_ATTR_NODISCARD
                     int32_t getAudioOffset() const {
                         return getHeaderSize() + 4;
                     }
 
-                    [[nodiscard]]
+                    _CXX17_ATTR_NODISCARD
                     int32_t getAudioSize() const {
                         return getFrameSize() * getFrameCount() * getChannelCount();
                     }
 
-                    [[nodiscard]]
+                    _CXX17_ATTR_NODISCARD
                     int32_t getFooterOffset() const {
                         return getAudioOffset() + getAudioSize();
                     }
 
-                    [[nodiscard]]
+                    _CXX17_ATTR_NODISCARD
                     int32_t getFooterSize() const {
                         return _adpcm->isLooping() ? (IntHelper::getNextMultiple(getFooterOffset() + getFrameSize(), 0x800) - getFooterOffset()) : getFrameSize();
                     }
 
-                    [[nodiscard]]
+                    _CXX17_ATTR_NODISCARD
                     int32_t getLoopStartOffset() const {
                         return getAudioOffset() + CriAdxHelpers::sampleCountToByteCount(_adpcm->getLoopStart(), getFrameSize()) * getChannelCount();
                     }
 
-                    [[nodiscard]]
+                    _CXX17_ATTR_NODISCARD
                     int32_t getLoopEndOffset() const {
                         return getAudioOffset() + IntHelper::getNextMultiple(CriAdxHelpers::sampleCountToByteCount(_adpcm->getLoopEnd(), getFrameSize()), getFrameSize()) * getChannelCount();
                     }

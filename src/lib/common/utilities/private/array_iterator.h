@@ -6,6 +6,8 @@
 #include <iterator>
 #include <array>
 
+#include "../_cxx17.h"
+
 namespace common_lib::utilities {
 
     template<typename T, size_t N = 1, typename TIter = typename std::array<T, N>::iterator>
@@ -29,12 +31,12 @@ namespace common_lib::utilities {
 
         ~IteratorWrapper() = default;
 
-        [[nodiscard]]
+        _CXX17_ATTR_NODISCARD
         reference operator*() const {
             return _iter.operator*();
         }
 
-        [[nodiscard]]
+       _CXX17_ATTR_NODISCARD
         pointer operator->() const {
             return _iter.operator->();
         }
@@ -71,7 +73,7 @@ namespace common_lib::utilities {
             return *this;
         }
 
-        [[nodiscard]]
+       _CXX17_ATTR_NODISCARD
         const IteratorWrapper operator+(const ptrdiff_t n) const {
             auto tmp = *this;
             return tmp += n;
@@ -87,18 +89,18 @@ namespace common_lib::utilities {
             return *this;
         }
 
-        [[nodiscard]]
+      _CXX17_ATTR_NODISCARD
         const IteratorWrapper operator-(const ptrdiff_t n) const {
             auto tmp = *this;
             return tmp -= n;
         }
 
-        [[nodiscard]]
+      _CXX17_ATTR_NODISCARD
         const reference operator[](const ptrdiff_t index) const {
             return _iter.operator[](index);
         }
 
-        [[nodiscard]]
+      _CXX17_ATTR_NODISCARD
         reference operator[](const ptrdiff_t index) {
             return _iter.operator[](index);
         }

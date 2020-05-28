@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <string>
 
+#include "../../../common/utilities/_cxx17.h"
+
 namespace vgaudio {
     namespace codecs {
         namespace criadx {
@@ -17,19 +19,19 @@ namespace vgaudio {
 
             public:
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getSeed() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getMul() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getInc() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 uint64_t getKeyCode() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 const std::string &getKeyString() const;
 
             private:

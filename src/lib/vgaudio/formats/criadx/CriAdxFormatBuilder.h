@@ -2,6 +2,7 @@
 
 #include <memory>
 
+#include "../../../common/utilities/_cxx17.h"
 #include "../AudioFormatBaseBuilder.h"
 #include "../../../common/utilities/runtime_array.h"
 #include "../../codecs/criadx/CriAdxType.h"
@@ -31,39 +32,39 @@ namespace vgaudio {
 
                 ~CriAdxFormatBuilder() override = default;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getChannelCount() const override;
 
                 std::shared_ptr<IAudioFormat> build() override;
 
             public:
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 common_lib::utilities::array_ptr<std::shared_ptr<CriAdxChannel>> getChannels() const;
 
                 void setChannels(const common_lib::utilities::array_ptr<std::shared_ptr<CriAdxChannel>> &channels);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int16_t getHighPassFrequency() const;
 
                 void setHighPassFrequency(int16_t frequency);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getFrameSize() const;
 
                 void setFrameSize(int32_t frameSize);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getAlignmentSamples() const;
 
                 void setAlignmentSamples(int32_t samples);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 vgaudio::codecs::criadx::CriAdxType getType() const;
 
                 void setType(vgaudio::codecs::criadx::CriAdxType type);
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 int32_t getVersion() const;
 
             };

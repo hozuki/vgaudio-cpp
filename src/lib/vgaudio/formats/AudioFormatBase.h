@@ -5,6 +5,7 @@
 #include <memory>
 #include <type_traits>
 
+#include "../../common/utilities/_cxx17.h"
 #include "IAudioFormat.h"
 #include "../../common/utilities/runtime_array.h"
 
@@ -38,34 +39,34 @@ namespace vgaudio {
 
             virtual ~AudioFormatBase() = default;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int32_t getSampleRate() const override;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int32_t getChannelCount() const override;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int32_t getUnalignedSampleCount() const;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int32_t getUnalignedLoopStart() const;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int32_t getUnalignedLoopEnd() const;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int32_t getSampleCount() const override;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int32_t getLoopStart() const override;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             int32_t getLoopEnd() const override;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             bool isLooping() const override;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             std::shared_ptr<std::list<std::shared_ptr<AudioTrack>>> getTracks() const;
 
             std::shared_ptr<IAudioFormat> getChannels(const common_lib::utilities::array_ptr<int32_t> &channelRange) final;
@@ -100,13 +101,13 @@ namespace vgaudio {
 
             std::shared_ptr<AudioFormatBaseBuilder> getCloneBuilderBase(const std::shared_ptr<AudioFormatBaseBuilder> &builder);
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             virtual bool canAcceptAudioFormat(const IAudioFormat *format) const = 0;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             virtual bool canAcceptConfig(const vgaudio::codecs::CodecParameters *config) const = 0;
 
-            [[nodiscard]]
+            _CXX17_ATTR_NODISCARD
             virtual std::shared_ptr<vgaudio::codecs::CodecParameters> createConfig() const;
 
         private:

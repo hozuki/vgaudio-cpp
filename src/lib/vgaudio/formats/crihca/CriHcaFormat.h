@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <memory>
 
+#include "../../../common/utilities/_cxx17.h"
 #include "../AudioFormatBase.h"
 #include "../../../common/utilities/runtime_jagged_array.h"
 
@@ -46,10 +47,10 @@ namespace vgaudio {
 
                 ~CriHcaFormat() override = default;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 std::shared_ptr<vgaudio::codecs::crihca::HcaInfo> getHca() const;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 common_lib::utilities::jarray2_ptr<uint8_t> getAudioData() const;
 
                 std::shared_ptr<vgaudio::formats::pcm16::Pcm16Format> toPcm16() override;
@@ -70,13 +71,13 @@ namespace vgaudio {
 
                 std::shared_ptr<AudioFormatBaseBuilder> getCloneBuilder() override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool canAcceptAudioFormat(const vgaudio::formats::IAudioFormat *format) const override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 bool canAcceptConfig(const vgaudio::codecs::CodecParameters *config) const override;
 
-                [[nodiscard]]
+                _CXX17_ATTR_NODISCARD
                 std::shared_ptr<vgaudio::codecs::CodecParameters> createConfig() const override;
 
             };

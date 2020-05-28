@@ -36,7 +36,7 @@ struct _CriAdx_Coefficients_Init {
 
 };
 
-_CXX17_MAYBE_UNUSED
+_CXX17_ATTR_MAYBE_UNUSED
 static _CriAdx_Coefficients_Init _init;
 
 static int32_t CalculateScale(int32_t maxDistance, double *gain, int32_t *scaleToWrite, bool exponential = false) {

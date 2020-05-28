@@ -24,7 +24,7 @@ struct _CriAdx_Key_Initializer {
 
 };
 
-_CXX17_MAYBE_UNUSED
+_CXX17_ATTR_MAYBE_UNUSED
 static _CriAdx_Key_Initializer _init;
 
 CriAdxKey::CriAdxKey(int32_t seed, int32_t mul, int32_t inc)

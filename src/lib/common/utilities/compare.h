@@ -3,6 +3,8 @@
 #include <cstddef>
 #include <functional>
 
+#include "_cxx17.h"
+
 namespace common_lib {
     namespace utilities {
 
@@ -12,7 +14,7 @@ namespace common_lib {
         template<typename T>
         struct compare {
 
-            constexpr ptrdiff_t operator()(const T &x, const T &y) const {
+            _CXX17_CONSTEXPR ptrdiff_t operator()(const T &x, const T &y) const {
                 const auto less = std::less<T>();
 
                 if (less(x, y)) {
