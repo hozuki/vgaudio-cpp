@@ -2,15 +2,6 @@
 #include <cstring>
 #include <cassert>
 
-// Fix for argparse
-#ifdef _MSC_VER
-
-#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
-
-#include <experimental/filesystem>
-
-#endif
-
 #include <argparse.h>
 #include <vgaudio.h>
 
@@ -21,8 +12,7 @@ static void SetProgramArguments(argparse::ArgumentParser &program);
 static const char *GetQualityDescription(CRIHCA_QUALITY quality);
 
 int main(int argc, const char *argv[]) {
-    const std::string strProgramName("hcaenc");
-    argparse::ArgumentParser program(strProgramName);
+    argparse::ArgumentParser program("hcaenc", "hcadec");
 
     SetProgramArguments(program);
 
