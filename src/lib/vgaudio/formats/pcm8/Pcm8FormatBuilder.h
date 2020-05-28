@@ -3,36 +3,40 @@
 #include "../../../common/utilities/runtime_jagged_array.h"
 #include "../AudioFormatBaseBuilder.h"
 
-namespace vgaudio::formats::pcm8 {
+namespace vgaudio {
+    namespace formats {
+        namespace pcm8 {
 
-    struct Pcm8FormatBuilder : public AudioFormatBaseBuilder {
+            struct Pcm8FormatBuilder : public AudioFormatBaseBuilder {
 
-        DECLARE_CLASS(Pcm8FormatBuilder, AudioFormatBaseBuilder);
+                DECLARE_CLASS(Pcm8FormatBuilder, AudioFormatBaseBuilder);
 
-    private:
+            private:
 
-        common_lib::utilities::jarray2_ptr<uint8_t> _channels;
-        bool _signed;
+                common_lib::utilities::jarray2_ptr<uint8_t> _channels;
+                bool _signed;
 
-    public:
+            public:
 
-        Pcm8FormatBuilder(const common_lib::utilities::jarray2_ptr<uint8_t> &channels, int32_t sampleRate, bool signed_ = false);
+                Pcm8FormatBuilder(const common_lib::utilities::jarray2_ptr<uint8_t> &channels, int32_t sampleRate, bool signed_ = false);
 
-        std::shared_ptr<vgaudio::formats::IAudioFormat> build() override;
+                std::shared_ptr<vgaudio::formats::IAudioFormat> build() override;
 
-        [[nodiscard]]
-        int32_t getChannelCount() const override;
+                [[nodiscard]]
+                int32_t getChannelCount() const override;
 
-        [[nodiscard]]
-        common_lib::utilities::jarray2_ptr<uint8_t> getChannels() const;
+                [[nodiscard]]
+                common_lib::utilities::jarray2_ptr<uint8_t> getChannels() const;
 
-        void setChannels(const common_lib::utilities::jarray2_ptr<uint8_t> &channels);
+                void setChannels(const common_lib::utilities::jarray2_ptr<uint8_t> &channels);
 
-        [[nodiscard]]
-        bool isSigned() const;
+                [[nodiscard]]
+                bool isSigned() const;
 
-        void setSigned(bool signed_);
+                void setSigned(bool signed_);
 
-    };
+            };
 
+        }
+    }
 }

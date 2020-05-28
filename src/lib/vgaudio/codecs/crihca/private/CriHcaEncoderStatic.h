@@ -7,10 +7,14 @@
 #include "../../../../common/utilities/runtime_jagged_array.h"
 #include "../CriHcaQuality.h"
 
-namespace vgaudio::codecs::crihca {
-    struct HcaInfo;
-    struct CriHcaChannel;
-    struct CriHcaFrame;
+namespace vgaudio {
+    namespace codecs {
+        namespace crihca {
+            struct HcaInfo;
+            struct CriHcaChannel;
+            struct CriHcaFrame;
+        }
+    }
 }
 
 using namespace std;
@@ -47,6 +51,6 @@ void CalculateHfrScale(const shared_ptr<CriHcaFrame> &frame);
 
 void RunMdct(const array_ptr<shared_ptr<CriHcaChannel>> &channels);
 
-void PcmToFloat(const jarray2_ptr <int16_t> &pcm, const array_ptr<shared_ptr<CriHcaChannel>> &channels);
+void PcmToFloat(const jarray2_ptr<int16_t> &pcm, const array_ptr<shared_ptr<CriHcaChannel>> &channels);
 
 int32_t CalculateBitrate(const shared_ptr<HcaInfo> &hca, CriHcaQuality quality, int32_t bitrate, bool limitBitrate);

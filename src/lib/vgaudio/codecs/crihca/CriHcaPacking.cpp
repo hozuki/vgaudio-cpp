@@ -1,5 +1,6 @@
 #include <algorithm>
 
+#include "../../../common/utilities/IntHelper.h"
 #include "CriHcaTables.h"
 #include "CriHcaConstants.h"
 #include "CriHcaChannel.h"
@@ -24,7 +25,7 @@ int32_t CriHcaPacking::calculateResolution(int32_t scaleFactor, int32_t noiseLev
     }
 
     int32_t curvePosition = noiseLevel - 5 * scaleFactor / 2 + 2;
-    curvePosition = std::clamp(curvePosition, 0, 58);
+    curvePosition = IntHelper::clamp(curvePosition, 0, 58);
 
     const auto &table = CriHcaTables::getScaleToResolutionCurve();
 

@@ -6,39 +6,47 @@
 #include "AdxStructure.h"
 #include "AdxConfiguration.h"
 
-namespace vgaudio::codecs::criadx {
-    struct CriAdxKey;
+namespace vgaudio {
+    namespace codecs {
+        namespace criadx {
+            struct CriAdxKey;
+        }
+    }
 }
 
-namespace vgaudio::containers::adx {
+namespace vgaudio {
+    namespace containers {
+        namespace adx {
 
-    struct AdxReader : public AudioReader<AdxStructure, AdxConfiguration> {
+            struct AdxReader : public AudioReader<AdxStructure, AdxConfiguration> {
 
-        DECLARE_CLASS_TEMPLATE(AdxReader, AudioReader, AdxStructure, AdxConfiguration);
+                DECLARE_CLASS_TEMPLATE(AdxReader, AudioReader, AdxStructure, AdxConfiguration);
 
-    private:
+            private:
 
-        std::shared_ptr<vgaudio::codecs::criadx::CriAdxKey> _encryptionKey;
+                std::shared_ptr<vgaudio::codecs::criadx::CriAdxKey> _encryptionKey;
 
-    public:
+            public:
 
-        AdxReader() = default;
+                AdxReader() = default;
 
-        ~AdxReader() override = default;
+                ~AdxReader() override = default;
 
-        [[nodiscard]]
-        std::shared_ptr<vgaudio::codecs::criadx::CriAdxKey> getEncryptionKey() const;
+                [[nodiscard]]
+                std::shared_ptr<vgaudio::codecs::criadx::CriAdxKey> getEncryptionKey() const;
 
-        void setEncryptionKey(const std::shared_ptr<vgaudio::codecs::criadx::CriAdxKey> &encryptionKey);
+                void setEncryptionKey(const std::shared_ptr<vgaudio::codecs::criadx::CriAdxKey> &encryptionKey);
 
-    protected:
+            protected:
 
-        std::shared_ptr<AdxStructure> readFile(const std::shared_ptr<common_lib::io::Stream> &stream, bool readAudioData) override;
+                std::shared_ptr<AdxStructure> readFile(const std::shared_ptr<common_lib::io::Stream> &stream, bool readAudioData) override;
 
-        std::shared_ptr<vgaudio::formats::IAudioFormat> toAudioStream(const std::shared_ptr<AdxStructure> &structure) override;
+                std::shared_ptr<vgaudio::formats::IAudioFormat> toAudioStream(const std::shared_ptr<AdxStructure> &structure) override;
 
-        std::shared_ptr<AdxConfiguration> getConfiguration(const std::shared_ptr<AdxStructure> &structure) override;
+                std::shared_ptr<AdxConfiguration> getConfiguration(const std::shared_ptr<AdxStructure> &structure) override;
 
-    };
+            };
 
+        }
+    }
 }

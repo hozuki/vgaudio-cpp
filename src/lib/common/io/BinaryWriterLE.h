@@ -5,34 +5,36 @@
 
 #include "BinaryWriter.h"
 
-namespace common_lib::io {
+namespace common_lib {
+    namespace io {
 
-    struct BinaryWriterLE : BinaryWriter {
+        struct BinaryWriterLE : BinaryWriter {
 
-        DECLARE_CLASS(BinaryWriterLE, BinaryWriter);
+            DECLARE_CLASS(BinaryWriterLE, BinaryWriter);
 
-    public:
+        public:
 
-        explicit BinaryWriterLE(const std::shared_ptr<Stream> &stream);
+            explicit BinaryWriterLE(const std::shared_ptr<Stream> &stream);
 
-        ~BinaryWriterLE() override = default;
+            ~BinaryWriterLE() override = default;
 
-        int32_t write(uint16_t value) override;
+            int32_t write(uint16_t value) override;
 
-        int32_t write(int16_t value) override;
+            int32_t write(int16_t value) override;
 
-        int32_t write(uint32_t value) override;
+            int32_t write(uint32_t value) override;
 
-        int32_t write(int32_t value) override;
+            int32_t write(int32_t value) override;
 
-        int32_t write(uint64_t value) override;
+            int32_t write(uint64_t value) override;
 
-        int32_t write(int64_t value) override;
+            int32_t write(int64_t value) override;
 
-        int32_t write(float value) override;
+            int32_t write(float value) override;
 
-        int32_t write(double value) override;
+            int32_t write(double value) override;
 
-    };
+        };
 
+    }
 }

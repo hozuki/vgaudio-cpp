@@ -1,6 +1,7 @@
 #include <algorithm>
 
 #include "../../../common/utilities/ArrayHelper.h"
+#include "../../../common/utilities/IntHelper.h"
 #include "../../IProgressReport.h"
 #include "CriHcaParameters.h"
 #include "private/CriHcaDecoderStatic.h"
@@ -47,7 +48,7 @@ void CriHcaDecoder::copyBuffer(const jarray2_ptr<int16_t> &bufferIn, const jarra
 
     const int32_t currentIndex = bufferIndex * bufferLength - startIndex;
     const int32_t remainingElements = std::min(outLength - currentIndex, outLength);
-    const int32_t srcStart = std::clamp(0 - currentIndex, 0, C::SamplesPerFrame);
+    const int32_t srcStart = IntHelper::clamp(0 - currentIndex, 0, C::SamplesPerFrame);
     const int32_t dstStart = std::max(currentIndex, 0);
 
     const int32_t length = std::min(C::SamplesPerFrame - srcStart, remainingElements);

@@ -191,7 +191,9 @@ static inline void GenerateCriHcaGlobalTables() noexcept {
 
     assert(arrayDefs->size() == 10);
 
-    auto[typeIndex, wrapper] = (*arrayDefs)[0];
+    ArrayUnpacker::TypeIndex typeIndex;
+    ArrayUnpacker::ArrayWrapper<> wrapper;
+    tie(typeIndex, wrapper) = (*arrayDefs)[0];
     assert(typeIndex == ArrayUnpacker::TypeIndex::UInt8);
     _criTables.quantizeSpectrumBits = CreateJArray2OnWrapper<uint8_t>(wrapper);
     tie(typeIndex, wrapper) = (*arrayDefs)[1];
@@ -222,8 +224,9 @@ static inline void GenerateCriHcaGlobalTables() noexcept {
     assert(typeIndex == ArrayUnpacker::TypeIndex::UInt8);
     _criTables.validChannelMappings = CreateJArray2OnWrapper<uint8_t>(wrapper);
 
-    for (auto[typeIndex, w] : *arrayDefs) {
-        ArrayUnpacker::releaseWrappedArray(typeIndex, w);
+    for (const auto &tuple : *arrayDefs) {
+        tie(typeIndex, wrapper) = tuple;
+        ArrayUnpacker::releaseWrappedArray(typeIndex, wrapper);
     }
 }
 

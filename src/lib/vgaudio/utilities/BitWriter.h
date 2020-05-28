@@ -4,45 +4,47 @@
 
 #include "../../common/utilities/runtime_array.h"
 
-namespace vgaudio::utilities {
+namespace vgaudio {
+    namespace utilities {
 
-    struct BitWriter final {
+        struct BitWriter final {
 
-    private:
+        private:
 
-        common_lib::utilities::array_ptr<uint8_t> _buffer;
-        size_t _position;
+            common_lib::utilities::array_ptr<uint8_t> _buffer;
+            size_t _position;
 
-    public:
+        public:
 
-        explicit BitWriter(const common_lib::utilities::array_ptr<uint8_t> &buffer);
+            explicit BitWriter(const common_lib::utilities::array_ptr<uint8_t> &buffer);
 
-        ~BitWriter() = default;
+            ~BitWriter() = default;
 
-        void SetBuffer(const common_lib::utilities::array_ptr<uint8_t> &buffer, size_t position = 0);
+            void SetBuffer(const common_lib::utilities::array_ptr<uint8_t> &buffer, size_t position = 0);
 
-        [[nodiscard]]
-        common_lib::utilities::array_ptr<uint8_t> getBuffer() const;
+            [[nodiscard]]
+            common_lib::utilities::array_ptr<uint8_t> getBuffer() const;
 
-        [[nodiscard]]
-        size_t getLengthBits() const;
+            [[nodiscard]]
+            size_t getLengthBits() const;
 
-        void setPosition(size_t position);
+            void setPosition(size_t position);
 
-        [[nodiscard]]
-        size_t getPosition() const;
+            [[nodiscard]]
+            size_t getPosition() const;
 
-        [[nodiscard]]
-        size_t getRemaining() const;
+            [[nodiscard]]
+            size_t getRemaining() const;
 
-        void alignPosition(int32_t multiple);
+            void alignPosition(int32_t multiple);
 
-        void write(int32_t value, int32_t bitCount);
+            void write(int32_t value, int32_t bitCount);
 
-    private:
+        private:
 
-        void writeFallback(int32_t value, int32_t bitCount);
+            void writeFallback(int32_t value, int32_t bitCount);
 
-    };
+        };
 
+    }
 }

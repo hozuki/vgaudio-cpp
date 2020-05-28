@@ -5,16 +5,20 @@
 #include "../../../common/utilities/runtime_jagged_array.h"
 #include "../../../common/utilities/static_class.h"
 
-namespace vgaudio::codecs::criadx {
+namespace vgaudio {
+    namespace codecs {
+        namespace criadx {
 
-    struct CriAdxKey;
+            struct CriAdxKey;
 
-    struct CriAdxEncryption {
+            struct CriAdxEncryption {
 
-        IMPLEMENT_STATIC_CLASS(CriAdxEncryption);
+                IMPLEMENT_STATIC_CLASS(CriAdxEncryption);
 
-        static void encryptDecrypt(const common_lib::utilities::jarray2_ptr<uint8_t> &adpcm, const std::shared_ptr<CriAdxKey> &key, int32_t encryptionType, int32_t frameSize);
+                static void encryptDecrypt(const common_lib::utilities::jarray2_ptr<uint8_t> &adpcm, const std::shared_ptr<CriAdxKey> &key, int32_t encryptionType, int32_t frameSize);
 
-    };
+            };
 
+        }
+    }
 }

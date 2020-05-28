@@ -7,15 +7,21 @@
 
 using namespace std;
 
-namespace vgaudio::codecs::crihca {
-    struct CriHcaFrame;
-    struct CriHcaChannel;
+namespace vgaudio {
+    namespace codecs {
+        namespace crihca {
+            struct CriHcaFrame;
+            struct CriHcaChannel;
+        }
+    }
 }
 
-namespace vgaudio::utilities {
-    struct BitReader;
-    struct BitWriter;
-    struct Crc16;
+namespace vgaudio {
+    namespace utilities {
+        struct BitReader;
+        struct BitWriter;
+        struct Crc16;
+    }
 }
 
 using namespace std;

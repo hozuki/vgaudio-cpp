@@ -101,10 +101,12 @@ std::string Guid::toString() const {
     return std::string(buf);
 }
 
-namespace common_lib::utilities {
+namespace common_lib {
+    namespace utilities {
 
-    std::ostream &operator<<(std::ostream &stream, const Guid &guid) {
-        return stream << guid.toString();
+        std::ostream &operator<<(std::ostream &stream, const Guid &guid) {
+            return stream << guid.toString();
+        }
+
     }
-
 }

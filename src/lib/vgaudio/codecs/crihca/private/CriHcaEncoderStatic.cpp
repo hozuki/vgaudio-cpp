@@ -366,7 +366,7 @@ void ScaleSpectra(const array_ptr<shared_ptr<CriHcaChannel>> &channels) {
             for (auto sf = 0; sf < scaledSpectra->size(); sf += 1) {
                 const double coeff = (*(*channel->spectra)[sf])[b];
 
-                (*scaledSpectra)[sf] = scaleFactor == 0 ? 0 : std::clamp(coeff * (*scalingTable)[scaleFactor], -0.999999999999, 0.999999999999);
+                (*scaledSpectra)[sf] = scaleFactor == 0 ? 0 : IntHelper::clamp(coeff * (*scalingTable)[scaleFactor], -0.999999999999, 0.999999999999);
             }
         }
     }
@@ -433,7 +433,7 @@ void EncodeIntensityStereo(const shared_ptr<CriHcaFrame> &frame) {
 
             if (energyR > 0 || energyL > 0) {
                 quantized = 1;
-                energyRatio = std::clamp(energyLR / energyTotal, 0.5, M_SQRT2 / 2);
+                energyRatio = IntHelper::clamp(energyLR / energyTotal, 0.5, M_SQRT2 / 2);
 
                 while (quantized < 13 && (*ratioBounds)[quantized] >= storedValue) {
                     quantized += 1;
@@ -588,5 +588,5 @@ int32_t CalculateBitrate(const shared_ptr<HcaInfo> &hca, CriHcaQuality quality, 
         minBitrate = std::min(hca->channelCount <= 1 ? 42666 : 32000 * hca->channelCount, pcmBitrate / 6);
     }
 
-    return std::clamp(rate, minBitrate, maxBitrate);
+    return IntHelper::clamp(rate, minBitrate, maxBitrate);
 }

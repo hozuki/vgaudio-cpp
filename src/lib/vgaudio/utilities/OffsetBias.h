@@ -1,12 +1,14 @@
 #pragma once
 
-namespace vgaudio::utilities {
+namespace vgaudio {
+    namespace utilities {
 
-    enum class OffsetBias {
+        enum class OffsetBias {
 
-        Negative = 0,
-        Positive = 1,
+            Negative = 0,
+            Positive = 1,
 
-    };
+        };
 
+    }
 }

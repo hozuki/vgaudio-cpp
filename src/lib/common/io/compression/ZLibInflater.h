@@ -8,58 +8,62 @@
 
 struct z_stream_s;
 
-namespace common_lib::io::compression {
+namespace common_lib {
+    namespace io {
+        namespace compression {
 
-    typedef int z_error_code;
-    typedef int z_flush_code;
+            typedef int z_error_code;
+            typedef int z_flush_code;
 
-    struct ZLibInflater : public IInflater {
+            struct ZLibInflater : public IInflater {
 
-        DECLARE_ROOT_CLASS(ZLibInflater);
+                DECLARE_ROOT_CLASS(ZLibInflater);
 
-    private:
+            private:
 
-        z_stream_s *_z;
+                z_stream_s *_z;
 
-        uint8_t *_inputBuffer;
-        size_t _inputBufferSize;
-        bool _isFinished;
+                uint8_t *_inputBuffer;
+                size_t _inputBufferSize;
+                bool _isFinished;
 
-    public:
+            public:
 
-        explicit ZLibInflater(int32_t windowBits);
+                explicit ZLibInflater(int32_t windowBits);
 
-        ~ZLibInflater() override;
+                ~ZLibInflater() override;
 
-        int32_t getAvailableOutput() override;
+                int32_t getAvailableOutput() override;
 
-        [[nodiscard]]
-        bool needsInput() const override;
+                [[nodiscard]]
+                bool needsInput() const override;
 
-        void setInput(const void *inputBuffer, size_t inputBufferSize, int32_t offset, int32_t count) override;
+                void setInput(const void *inputBuffer, size_t inputBufferSize, int32_t offset, int32_t count) override;
 
-        int32_t getInflateOutput(void *outputBuffer, size_t outputBufferSize, int32_t offset, int32_t count) override;
+                int32_t getInflateOutput(void *outputBuffer, size_t outputBufferSize, int32_t offset, int32_t count) override;
 
-        [[nodiscard]]
-        bool isFinished() const override;
+                [[nodiscard]]
+                bool isFinished() const override;
 
-    private:
+            private:
 
-        void initialize(int32_t windowBits);
+                void initialize(int32_t windowBits);
 
-        void invokeInflateInit(int32_t windowBits);
+                void invokeInflateInit(int32_t windowBits);
 
-        z_error_code invokeInflate(z_flush_code flushCode) noexcept(false);
+                z_error_code invokeInflate(z_flush_code flushCode) noexcept(false);
 
-        z_error_code readInflateOutput(void *outputBuffer, size_t outputBufferSize, int32_t offset, int32_t count, z_flush_code flushCode, int32_t *bytesRead);
+                z_error_code readInflateOutput(void *outputBuffer, size_t outputBufferSize, int32_t offset, int32_t count, z_flush_code flushCode, int32_t *bytesRead);
 
-        void recreateInputBuffer(size_t size);
+                void recreateInputBuffer(size_t size);
 
-        void disposeInputBuffer();
+                void disposeInputBuffer();
 
-        [[nodiscard]]
-        bool isInputBufferCreated() const;
+                [[nodiscard]]
+                bool isInputBufferCreated() const;
 
-    };
+            };
 
+        }
+    }
 }

@@ -4,32 +4,40 @@
 #include "WaveStructure.h"
 #include "WaveConfiguration.h"
 
-namespace vgaudio::utilities::riff {
-    struct RiffParser;
+namespace vgaudio {
+    namespace utilities {
+        namespace riff {
+            struct RiffParser;
+        }
+    }
 }
 
-namespace vgaudio::containers::wave {
+namespace vgaudio {
+    namespace containers {
+        namespace wave {
 
-    struct WaveReader : public AudioReader<WaveStructure, WaveConfiguration> {
+            struct WaveReader : public AudioReader<WaveStructure, WaveConfiguration> {
 
-        DECLARE_CLASS_TEMPLATE(WaveReader, AudioReader, WaveStructure, WaveConfiguration);
+                DECLARE_CLASS_TEMPLATE(WaveReader, AudioReader, WaveStructure, WaveConfiguration);
 
-    public:
+            public:
 
-        WaveReader() = default;
+                WaveReader() = default;
 
-        ~WaveReader() override = default;
+                ~WaveReader() override = default;
 
-    protected:
+            protected:
 
-        std::shared_ptr<WaveStructure> readFile(const std::shared_ptr<common_lib::io::Stream> &stream, bool readAudioData) override;
+                std::shared_ptr<WaveStructure> readFile(const std::shared_ptr<common_lib::io::Stream> &stream, bool readAudioData) override;
 
-        std::shared_ptr<vgaudio::formats::IAudioFormat> toAudioStream(const std::shared_ptr<WaveStructure> &structure) override;
+                std::shared_ptr<vgaudio::formats::IAudioFormat> toAudioStream(const std::shared_ptr<WaveStructure> &structure) override;
 
-    private:
+            private:
 
-        static void validateWaveFile(const std::shared_ptr<vgaudio::utilities::riff::RiffParser> &parser) noexcept(false);
+                static void validateWaveFile(const std::shared_ptr<vgaudio::utilities::riff::RiffParser> &parser) noexcept(false);
 
-    };
+            };
 
+        }
+    }
 }

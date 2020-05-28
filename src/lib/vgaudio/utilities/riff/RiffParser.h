@@ -10,76 +10,82 @@
 
 #include "../../../common/utilities/type_sys.h"
 
-namespace common_lib::io {
-    struct BinaryReader;
-    struct Stream;
+namespace common_lib {
+    namespace io {
+        struct BinaryReader;
+        struct Stream;
+    }
 }
 
-namespace vgaudio::utilities::riff {
+namespace vgaudio {
+    namespace utilities {
+        namespace riff {
 
-    struct RiffChunk;
-    struct RiffSubChunk;
-    struct WaveFormatExtensible;
+            struct RiffChunk;
+            struct RiffSubChunk;
+            struct WaveFormatExtensible;
 
-    struct RiffParser final {
+            struct RiffParser final {
 
-        DECLARE_ROOT_CLASS(RiffParser);
+                DECLARE_ROOT_CLASS(RiffParser);
 
-    private:
+            private:
 
-        std::shared_ptr<RiffChunk> _riffChunk;
-        bool _readDataChunk; // = true
-        std::unordered_map<std::string, std::shared_ptr<RiffSubChunk>> _subChunks;
+                std::shared_ptr<RiffChunk> _riffChunk;
+                bool _readDataChunk; // = true
+                std::unordered_map<std::string, std::shared_ptr<RiffSubChunk>> _subChunks;
 
-        std::unordered_map<std::string, std::function<std::shared_ptr<RiffSubChunk>(const std::shared_ptr<RiffParser> &, const std::shared_ptr<common_lib::io::BinaryReader> &)>> _registeredSubChunks;
+                std::unordered_map<std::string, std::function<std::shared_ptr<RiffSubChunk>(const std::shared_ptr<RiffParser> &, const std::shared_ptr<common_lib::io::BinaryReader> &)>> _registeredSubChunks;
 
-        std::function<std::shared_ptr<WaveFormatExtensible>(const std::shared_ptr<RiffParser> &, const std::shared_ptr<common_lib::io::BinaryReader> &)> _formatExtensibleParser;
+                std::function<std::shared_ptr<WaveFormatExtensible>(const std::shared_ptr<RiffParser> &, const std::shared_ptr<common_lib::io::BinaryReader> &)> _formatExtensibleParser;
 
-    public:
+            public:
 
-        RiffParser();
+                RiffParser();
 
-        ~RiffParser() = default;
+                ~RiffParser() = default;
 
-        void registerSubChunk(const std::string &id, const std::function<std::shared_ptr<RiffSubChunk>(const std::shared_ptr<RiffParser> &, const std::shared_ptr<common_lib::io::BinaryReader> &)> &subChunkReader);
+                void registerSubChunk(const std::string &id, const std::function<std::shared_ptr<RiffSubChunk>(const std::shared_ptr<RiffParser> &, const std::shared_ptr<common_lib::io::BinaryReader> &)> &subChunkReader);
 
-        void parseRiff(const std::shared_ptr<common_lib::io::Stream> &file);
+                void parseRiff(const std::shared_ptr<common_lib::io::Stream> &file);
 
-        [[nodiscard]]
-        std::vector<std::shared_ptr<RiffSubChunk>> getAllSubChunks() const;
+                [[nodiscard]]
+                std::vector<std::shared_ptr<RiffSubChunk>> getAllSubChunks() const;
 
-        std::shared_ptr<RiffSubChunk> getSubChunk(const std::string &id);
+                std::shared_ptr<RiffSubChunk> getSubChunk(const std::string &id);
 
-        template<typename TSubChunk, typename SubChunk = typename std::enable_if<std::is_base_of<RiffSubChunk, TSubChunk>::value, TSubChunk>::type>
-        static std::shared_ptr<SubChunk> getSubChunk(const std::shared_ptr<RiffParser> &parser, const std::string &id) {
-            auto subChunk = parser->getSubChunk(id);
+                template<typename TSubChunk, typename SubChunk = typename std::enable_if<std::is_base_of<RiffSubChunk, TSubChunk>::value, TSubChunk>::type>
+                static std::shared_ptr<SubChunk> getSubChunk(const std::shared_ptr<RiffParser> &parser, const std::string &id) {
+                    auto subChunk = parser->getSubChunk(id);
 
-            if (subChunk == nullptr) {
-                return nullptr;
-            } else {
-                return std::dynamic_pointer_cast<SubChunk>(subChunk);
-            }
+                    if (subChunk == nullptr) {
+                        return nullptr;
+                    } else {
+                        return std::dynamic_pointer_cast<SubChunk>(subChunk);
+                    }
+                }
+
+                [[nodiscard]]
+                std::shared_ptr<RiffChunk> getRiffChunk() const;
+
+                void setRiffChunk(const std::shared_ptr<RiffChunk> &chunk);
+
+                [[nodiscard]]
+                bool hasReadDataChunk() const;
+
+                void setReadDataChunk(bool read);
+
+                [[nodiscard]]
+                std::function<std::shared_ptr<WaveFormatExtensible>(const std::shared_ptr<RiffParser> &, const std::shared_ptr<common_lib::io::BinaryReader> &)> getFormatExtensibleParser() const;
+
+                void setFormatExtensibleParser(const std::function<std::shared_ptr<WaveFormatExtensible>(const std::shared_ptr<RiffParser> &, const std::shared_ptr<common_lib::io::BinaryReader> &)> &p);
+
+            private:
+
+                std::shared_ptr<RiffSubChunk> parseSubChunk(const std::shared_ptr<common_lib::io::BinaryReader> &reader);
+
+            };
+
         }
-
-        [[nodiscard]]
-        std::shared_ptr<RiffChunk> getRiffChunk() const;
-
-        void setRiffChunk(const std::shared_ptr<RiffChunk> &chunk);
-
-        [[nodiscard]]
-        bool hasReadDataChunk() const;
-
-        void setReadDataChunk(bool read);
-
-        [[nodiscard]]
-        std::function<std::shared_ptr<WaveFormatExtensible>(const std::shared_ptr<RiffParser> &, const std::shared_ptr<common_lib::io::BinaryReader> &)> getFormatExtensibleParser() const;
-
-        void setFormatExtensibleParser(const std::function<std::shared_ptr<WaveFormatExtensible>(const std::shared_ptr<RiffParser> &, const std::shared_ptr<common_lib::io::BinaryReader> &)> &p);
-
-    private:
-
-        std::shared_ptr<RiffSubChunk> parseSubChunk(const std::shared_ptr<common_lib::io::BinaryReader> &reader);
-
-    };
-
+    }
 }

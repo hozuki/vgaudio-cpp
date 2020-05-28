@@ -4,45 +4,51 @@
 #include <string>
 #include <memory>
 
-namespace common_lib::io {
-    struct BinaryReader;
+namespace common_lib {
+    namespace io {
+        struct BinaryReader;
+    }
 }
 
-namespace vgaudio::utilities::riff {
+namespace vgaudio {
+    namespace utilities {
+        namespace riff {
 
-    struct RiffChunk final {
+            struct RiffChunk final {
 
-    private:
+            private:
 
-        std::string _chunkId;
-        int32_t _size;
-        std::string _type;
+                std::string _chunkId;
+                int32_t _size;
+                std::string _type;
 
-    private:
+            private:
 
-        RiffChunk();
+                RiffChunk();
 
-    public:
+            public:
 
-        ~RiffChunk() = default;
+                ~RiffChunk() = default;
 
-        static std::shared_ptr<RiffChunk> parse(const std::shared_ptr<common_lib::io::BinaryReader> &reader);
+                static std::shared_ptr<RiffChunk> parse(const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
-        [[nodiscard]]
-        std::string getChunkId() const;
+                [[nodiscard]]
+                std::string getChunkId() const;
 
-        void setChunkId(const std::string &id);
+                void setChunkId(const std::string &id);
 
-        [[nodiscard]]
-        int32_t getSize() const;
+                [[nodiscard]]
+                int32_t getSize() const;
 
-        void setSize(int32_t size);
+                void setSize(int32_t size);
 
-        [[nodiscard]]
-        std::string getType() const;
+                [[nodiscard]]
+                std::string getType() const;
 
-        void setType(const std::string &type);
+                void setType(const std::string &type);
 
-    };
+            };
 
+        }
+    }
 }

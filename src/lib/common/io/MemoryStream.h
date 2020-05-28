@@ -7,78 +7,80 @@
 #include "Stream.h"
 #include "../utilities/runtime_array.h"
 
-namespace common_lib::io {
+namespace common_lib {
+    namespace io {
 
-    struct MemoryStream : public Stream {
+        struct MemoryStream : public Stream {
 
-        DECLARE_CLASS(MemoryStream, Stream);
+            DECLARE_CLASS(MemoryStream, Stream);
 
-    private:
+        private:
 
-        common_lib::utilities::array_ptr<uint8_t> _buffer;
-        bool _writable;
-        bool _canResize;
-        int64_t _length;
-        int64_t _position;
+            common_lib::utilities::array_ptr<uint8_t> _buffer;
+            bool _writable;
+            bool _canResize;
+            int64_t _length;
+            int64_t _position;
 
-    public:
+        public:
 
-        MemoryStream();
+            MemoryStream();
 
-        explicit MemoryStream(const common_lib::utilities::array_ptr<uint8_t> &buffer);
+            explicit MemoryStream(const common_lib::utilities::array_ptr<uint8_t> &buffer);
 
-        explicit MemoryStream(size_t initialCapacity);
+            explicit MemoryStream(size_t initialCapacity);
 
-        MemoryStream(const common_lib::utilities::array_ptr<uint8_t> &buffer, bool writable);
+            MemoryStream(const common_lib::utilities::array_ptr<uint8_t> &buffer, bool writable);
 
-        MemoryStream(const void *buffer, size_t count);
+            MemoryStream(const void *buffer, size_t count);
 
-        MemoryStream(void *buffer, size_t count, bool writable);
+            MemoryStream(void *buffer, size_t count, bool writable);
 
-        ~MemoryStream() override = default;
+            ~MemoryStream() override = default;
 
-        [[nodiscard]]
-        common_lib::utilities::array_ptr<uint8_t> toArray();
+            [[nodiscard]]
+            common_lib::utilities::array_ptr<uint8_t> toArray();
 
-        int32_t read(void *buffer, size_t bufferSize, int32_t offset, int32_t count) override;
+            int32_t read(void *buffer, size_t bufferSize, int32_t offset, int32_t count) override;
 
-        int32_t write(const void *buffer, size_t bufferSize, int32_t offset, int32_t count) override;
+            int32_t write(const void *buffer, size_t bufferSize, int32_t offset, int32_t count) override;
 
-        void flush() override;
+            void flush() override;
 
-        int64_t getPosition() override;
+            int64_t getPosition() override;
 
-        void setPosition(int64_t position) override;
+            void setPosition(int64_t position) override;
 
-        int64_t getLength() override;
+            int64_t getLength() override;
 
-        void setLength(int64_t length) override;
+            void setLength(int64_t length) override;
 
-        [[nodiscard]]
-        int64_t getCapacity() const;
+            [[nodiscard]]
+            int64_t getCapacity() const;
 
-        void setCapacity(int64_t capacity);
+            void setCapacity(int64_t capacity);
 
-        [[nodiscard]]
-        common_lib::utilities::array_ptr<uint8_t> getBuffer() const;
+            [[nodiscard]]
+            common_lib::utilities::array_ptr<uint8_t> getBuffer() const;
 
-        [[nodiscard]]
-        bool canRead() const override;
+            [[nodiscard]]
+            bool canRead() const override;
 
-        [[nodiscard]]
-        bool canWrite() const override;
+            [[nodiscard]]
+            bool canWrite() const override;
 
-        [[nodiscard]]
-        bool canSeek() const override;
+            [[nodiscard]]
+            bool canSeek() const override;
 
-        void writeTo(const std::shared_ptr<Stream> &stream);
+            void writeTo(const std::shared_ptr<Stream> &stream);
 
-    private:
+        private:
 
-        void ensureCapacity(int64_t target, bool exact);
+            void ensureCapacity(int64_t target, bool exact);
 
-        void setPosition(int64_t position, bool direct);
+            void setPosition(int64_t position, bool direct);
 
-    };
+        };
 
+    }
 }

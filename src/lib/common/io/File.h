@@ -4,18 +4,20 @@
 
 #include "../utilities/static_class.h"
 
-namespace common_lib::io {
+namespace common_lib {
+    namespace io {
 
-    struct File {
+        struct File {
 
-        IMPLEMENT_STATIC_CLASS(File);
+            IMPLEMENT_STATIC_CLASS(File);
 
-    public:
+        public:
 
-        static bool exists(const std::string &path);
+            static bool exists(const std::string &path);
 
-        static bool exists(const char *path);
+            static bool exists(const char *path);
 
-    };
+        };
 
+    }
 }

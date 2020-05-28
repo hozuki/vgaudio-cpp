@@ -4,18 +4,22 @@
 
 #include "../../../common/utilities/static_class.h"
 
-namespace vgaudio::utilities::riff {
+namespace vgaudio {
+    namespace utilities {
+        namespace riff {
 
-    struct WaveFormatTags {
+            struct WaveFormatTags {
 
-        IMPLEMENT_STATIC_CLASS(WaveFormatTags);
+                IMPLEMENT_STATIC_CLASS(WaveFormatTags);
 
-    public:
+            public:
 
-        static constexpr int32_t Pcm = 0x0001;
+                static constexpr int32_t Pcm = 0x0001;
 
-        static constexpr int32_t Extensible = 0xfffe;
+                static constexpr int32_t Extensible = 0xfffe;
 
-    };
+            };
 
+        }
+    }
 }

@@ -3,27 +3,31 @@
 #include <cstdint>
 #include <cstddef>
 
-namespace common_lib::io::compression {
+namespace common_lib {
+    namespace io {
+        namespace compression {
 
-    struct IDeflater {
+            struct IDeflater {
 
-    public:
+            public:
 
-        virtual ~IDeflater() = default;
+                virtual ~IDeflater() = default;
 
-        [[nodiscard]]
-        virtual bool needsInput() const = 0;
+                [[nodiscard]]
+                virtual bool needsInput() const = 0;
 
-        virtual void setInput(const void *inputBuffer, size_t inputBufferSize, int32_t offset, int32_t count) = 0;
+                virtual void setInput(const void *inputBuffer, size_t inputBufferSize, int32_t offset, int32_t count) = 0;
 
-        virtual int32_t getDeflateOutput(void *outputBuffer, size_t outputBufferSize) = 0;
+                virtual int32_t getDeflateOutput(void *outputBuffer, size_t outputBufferSize) = 0;
 
-        virtual bool finish(void *outputBuffer, size_t outputBufferSize, int32_t *bytesRead) = 0;
+                virtual bool finish(void *outputBuffer, size_t outputBufferSize, int32_t *bytesRead) = 0;
 
-    protected:
+            protected:
 
-        IDeflater() = default;
+                IDeflater() = default;
 
-    };
+            };
 
+        }
+    }
 }

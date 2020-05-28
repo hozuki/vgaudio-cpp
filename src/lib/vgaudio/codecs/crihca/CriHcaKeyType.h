@@ -1,13 +1,17 @@
 #pragma once
 
-namespace vgaudio::codecs::crihca {
+namespace vgaudio {
+    namespace codecs {
+        namespace crihca {
 
-    enum class CriHcaKeyType {
+            enum class CriHcaKeyType {
 
-        Type0 = 0,
-        Type1 = 1,
-        Type56 = 0x38,
+                Type0 = 0,
+                Type1 = 1,
+                Type56 = 0x38,
 
-    };
+            };
 
+        }
+    }
 }

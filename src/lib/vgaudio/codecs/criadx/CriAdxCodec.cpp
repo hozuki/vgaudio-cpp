@@ -5,6 +5,7 @@
 #include <cmath>
 #include <algorithm>
 
+#include "../../../common//utilities/_cxx17.h"
 #include "CriAdxCodec.h"
 #include "CriAdxParameters.h"
 #include "../../IProgressReport.h"
@@ -35,7 +36,7 @@ struct _CriAdx_Coefficients_Init {
 
 };
 
-[[maybe_unused]]
+_CXX17_MAYBE_UNUSED
 static _CriAdx_Coefficients_Init _init;
 
 static int32_t CalculateScale(int32_t maxDistance, double *gain, int32_t *scaleToWrite, bool exponential = false) {
@@ -61,7 +62,7 @@ static int32_t CalculateScale(int32_t maxDistance, double *gain, int32_t *scaleT
 
 static int32_t ScaleShortToNibble(int32_t sample) {
     sample = (sample + (INT16_MAX / 14) * IntHelper::sgn(sample)) / (INT16_MAX / 7);
-    return std::clamp(sample, -8, 7);
+    return IntHelper::clamp(sample, -8, 7);
 }
 
 static array_ptr<int16_t> CalculateCoefficients(int32_t highPassFrequency, int32_t sampleRate) {
@@ -84,7 +85,7 @@ static void EncodeFrame(const array_ptr<int16_t> &pcmIn, const array_ptr<uint8_t
     for (auto i = 0; i < samplesPerFrame; i += 1) {
         const int32_t predictedSample = (((*pcmIn)[i + 1] * (*coeffs)[0]) >> 12) + (((*pcmIn)[i] * (*coeffs)[1]) >> 12);
         int32_t distance = (*pcmIn)[i + 2] - predictedSample;
-        distance = std::abs(static_cast<int32_t>(std::clamp<int32_t>(distance, INT16_MIN, INT16_MAX)));
+        distance = std::abs(static_cast<int32_t>(IntHelper::clamp<int32_t>(distance, INT16_MIN, INT16_MAX)));
 
         if (distance > maxDistance) {
             maxDistance = distance;
@@ -99,12 +100,12 @@ static void EncodeFrame(const array_ptr<int16_t> &pcmIn, const array_ptr<uint8_t
     for (auto i = 0; i < samplesPerFrame; i += 1) {
         int32_t predictedSample = (((*pcmIn)[i + 1] * (*coeffs)[0]) >> 12) + (((*pcmIn)[i] * (*coeffs)[1]) >> 12);
         const int32_t rawDistance = (*pcmIn)[i + 2] - predictedSample;
-        const int32_t scaledDistance = std::clamp<int32_t>(static_cast<int32_t>(rawDistance * gain), INT16_MIN, INT16_MAX);
+        const int32_t scaledDistance = IntHelper::clamp<int32_t>(static_cast<int32_t>(rawDistance * gain), INT16_MIN, INT16_MAX);
 
         const int32_t adpcmSample = ScaleShortToNibble(scaledDistance);
         (*adpcm)[i] = adpcmSample;
 
-        const int16_t decodedDistance = std::clamp<int32_t>(scale * adpcmSample, INT16_MIN, INT16_MAX);
+        const int16_t decodedDistance = IntHelper::clamp<int32_t>(scale * adpcmSample, INT16_MIN, INT16_MAX);
 
         if (version == 4) {
             predictedSample = ((*pcmIn)[i + 1] * (*coeffs)[0] + (*pcmIn)[i] * (*coeffs)[1]) >> 12;
@@ -112,7 +113,7 @@ static void EncodeFrame(const array_ptr<int16_t> &pcmIn, const array_ptr<uint8_t
 
         const int32_t decodedSample = decodedDistance + predictedSample;
 
-        (*pcmIn)[i + 2] = std::clamp<int32_t>(decodedSample, INT16_MIN, INT16_MAX);
+        (*pcmIn)[i + 2] = IntHelper::clamp<int32_t>(decodedSample, INT16_MIN, INT16_MAX);
     }
 
     (*adpcmOut)[0] = static_cast<uint8_t>((scaleOut >> 8) & 0x1f);
@@ -176,7 +177,7 @@ array_ptr<int16_t> CriAdxCodec::decode(const array_ptr<uint8_t> &adpcm, int32_t 
                 sample = scale * sample + ((hist1 * (*(*coeffs)[filterNum])[0]) >> 12) + ((hist2 * (*(*coeffs)[filterNum])[1]) >> 12);
             }
 
-            const int16_t finalSample = std::clamp<int32_t>(sample, INT16_MIN, INT16_MAX);
+            const int16_t finalSample = IntHelper::clamp<int32_t>(sample, INT16_MIN, INT16_MAX);
 
             hist2 = hist1;
             hist1 = finalSample;

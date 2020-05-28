@@ -1,3 +1,4 @@
+#include "../../../common/utilities/_cxx17.h"
 #include "CriAdxKey.h"
 #include "../../../common/utilities/runtime_array.h"
 #include "../../../common/utilities/IntHelper.h"
@@ -23,7 +24,7 @@ struct _CriAdx_Key_Initializer {
 
 };
 
-[[maybe_unused]]
+_CXX17_MAYBE_UNUSED
 static _CriAdx_Key_Initializer _init;
 
 CriAdxKey::CriAdxKey(int32_t seed, int32_t mul, int32_t inc)

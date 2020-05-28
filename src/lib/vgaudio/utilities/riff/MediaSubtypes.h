@@ -3,18 +3,22 @@
 #include "../../../common/utilities/static_class.h"
 #include "../../../common/utilities/Guid.h"
 
-namespace vgaudio::utilities::riff {
+namespace vgaudio {
+    namespace utilities {
+        namespace riff {
 
-    struct MediaSubtypes {
+            struct MediaSubtypes {
 
-        IMPLEMENT_STATIC_CLASS(MediaSubtypes);
+                IMPLEMENT_STATIC_CLASS(MediaSubtypes);
 
-    public:
+            public:
 
-        static const common_lib::utilities::Guid Pcm;
+                static const common_lib::utilities::Guid Pcm;
 
-        static const common_lib::utilities::Guid Atrac9;
+                static const common_lib::utilities::Guid Atrac9;
 
-    };
+            };
 
+        }
+    }
 }
