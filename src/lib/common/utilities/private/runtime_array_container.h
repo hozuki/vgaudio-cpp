@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <stdexcept>
 #include <iterator>
 #include <type_traits>
 
