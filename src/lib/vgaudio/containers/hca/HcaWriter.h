@@ -8,72 +8,84 @@
 #include "../AudioWriter.h"
 #include "HcaConfiguration.h"
 
-namespace common_lib::io {
-    struct BinaryWriter;
+namespace common_lib {
+    namespace io {
+        struct BinaryWriter;
+    }
 }
 
-namespace vgaudio::codecs::crihca {
-    struct HcaInfo;
+namespace vgaudio {
+    namespace codecs {
+        namespace crihca {
+            struct HcaInfo;
+        }
+    }
 }
 
-namespace vgaudio::utilities {
-    struct Crc16;
+namespace vgaudio {
+    namespace utilities {
+        struct Crc16;
+    }
 }
 
-namespace vgaudio::containers::hca {
+namespace vgaudio {
+    namespace containers {
+        namespace hca {
 
-    struct HcaWriter : public AudioWriter<HcaConfiguration> {
+            struct HcaWriter : public AudioWriter<HcaConfiguration> {
 
-        DECLARE_CLASS_TEMPLATE(HcaWriter, AudioWriter, HcaConfiguration);
+                DECLARE_CLASS_TEMPLATE(HcaWriter, AudioWriter, HcaConfiguration);
 
-    private:
+            private:
 
-        std::shared_ptr<vgaudio::codecs::crihca::HcaInfo> _hca;
-        common_lib::utilities::jarray2_ptr<uint8_t> _audioData;
-        const uint16_t _version;
-        std::shared_ptr<vgaudio::utilities::Crc16> _crc;
+                std::shared_ptr<vgaudio::codecs::crihca::HcaInfo> _hca;
+                common_lib::utilities::jarray2_ptr<uint8_t> _audioData;
+                const uint16_t _version;
+                std::shared_ptr<vgaudio::utilities::Crc16> _crc;
 
-    public:
+            public:
 
-        HcaWriter();
+                HcaWriter();
 
-        ~HcaWriter() override = default;
+                ~HcaWriter() override = default;
 
-    protected:
+            protected:
 
-        int32_t getFileSize() override;
+                int32_t getFileSize() override;
 
-        void setupWriter(const std::shared_ptr<vgaudio::formats::AudioData> &audio) override;
+                void setupWriter(const std::shared_ptr<vgaudio::formats::AudioData> &audio) override;
 
-        void writeStream(const std::shared_ptr<common_lib::io::Stream> &stream) override;
+                void writeStream(const std::shared_ptr<common_lib::io::Stream> &stream) override;
 
-    private:
+            private:
 
-        [[nodiscard]]
-        int32_t getHeaderSize() const;
+                [[nodiscard]]
+                int32_t getHeaderSize() const;
 
-        void writeHeader(const std::shared_ptr<common_lib::io::Stream> &stream);
+                void writeHeader(const std::shared_ptr<common_lib::io::Stream> &stream);
 
-        void writeHcaChunk(const std::shared_ptr<common_lib::io::BinaryWriter> &writer);
+                void writeHcaChunk(const std::shared_ptr<common_lib::io::BinaryWriter> &writer);
 
-        void writeFmtChunk(const std::shared_ptr<common_lib::io::BinaryWriter> &writer);
+                void writeFmtChunk(const std::shared_ptr<common_lib::io::BinaryWriter> &writer);
 
-        void writeCompChunk(const std::shared_ptr<common_lib::io::BinaryWriter> &writer);
+                void writeCompChunk(const std::shared_ptr<common_lib::io::BinaryWriter> &writer);
 
-        void writeLoopChunk(const std::shared_ptr<common_lib::io::BinaryWriter> &writer);
+                void writeLoopChunk(const std::shared_ptr<common_lib::io::BinaryWriter> &writer);
 
-        void writeCiphChunk(const std::shared_ptr<common_lib::io::BinaryWriter> &writer);
+                void writeCiphChunk(const std::shared_ptr<common_lib::io::BinaryWriter> &writer);
 
-        void writeRvaChunk(const std::shared_ptr<common_lib::io::BinaryWriter> &writer);
+                void writeRvaChunk(const std::shared_ptr<common_lib::io::BinaryWriter> &writer);
 
-        void writeCommChunk(const std::shared_ptr<common_lib::io::BinaryWriter> &writer);
+                void writeCommChunk(const std::shared_ptr<common_lib::io::BinaryWriter> &writer);
 
-        void writePadChunk(const std::shared_ptr<common_lib::io::BinaryWriter> &writer);
+                void writePadChunk(const std::shared_ptr<common_lib::io::BinaryWriter> &writer);
 
-        void writeChunkId(const std::shared_ptr<common_lib::io::BinaryWriter> &writer, const char *id, size_t size = 4);
+                void writeChunkId(const std::shared_ptr<common_lib::io::BinaryWriter> &writer, const char *id, size_t size = 4);
 
-        void writeAudioData(const std::shared_ptr<common_lib::io::Stream> &stream);
+                void writeAudioData(const std::shared_ptr<common_lib::io::Stream> &stream);
 
-    };
+            };
 
+        }
+    }
 }

@@ -2,37 +2,41 @@
 
 #include <memory>
 
-namespace vgaudio::formats {
-    struct IAudioFormat;
-    struct AudioData;
+namespace vgaudio {
+    namespace formats {
+        struct IAudioFormat;
+        struct AudioData;
+    }
 }
 
-namespace vgaudio::containers {
+namespace vgaudio {
+    namespace containers {
 
-    struct Configuration;
+        struct Configuration;
 
-    struct AudioWithConfig final {
+        struct AudioWithConfig final {
 
-    private:
+        private:
 
-        std::shared_ptr<vgaudio::formats::IAudioFormat> _audioFormat;
-        std::shared_ptr<Configuration> _configuration;
+            std::shared_ptr<vgaudio::formats::IAudioFormat> _audioFormat;
+            std::shared_ptr<Configuration> _configuration;
 
-    public:
+        public:
 
-        AudioWithConfig(const std::shared_ptr<vgaudio::formats::IAudioFormat> &audioFormat, const std::shared_ptr<Configuration> &config);
+            AudioWithConfig(const std::shared_ptr<vgaudio::formats::IAudioFormat> &audioFormat, const std::shared_ptr<Configuration> &config);
 
-        ~AudioWithConfig() = default;
+            ~AudioWithConfig() = default;
 
-        [[nodiscard]]
-        std::shared_ptr<vgaudio::formats::IAudioFormat> getAudioFormat() const;
+            [[nodiscard]]
+            std::shared_ptr<vgaudio::formats::IAudioFormat> getAudioFormat() const;
 
-        [[nodiscard]]
-        std::shared_ptr<Configuration> getConfiguration() const;
+            [[nodiscard]]
+            std::shared_ptr<Configuration> getConfiguration() const;
 
-        [[nodiscard]]
-        std::shared_ptr<vgaudio::formats::AudioData> getAudio() const;
+            [[nodiscard]]
+            std::shared_ptr<vgaudio::formats::AudioData> getAudio() const;
 
-    };
+        };
 
+    }
 }

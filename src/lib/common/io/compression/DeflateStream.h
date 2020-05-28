@@ -6,65 +6,69 @@
 #include "../Stream.h"
 #include "CompressionMode.h"
 
-namespace common_lib::io::compression {
+namespace common_lib {
+    namespace io {
+        namespace compression {
 
-    struct IDeflater;
-    struct IInflater;
+            struct IDeflater;
+            struct IInflater;
 
-    struct DeflateStream final : public Stream {
+            struct DeflateStream final : public Stream {
 
-        DECLARE_CLASS(DeflateStream, Stream);
+                DECLARE_CLASS(DeflateStream, Stream);
 
-    private:
+            private:
 
-        std::shared_ptr<Stream> _baseStream;
-        CompressionMode _mode;
-        int32_t _level;
-        IDeflater *_deflater;
-        IInflater *_inflater;
+                std::shared_ptr<Stream> _baseStream;
+                CompressionMode _mode;
+                int32_t _level;
+                IDeflater *_deflater;
+                IInflater *_inflater;
 
-        uint8_t *_buffer;
-        size_t _bufferSize;
+                uint8_t *_buffer;
+                size_t _bufferSize;
 
-        bool _wroteBytes;
+                bool _wroteBytes;
 
-    public:
+            public:
 
-        explicit DeflateStream(const std::shared_ptr<Stream> &stream, CompressionMode mode);
+                explicit DeflateStream(const std::shared_ptr<Stream> &stream, CompressionMode mode);
 
-        explicit DeflateStream(const std::shared_ptr<Stream> &stream, CompressionMode mode, int32_t level);
+                explicit DeflateStream(const std::shared_ptr<Stream> &stream, CompressionMode mode, int32_t level);
 
-        ~DeflateStream() override;
+                ~DeflateStream() override;
 
-        [[nodiscard]]
-        std::shared_ptr<Stream> getBaseStream() const;
+                [[nodiscard]]
+                std::shared_ptr<Stream> getBaseStream() const;
 
-        [[nodiscard]]
-        CompressionMode getCompressionMode() const;
+                [[nodiscard]]
+                CompressionMode getCompressionMode() const;
 
-        [[nodiscard]]
-        int32_t getCompressionLevel() const;
+                [[nodiscard]]
+                int32_t getCompressionLevel() const;
 
-        int32_t read(void *buffer, size_t bufferSize, int32_t offset, int32_t count) override;
+                int32_t read(void *buffer, size_t bufferSize, int32_t offset, int32_t count) override;
 
-        int32_t write(const void *buffer, size_t bufferSize, int32_t offset, int32_t count) override;
+                int32_t write(const void *buffer, size_t bufferSize, int32_t offset, int32_t count) override;
 
-        void flush() override;
+                void flush() override;
 
-        [[nodiscard]]
-        bool canRead() const override;
+                [[nodiscard]]
+                bool canRead() const override;
 
-        [[nodiscard]]
-        bool canWrite() const override;
+                [[nodiscard]]
+                bool canWrite() const override;
 
-    private:
+            private:
 
-        void initialize();
+                void initialize();
 
-        void purgeBuffers();
+                void purgeBuffers();
 
-        int32_t writeDeflaterOutput();
+                int32_t writeDeflaterOutput();
 
-    };
+            };
 
+        }
+    }
 }

@@ -3,22 +3,26 @@
 #include "../Configuration.h"
 #include "WaveCodec.h"
 
-namespace vgaudio::containers::wave {
+namespace vgaudio {
+    namespace containers {
+        namespace wave {
 
-    struct WaveConfiguration : public Configuration {
+            struct WaveConfiguration : public Configuration {
 
-        DECLARE_CLASS(WaveConfiguration, Configuration);
+                DECLARE_CLASS(WaveConfiguration, Configuration);
 
-        WaveConfiguration();
+                WaveConfiguration();
 
-        WaveConfiguration(const WaveConfiguration &other) = default;
+                WaveConfiguration(const WaveConfiguration &other) = default;
 
-        explicit WaveConfiguration(const Configuration &other);
+                explicit WaveConfiguration(const Configuration &other);
 
-        ~WaveConfiguration() override = default;
+                ~WaveConfiguration() override = default;
 
-        WaveCodec codec;
+                WaveCodec codec;
 
-    };
+            };
 
+        }
+    }
 }

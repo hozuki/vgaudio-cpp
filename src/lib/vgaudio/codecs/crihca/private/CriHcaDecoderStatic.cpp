@@ -1,4 +1,5 @@
 #include "../../../../common/utilities/ArrayHelper.h"
+#include "../../../../common/utilities/IntHelper.h"
 #include "../../../utilities/BitReader.h"
 #include "../../../utilities/Mdct.h"
 #include "../HcaInfo.h"
@@ -34,7 +35,7 @@ static void PcmFloatToShort(const shared_ptr<CriHcaFrame> &frame, const jarray2_
 
             for (auto s = 0; s < C::SamplesPerSubframe; s += 1) {
                 const auto sample = static_cast<int32_t>((*buf1)[s] * (INT16_MAX + 1));
-                (*pcm0)[sf * C::SamplesPerSubframe + s] = static_cast<int16_t>(std::clamp<int32_t>(sample, INT16_MIN, INT16_MAX));
+                (*pcm0)[sf * C::SamplesPerSubframe + s] = static_cast<int16_t>(IntHelper::clamp<int32_t>(sample, INT16_MIN, INT16_MAX));
             }
         }
     }
@@ -157,7 +158,7 @@ void DecodeFrame(const array_ptr<uint8_t> &audio, const shared_ptr<CriHcaFrame> 
 void CopyPcmToOutput(const jarray2_ptr<int16_t> &pcmIn, const jarray2_ptr<int16_t> &pcmOut, const shared_ptr<HcaInfo> &hca, int32_t frame) {
     const int32_t currentSample = frame * C::SamplesPerFrame - hca->insertedSamples;
     const int32_t remainingSamples = std::min(hca->sampleCount - currentSample, hca->sampleCount);
-    const int32_t srcStart = std::clamp(0 - currentSample, 0, C::SamplesPerFrame);
+    const int32_t srcStart = IntHelper::clamp(0 - currentSample, 0, C::SamplesPerFrame);
     const int32_t dstStart = std::max(currentSample, 0);
 
     const int32_t length = std::min(C::SamplesPerFrame - srcStart, remainingSamples);

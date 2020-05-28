@@ -2,33 +2,37 @@
 
 #include "RiffSubChunk.h"
 
-namespace vgaudio::utilities::riff {
+namespace vgaudio {
+    namespace utilities {
+        namespace riff {
 
-    struct RiffParser;
+            struct RiffParser;
 
-    struct WaveFactChunk : public RiffSubChunk {
+            struct WaveFactChunk : public RiffSubChunk {
 
-        DECLARE_CLASS(WaveFactChunk, RiffSubChunk);
+                DECLARE_CLASS(WaveFactChunk, RiffSubChunk);
 
-    private:
+            private:
 
-        int32_t _sampleCount;
+                int32_t _sampleCount;
 
-    public:
+            public:
 
-        ~WaveFactChunk() override = default;
+                ~WaveFactChunk() override = default;
 
-        static std::shared_ptr<WaveFactChunk> parse(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
+                static std::shared_ptr<WaveFactChunk> parse(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
-        [[nodiscard]]
-        int32_t getSampleCount() const;
+                [[nodiscard]]
+                int32_t getSampleCount() const;
 
-        void setSampleCount(int32_t sampleCount);
+                void setSampleCount(int32_t sampleCount);
 
-    protected:
+            protected:
 
-        WaveFactChunk(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
+                WaveFactChunk(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
-    };
+            };
 
+        }
+    }
 }

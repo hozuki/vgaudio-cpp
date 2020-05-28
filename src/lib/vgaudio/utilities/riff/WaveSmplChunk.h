@@ -2,101 +2,105 @@
 
 #include "RiffSubChunk.h"
 
-namespace vgaudio::utilities::riff {
+namespace vgaudio {
+    namespace utilities {
+        namespace riff {
 
-    struct RiffParser;
+            struct RiffParser;
 
-    struct WaveSmplChunk : public RiffSubChunk {
+            struct WaveSmplChunk : public RiffSubChunk {
 
-        DECLARE_CLASS(WaveSmplChunk, RiffSubChunk);
+                DECLARE_CLASS(WaveSmplChunk, RiffSubChunk);
 
-    public:
+            public:
 
-        struct SampleLoop final {
+                struct SampleLoop final {
 
-            SampleLoop();
+                    SampleLoop();
 
-            ~SampleLoop() = default;
+                    ~SampleLoop() = default;
 
-            int32_t cuePointId;
-            int32_t type;
-            int32_t start;
-            int32_t end;
-            int32_t fraction;
-            int32_t playCount;
+                    int32_t cuePointId;
+                    int32_t type;
+                    int32_t start;
+                    int32_t end;
+                    int32_t fraction;
+                    int32_t playCount;
 
-        };
+                };
 
-    private:
+            private:
 
-        int32_t _manufacturer;
-        int32_t _product;
-        int32_t _samplePeriod;
-        int32_t _midiUnityNote;
-        int32_t _midiPitchFraction;
-        int32_t _smpteFormat;
-        int32_t _smpteOffset;
-        int32_t _samplerData;
-        common_lib::utilities::array_ptr<SampleLoop> _loops;
+                int32_t _manufacturer;
+                int32_t _product;
+                int32_t _samplePeriod;
+                int32_t _midiUnityNote;
+                int32_t _midiPitchFraction;
+                int32_t _smpteFormat;
+                int32_t _smpteOffset;
+                int32_t _samplerData;
+                common_lib::utilities::array_ptr<SampleLoop> _loops;
 
-    public:
+            public:
 
-        ~WaveSmplChunk() override = default;
+                ~WaveSmplChunk() override = default;
 
-        static std::shared_ptr<WaveSmplChunk> parse(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
+                static std::shared_ptr<WaveSmplChunk> parse(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
-        [[nodiscard]]
-        int32_t getManufacturer() const;
+                [[nodiscard]]
+                int32_t getManufacturer() const;
 
-        void setManufacturer(int32_t manufacturer);
+                void setManufacturer(int32_t manufacturer);
 
-        [[nodiscard]]
-        int32_t getProduct() const;
+                [[nodiscard]]
+                int32_t getProduct() const;
 
-        void setProduct(int32_t product);
+                void setProduct(int32_t product);
 
-        [[nodiscard]]
-        int32_t getSamplePeriod() const;
+                [[nodiscard]]
+                int32_t getSamplePeriod() const;
 
-        void setSamplePeriod(int32_t period);
+                void setSamplePeriod(int32_t period);
 
-        [[nodiscard]]
-        int32_t getMidiUnityNote() const;
+                [[nodiscard]]
+                int32_t getMidiUnityNote() const;
 
-        void setMidiUnityNote(int32_t note);
+                void setMidiUnityNote(int32_t note);
 
-        [[nodiscard]]
-        int32_t getMidiPitchFraction() const;
+                [[nodiscard]]
+                int32_t getMidiPitchFraction() const;
 
-        void setMidiPitchFraction(int32_t fraction);
+                void setMidiPitchFraction(int32_t fraction);
 
-        [[nodiscard]]
-        int32_t getSmpteFormat() const;
+                [[nodiscard]]
+                int32_t getSmpteFormat() const;
 
-        void setSmpteFormat(int32_t format);
+                void setSmpteFormat(int32_t format);
 
-        [[nodiscard]]
-        int32_t getSmpteOffset() const;
+                [[nodiscard]]
+                int32_t getSmpteOffset() const;
 
-        void setSmpteOffset(int32_t offset);
+                void setSmpteOffset(int32_t offset);
 
-        [[nodiscard]]
-        int32_t getSampleLoopCount() const;
+                [[nodiscard]]
+                int32_t getSampleLoopCount() const;
 
-        [[nodiscard]]
-        int32_t getSamplerData() const;
+                [[nodiscard]]
+                int32_t getSamplerData() const;
 
-        void setSamplerData(int32_t data);
+                void setSamplerData(int32_t data);
 
-        [[nodiscard]]
-        common_lib::utilities::array_ptr<SampleLoop> getLoops() const;
+                [[nodiscard]]
+                common_lib::utilities::array_ptr<SampleLoop> getLoops() const;
 
-        void setLoops(const common_lib::utilities::array_ptr<SampleLoop> &loops);
+                void setLoops(const common_lib::utilities::array_ptr<SampleLoop> &loops);
 
-    protected:
+            protected:
 
-        WaveSmplChunk(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
+                WaveSmplChunk(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
-    };
+            };
 
+        }
+    }
 }

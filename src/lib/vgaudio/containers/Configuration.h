@@ -8,22 +8,24 @@ namespace vgaudio {
     struct IProgressReport;
 }
 
-namespace vgaudio::containers {
+namespace vgaudio {
+    namespace containers {
 
-    struct Configuration {
+        struct Configuration {
 
-        DECLARE_ROOT_CLASS(Configuration);
+            DECLARE_ROOT_CLASS(Configuration);
 
-        Configuration();
+            Configuration();
 
-        Configuration(const Configuration &other) = default;
+            Configuration(const Configuration &other) = default;
 
-        virtual ~Configuration() = default;
+            virtual ~Configuration() = default;
 
-        std::shared_ptr<vgaudio::IProgressReport> progress;
+            std::shared_ptr<vgaudio::IProgressReport> progress;
 
-        bool trimFile;
+            bool trimFile;
 
-    };
+        };
 
+    }
 }

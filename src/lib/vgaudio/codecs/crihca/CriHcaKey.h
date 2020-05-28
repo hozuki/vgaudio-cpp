@@ -6,42 +6,46 @@
 #include "../../../common/utilities/traits.h"
 #include "CriHcaKeyType.h"
 
-namespace vgaudio::codecs::crihca {
+namespace vgaudio {
+    namespace codecs {
+        namespace crihca {
 
-    struct CriHcaKey final {
+            struct CriHcaKey final {
 
-        DECLARE_ROOT_CLASS(CriHcaKey);
+                DECLARE_ROOT_CLASS(CriHcaKey);
 
-        explicit CriHcaKey(CriHcaKeyType type);
+                explicit CriHcaKey(CriHcaKeyType type);
 
-        explicit CriHcaKey(uint64_t keyCode);
+                explicit CriHcaKey(uint64_t keyCode);
 
-        ~CriHcaKey() = default;
+                ~CriHcaKey() = default;
 
-    private:
+            private:
 
-        CriHcaKeyType _keyType;
-        uint64_t _keyCode;
-        common_lib::utilities::narray_ptr<uint8_t, 256> _decryptionTable;
-        common_lib::utilities::narray_ptr<uint8_t, 256> _encryptionTable;
+                CriHcaKeyType _keyType;
+                uint64_t _keyCode;
+                common_lib::utilities::narray_ptr<uint8_t, 256> _decryptionTable;
+                common_lib::utilities::narray_ptr<uint8_t, 256> _encryptionTable;
 
-    public:
+            public:
 
-        [[nodiscard]]
-        CriHcaKeyType getKeyType() const;
+                [[nodiscard]]
+                CriHcaKeyType getKeyType() const;
 
-        uint64_t getKeyCode(uint64_t *pKey = nullptr) const;
+                uint64_t getKeyCode(uint64_t *pKey = nullptr) const;
 
-        void getKeyCode(uint64_t &key) const;
+                void getKeyCode(uint64_t &key) const;
 
-        void getKeyCode(uint32_t &key1, uint32_t &key2) const;
+                void getKeyCode(uint32_t &key1, uint32_t &key2) const;
 
-        [[nodiscard]]
-        common_lib::utilities::narray_ptr<uint8_t, 256> getDecryptionTable() const;
+                [[nodiscard]]
+                common_lib::utilities::narray_ptr<uint8_t, 256> getDecryptionTable() const;
 
-        [[nodiscard]]
-        common_lib::utilities::narray_ptr<uint8_t, 256> getEncryptionTable() const;
+                [[nodiscard]]
+                common_lib::utilities::narray_ptr<uint8_t, 256> getEncryptionTable() const;
 
-    };
+            };
 
+        }
+    }
 }

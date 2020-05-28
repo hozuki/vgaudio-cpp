@@ -1,15 +1,17 @@
 #pragma once
 
-namespace vgaudio::containers {
+namespace vgaudio {
+    namespace containers {
 
-    struct IStructure {
+        struct IStructure {
 
-        virtual ~IStructure() = default;
+            virtual ~IStructure() = default;
 
-    protected:
+        protected:
 
-        IStructure() = default;
+            IStructure() = default;
 
-    };
+        };
 
+    }
 }

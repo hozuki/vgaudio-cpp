@@ -8,39 +8,47 @@
 #include "HcaStructure.h"
 #include "HcaConfiguration.h"
 
-namespace vgaudio::codecs::crihca {
-    struct CriHcaKey;
+namespace vgaudio {
+    namespace codecs {
+        namespace crihca {
+            struct CriHcaKey;
+        }
+    }
 }
 
-namespace vgaudio::containers::hca {
+namespace vgaudio {
+    namespace containers {
+        namespace hca {
 
-    struct HcaReader : public AudioReader<HcaStructure, HcaConfiguration> {
+            struct HcaReader : public AudioReader<HcaStructure, HcaConfiguration> {
 
-        DECLARE_CLASS_TEMPLATE(HcaReader, AudioReader, HcaStructure, HcaConfiguration);
+                DECLARE_CLASS_TEMPLATE(HcaReader, AudioReader, HcaStructure, HcaConfiguration);
 
-    private:
+            private:
 
-        std::shared_ptr<vgaudio::codecs::crihca::CriHcaKey> _encryptionKey;
+                std::shared_ptr<vgaudio::codecs::crihca::CriHcaKey> _encryptionKey;
 
-    public:
+            public:
 
-        HcaReader() = default;
+                HcaReader() = default;
 
-        ~HcaReader() override = default;
+                ~HcaReader() override = default;
 
-        [[nodiscard]]
-        std::shared_ptr<vgaudio::codecs::crihca::CriHcaKey> getEncryptionKey() const;
+                [[nodiscard]]
+                std::shared_ptr<vgaudio::codecs::crihca::CriHcaKey> getEncryptionKey() const;
 
-        void setEncryptionKey(const std::shared_ptr<vgaudio::codecs::crihca::CriHcaKey> &encryptionKey);
+                void setEncryptionKey(const std::shared_ptr<vgaudio::codecs::crihca::CriHcaKey> &encryptionKey);
 
-    protected:
+            protected:
 
-        std::shared_ptr<HcaStructure> readFile(const std::shared_ptr<common_lib::io::Stream> &stream, bool readAudioData) override;
+                std::shared_ptr<HcaStructure> readFile(const std::shared_ptr<common_lib::io::Stream> &stream, bool readAudioData) override;
 
-        std::shared_ptr<vgaudio::formats::IAudioFormat> toAudioStream(const std::shared_ptr<HcaStructure> &structure) override;
+                std::shared_ptr<vgaudio::formats::IAudioFormat> toAudioStream(const std::shared_ptr<HcaStructure> &structure) override;
 
-        std::shared_ptr<HcaConfiguration> getConfiguration(const std::shared_ptr<HcaStructure> &structure) override;
+                std::shared_ptr<HcaConfiguration> getConfiguration(const std::shared_ptr<HcaStructure> &structure) override;
 
-    };
+            };
 
+        }
+    }
 }

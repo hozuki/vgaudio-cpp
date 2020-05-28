@@ -1,9 +1,9 @@
 #include <algorithm>
 
+#include "../../../common//utilities/_cxx17.h"
 #include "../../../common/io/BinaryReader.h"
 #include "../../../common/utilities/EndianHelper.h"
 #include "../../../common/utilities/BitHelper.h"
-#include "../../../common/utilities/StrHelper.h"
 #include "../../codecs/crihca/CriHcaEncryption.h"
 #include "../../codecs/crihca/HcaInfo.h"
 #include "../../codecs/crihca/CriHcaKey.h"
@@ -30,7 +30,7 @@ struct _HcaReader_Static_Init {
 
 };
 
-[[maybe_unused]]
+_CXX17_MAYBE_UNUSED
 static _HcaReader_Static_Init _init;
 
 static inline void ReadChunkId(const shared_ptr<BinaryReader> &reader, char *buffer, size_t size = 4) {

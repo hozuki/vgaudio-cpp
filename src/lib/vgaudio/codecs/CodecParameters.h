@@ -9,25 +9,27 @@ namespace vgaudio {
     struct IProgressReport;
 }
 
-namespace vgaudio::codecs {
+namespace vgaudio {
+    namespace codecs {
 
-    struct CodecParameters {
+        struct CodecParameters {
 
-        DECLARE_ROOT_CLASS(CodecParameters);
+            DECLARE_ROOT_CLASS(CodecParameters);
 
-    public:
+        public:
 
-        CodecParameters();
+            CodecParameters();
 
-        virtual ~CodecParameters() = default;
+            virtual ~CodecParameters() = default;
 
-        std::shared_ptr<IProgressReport> progress;
-        int32_t sampleCount;
+            std::shared_ptr<IProgressReport> progress;
+            int32_t sampleCount;
 
-    protected:
+        protected:
 
-        CodecParameters(const CodecParameters &other) = default;
+            CodecParameters(const CodecParameters &other) = default;
 
-    };
+        };
 
+    }
 }

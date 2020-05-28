@@ -6,29 +6,37 @@
 #include "../Configuration.h"
 #include "../../codecs/crihca/CriHcaQuality.h"
 
-namespace vgaudio::codecs::crihca {
-    struct CriHcaKey;
+namespace vgaudio {
+    namespace codecs {
+        namespace crihca {
+            struct CriHcaKey;
+        }
+    }
 }
 
-namespace vgaudio::containers::hca {
+namespace vgaudio {
+    namespace containers {
+        namespace hca {
 
-    struct HcaConfiguration : public Configuration {
+            struct HcaConfiguration : public Configuration {
 
-        DECLARE_CLASS(HcaConfiguration, Configuration);
+                DECLARE_CLASS(HcaConfiguration, Configuration);
 
-        HcaConfiguration();
+                HcaConfiguration();
 
-        HcaConfiguration(const HcaConfiguration &other) = default;
+                HcaConfiguration(const HcaConfiguration &other) = default;
 
-        explicit HcaConfiguration(const Configuration &other);
+                explicit HcaConfiguration(const Configuration &other);
 
-        ~HcaConfiguration() override = default;
+                ~HcaConfiguration() override = default;
 
-        std::shared_ptr<vgaudio::codecs::crihca::CriHcaKey> encryptionKey;
-        vgaudio::codecs::crihca::CriHcaQuality quality;
-        int32_t bitrate;
-        bool limitBitrate;
+                std::shared_ptr<vgaudio::codecs::crihca::CriHcaKey> encryptionKey;
+                vgaudio::codecs::crihca::CriHcaQuality quality;
+                int32_t bitrate;
+                bool limitBitrate;
 
-    };
+            };
 
+        }
+    }
 }

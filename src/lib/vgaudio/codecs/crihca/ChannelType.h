@@ -1,13 +1,17 @@
 #pragma once
 
-namespace vgaudio::codecs::crihca {
+namespace vgaudio {
+    namespace codecs {
+        namespace crihca {
 
-    enum class ChannelType {
+            enum class ChannelType {
 
-        Discrete = 0,
-        StereoPrimary = 1,
-        StereoSecondary = 2,
+                Discrete = 0,
+                StereoPrimary = 1,
+                StereoSecondary = 2,
 
-    };
+            };
 
+        }
+    }
 }

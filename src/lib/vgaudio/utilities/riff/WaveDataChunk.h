@@ -2,33 +2,37 @@
 
 #include "RiffSubChunk.h"
 
-namespace vgaudio::utilities::riff {
+namespace vgaudio {
+    namespace utilities {
+        namespace riff {
 
-    struct RiffParser;
+            struct RiffParser;
 
-    struct WaveDataChunk : public RiffSubChunk {
+            struct WaveDataChunk : public RiffSubChunk {
 
-        DECLARE_CLASS(WaveDataChunk, RiffSubChunk);
+                DECLARE_CLASS(WaveDataChunk, RiffSubChunk);
 
-    private:
+            private:
 
-        common_lib::utilities::array_ptr<uint8_t> _data;
+                common_lib::utilities::array_ptr<uint8_t> _data;
 
-    public:
+            public:
 
-        ~WaveDataChunk() override = default;
+                ~WaveDataChunk() override = default;
 
-        static std::shared_ptr<WaveDataChunk> parse(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
+                static std::shared_ptr<WaveDataChunk> parse(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
-        [[nodiscard]]
-        common_lib::utilities::array_ptr<uint8_t> getData() const;
+                [[nodiscard]]
+                common_lib::utilities::array_ptr<uint8_t> getData() const;
 
-        void setData(const common_lib::utilities::array_ptr<uint8_t> &data);
+                void setData(const common_lib::utilities::array_ptr<uint8_t> &data);
 
-    protected:
+            protected:
 
-        WaveDataChunk(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
+                WaveDataChunk(const std::shared_ptr<RiffParser> &parser, const std::shared_ptr<common_lib::io::BinaryReader> &reader);
 
-    };
+            };
 
+        }
+    }
 }

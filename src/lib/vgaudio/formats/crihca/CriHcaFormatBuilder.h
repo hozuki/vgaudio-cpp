@@ -5,40 +5,48 @@
 #include "../../../common/utilities/runtime_jagged_array.h"
 #include "../AudioFormatBaseBuilder.h"
 
-namespace vgaudio::codecs::crihca {
-    struct HcaInfo;
+namespace vgaudio {
+    namespace codecs {
+        namespace crihca {
+            struct HcaInfo;
+        }
+    }
 }
 
-namespace vgaudio::formats::crihca {
+namespace vgaudio {
+    namespace formats {
+        namespace crihca {
 
-    struct CriHcaFormat;
+            struct CriHcaFormat;
 
-    struct CriHcaFormatBuilder : public AudioFormatBaseBuilder {
+            struct CriHcaFormatBuilder : public AudioFormatBaseBuilder {
 
-        DECLARE_CLASS(CriHcaFormatBuilder, AudioFormatBaseBuilder);
+                DECLARE_CLASS(CriHcaFormatBuilder, AudioFormatBaseBuilder);
 
-    private:
+            private:
 
-        common_lib::utilities::jarray2_ptr<uint8_t> _audioData;
-        std::shared_ptr<vgaudio::codecs::crihca::HcaInfo> _hca;
+                common_lib::utilities::jarray2_ptr<uint8_t> _audioData;
+                std::shared_ptr<vgaudio::codecs::crihca::HcaInfo> _hca;
 
-    public:
+            public:
 
-        CriHcaFormatBuilder(const common_lib::utilities::jarray2_ptr<uint8_t> &audioData, const std::shared_ptr<vgaudio::codecs::crihca::HcaInfo> &hca);
+                CriHcaFormatBuilder(const common_lib::utilities::jarray2_ptr<uint8_t> &audioData, const std::shared_ptr<vgaudio::codecs::crihca::HcaInfo> &hca);
 
-        ~CriHcaFormatBuilder() override = default;
+                ~CriHcaFormatBuilder() override = default;
 
-        [[nodiscard]]
-        common_lib::utilities::jarray2_ptr<uint8_t> getAudioData() const;
+                [[nodiscard]]
+                common_lib::utilities::jarray2_ptr<uint8_t> getAudioData() const;
 
-        [[nodiscard]]
-        std::shared_ptr<vgaudio::codecs::crihca::HcaInfo> getHca() const;
+                [[nodiscard]]
+                std::shared_ptr<vgaudio::codecs::crihca::HcaInfo> getHca() const;
 
-        [[nodiscard]]
-        int32_t getChannelCount() const override;
+                [[nodiscard]]
+                int32_t getChannelCount() const override;
 
-        std::shared_ptr<IAudioFormat> build() override;
+                std::shared_ptr<IAudioFormat> build() override;
 
-    };
+            };
 
+        }
+    }
 }

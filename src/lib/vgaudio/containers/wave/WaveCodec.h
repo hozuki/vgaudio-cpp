@@ -1,12 +1,16 @@
 #pragma once
 
-namespace vgaudio::containers::wave {
+namespace vgaudio {
+    namespace containers {
+        namespace wave {
 
-    enum class WaveCodec {
+            enum class WaveCodec {
 
-        Pcm16Bit = 0,
-        Pcm8Bit = 1,
+                Pcm16Bit = 0,
+                Pcm8Bit = 1,
 
-    };
+            };
 
+        }
+    }
 }

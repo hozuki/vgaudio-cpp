@@ -1,13 +1,17 @@
 #pragma once
 
-namespace vgaudio::codecs::criadx {
+namespace vgaudio {
+    namespace codecs {
+        namespace criadx {
 
-    enum class CriAdxType {
+            enum class CriAdxType {
 
-        Fixed = 2,
-        Linear = 3,
-        Exponential = 4,
+                Fixed = 2,
+                Linear = 3,
+                Exponential = 4,
 
-    };
+            };
 
+        }
+    }
 }

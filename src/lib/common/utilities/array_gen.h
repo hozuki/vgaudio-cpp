@@ -5,68 +5,70 @@
 
 #include "runtime_array.h"
 
-namespace common_lib::utilities {
+namespace common_lib {
+    namespace utilities {
 
-    template<typename T, int32_t start, size_t count, int32_t step>
-    narray_ptr<T, count> generateArray(std::function<T(int32_t)> elementGenerator) {
-        auto table = std::make_shared<std::array<T, count>>();
+        template<typename T, int32_t start, size_t count, int32_t step>
+        narray_ptr<T, count> generateArray(std::function<T(int32_t)> elementGenerator) {
+            auto table = std::make_shared<std::array<T, count>>();
 
-        if (count == 0) {
+            if (count == 0) {
+                return table;
+            }
+
+            auto value = start;
+            size_t i = 0;
+
+            do {
+                (*table)[i] = elementGenerator(value);
+
+                value += step;
+                i += 1;
+            } while (i < count);
+
             return table;
         }
 
-        auto value = start;
-        size_t i = 0;
+        template<typename T, int32_t start, size_t count>
+        narray_ptr<T, count> generateArray(std::function<T(int32_t)> elementGenerator) {
+            return generateArray<T, start, count, 1>(elementGenerator);
+        }
 
-        do {
-            (*table)[i] = elementGenerator(value);
+        template<typename T, size_t count>
+        narray_ptr<T, count> generateArray(std::function<T(int32_t)> elementGenerator) {
+            return generateArray<T, 0, count, 1>(elementGenerator);
+        }
 
-            value += step;
-            i += 1;
-        } while (i < count);
+        template<typename T>
+        array_ptr<T> generateArray(std::function<T(int32_t)> elementGenerator, int32_t start, size_t count, int32_t step) {
+            auto table = make_array_dynamic<T>(count);
 
-        return table;
-    }
+            if (count == 0) {
+                return table;
+            }
 
-    template<typename T, int32_t start, size_t count>
-    narray_ptr<T, count> generateArray(std::function<T(int32_t)> elementGenerator) {
-        return generateArray<T, start, count, 1>(elementGenerator);
-    }
+            auto value = start;
+            size_t i = 0;
 
-    template<typename T, size_t count>
-    narray_ptr<T, count> generateArray(std::function<T(int32_t)> elementGenerator) {
-        return generateArray<T, 0, count, 1>(elementGenerator);
-    }
+            do {
+                (*table)[i] = elementGenerator(value);
 
-    template<typename T>
-    array_ptr<T> generateArray(std::function<T(int32_t)> elementGenerator, int32_t start, size_t count, int32_t step) {
-        auto table = make_array_dynamic<T>(count);
+                value += step;
+                i += 1;
+            } while (i < count);
 
-        if (count == 0) {
             return table;
         }
 
-        auto value = start;
-        size_t i = 0;
+        template<typename T>
+        array_ptr<T> generateArray(std::function<T(int32_t)> elementGenerator, int32_t start, size_t count) {
+            return generateArray(elementGenerator, start, count, 1);
+        }
 
-        do {
-            (*table)[i] = elementGenerator(value);
+        template<typename T>
+        array_ptr<T> generateArray(std::function<T(int32_t)> elementGenerator, size_t count) {
+            return generateArray(elementGenerator, 0, count, 1);
+        }
 
-            value += step;
-            i += 1;
-        } while (i < count);
-
-        return table;
     }
-
-    template<typename T>
-    array_ptr<T> generateArray(std::function<T(int32_t)> elementGenerator, int32_t start, size_t count) {
-        return generateArray(elementGenerator, start, count, 1);
-    }
-
-    template<typename T>
-    array_ptr<T> generateArray(std::function<T(int32_t)> elementGenerator, size_t count) {
-        return generateArray(elementGenerator, 0, count, 1);
-    }
-
 }

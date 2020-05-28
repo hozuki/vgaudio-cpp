@@ -6,55 +6,57 @@
 #include "../utilities/runtime_array.h"
 #include "../utilities/type_sys.h"
 
-namespace common_lib::io {
+namespace common_lib {
+    namespace io {
 
-    struct Stream {
+        struct Stream {
 
-        DECLARE_ROOT_CLASS(Stream);
+            DECLARE_ROOT_CLASS(Stream);
 
-    public:
+        public:
 
-        virtual ~Stream() = default;
+            virtual ~Stream() = default;
 
-        virtual int32_t read(void *buffer, size_t bufferSize, int32_t offset, int32_t count);
+            virtual int32_t read(void *buffer, size_t bufferSize, int32_t offset, int32_t count);
 
-        virtual int32_t read(const common_lib::utilities::array_ptr<uint8_t> &buffer, int32_t offset, int32_t count);
+            virtual int32_t read(const common_lib::utilities::array_ptr<uint8_t> &buffer, int32_t offset, int32_t count);
 
-        virtual int32_t write(const void *buffer, size_t bufferSize, int32_t offset, int32_t count);
+            virtual int32_t write(const void *buffer, size_t bufferSize, int32_t offset, int32_t count);
 
-        virtual int32_t write(const common_lib::utilities::array_ptr<uint8_t> &buffer, int32_t offset, int32_t count);
+            virtual int32_t write(const common_lib::utilities::array_ptr<uint8_t> &buffer, int32_t offset, int32_t count);
 
-        virtual void flush();
+            virtual void flush();
 
-        virtual void seek(int64_t offset, SeekOrigin origin);
+            virtual void seek(int64_t offset, SeekOrigin origin);
 
-        virtual int64_t getPosition();
+            virtual int64_t getPosition();
 
-        virtual void setPosition(int64_t position);
+            virtual void setPosition(int64_t position);
 
-        virtual int64_t getLength();
+            virtual int64_t getLength();
 
-        virtual void setLength(int64_t length);
+            virtual void setLength(int64_t length);
 
-        [[nodiscard]]
-        virtual bool canRead() const;
+            [[nodiscard]]
+            virtual bool canRead() const;
 
-        [[nodiscard]]
-        virtual bool canWrite() const;
+            [[nodiscard]]
+            virtual bool canWrite() const;
 
-        [[nodiscard]]
-        virtual bool canSeek() const;
+            [[nodiscard]]
+            virtual bool canSeek() const;
 
-        void copyTo(const std::shared_ptr<Stream> &destination);
+            void copyTo(const std::shared_ptr<Stream> &destination);
 
-        void copyTo(const std::shared_ptr<Stream> &destination, size_t bufferSize);
+            void copyTo(const std::shared_ptr<Stream> &destination, size_t bufferSize);
 
-    protected:
+        protected:
 
-        Stream() = default;
+            Stream() = default;
 
-        static void validateBufferParameters(const void *buffer, size_t bufferSize, int32_t offset, int32_t count);
+            static void validateBufferParameters(const void *buffer, size_t bufferSize, int32_t offset, int32_t count);
 
-    };
+        };
 
+    }
 }

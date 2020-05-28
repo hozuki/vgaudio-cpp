@@ -6,9 +6,13 @@
 #include "../../../../common/utilities/runtime_array.h"
 #include "../../../../common/utilities/runtime_jagged_array.h"
 
-namespace vgaudio::codecs::crihca {
-    struct CriHcaFrame;
-    struct HcaInfo;
+namespace vgaudio {
+    namespace codecs {
+        namespace crihca {
+            struct CriHcaFrame;
+            struct HcaInfo;
+        }
+    }
 }
 
 using namespace std;

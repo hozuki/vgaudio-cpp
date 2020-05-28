@@ -3,33 +3,37 @@
 #include "../CodecParameters.h"
 #include "CriAdxType.h"
 
-namespace vgaudio::codecs::criadx {
+namespace vgaudio {
+    namespace codecs {
+        namespace criadx {
 
-    struct CriAdxParameters : public CodecParameters {
+            struct CriAdxParameters : public CodecParameters {
 
-        DECLARE_CLASS(CriAdxParameters, CodecParameters);
+                DECLARE_CLASS(CriAdxParameters, CodecParameters);
 
-    public:
+            public:
 
-        CriAdxParameters();
+                CriAdxParameters();
 
-        explicit CriAdxParameters(const CodecParameters &source);
+                explicit CriAdxParameters(const CodecParameters &source);
 
-        CriAdxParameters(const CriAdxParameters &) = default;
+                CriAdxParameters(const CriAdxParameters &) = default;
 
-        CriAdxParameters(CriAdxParameters &&) = default;
+                CriAdxParameters(CriAdxParameters &&) = default;
 
-        ~CriAdxParameters() override = default;
+                ~CriAdxParameters() override = default;
 
-        int32_t sampleRate;
-        int32_t highPassFrequency;
-        int32_t frameSize;
-        int32_t version;
-        int16_t history;
-        int32_t padding;
-        CriAdxType type;
-        int32_t filter;
+                int32_t sampleRate;
+                int32_t highPassFrequency;
+                int32_t frameSize;
+                int32_t version;
+                int16_t history;
+                int32_t padding;
+                CriAdxType type;
+                int32_t filter;
 
-    };
+            };
 
+        }
+    }
 }

@@ -1,12 +1,16 @@
 #pragma once
 
-namespace common_lib::io::compression {
+namespace common_lib {
+    namespace io {
+        namespace compression {
 
-    enum class CompressionMode {
+            enum class CompressionMode {
 
-        Decompress = 0,
-        Compress = 1,
+                Decompress = 0,
+                Compress = 1,
 
-    };
+            };
 
+        }
+    }
 }

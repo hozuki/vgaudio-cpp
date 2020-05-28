@@ -8,55 +8,59 @@
 
 struct z_stream_s;
 
-namespace common_lib::io::compression {
+namespace common_lib {
+    namespace io {
+        namespace compression {
 
-    typedef int z_error_code;
-    typedef int z_flush_code;
+            typedef int z_error_code;
+            typedef int z_flush_code;
 
-    struct ZLibDeflater : public IDeflater {
+            struct ZLibDeflater : public IDeflater {
 
-        DECLARE_ROOT_CLASS(ZLibDeflater);
+                DECLARE_ROOT_CLASS(ZLibDeflater);
 
-    private:
+            private:
 
-        z_stream_s *_z;
-        int32_t _level;
+                z_stream_s *_z;
+                int32_t _level;
 
-        uint8_t *_inputBuffer;
-        size_t _inputBufferSize;
+                uint8_t *_inputBuffer;
+                size_t _inputBufferSize;
 
-    public:
+            public:
 
-        explicit ZLibDeflater(int32_t level);
+                explicit ZLibDeflater(int32_t level);
 
-        ~ZLibDeflater() override;
+                ~ZLibDeflater() override;
 
-        [[nodiscard]]
-        bool needsInput() const override;
+                [[nodiscard]]
+                bool needsInput() const override;
 
-        void setInput(const void *inputBuffer, size_t inputBufferSize, int32_t offset, int32_t count) override;
+                void setInput(const void *inputBuffer, size_t inputBufferSize, int32_t offset, int32_t count) override;
 
-        int32_t getDeflateOutput(void *outputBuffer, size_t outputBufferSize) override;
+                int32_t getDeflateOutput(void *outputBuffer, size_t outputBufferSize) override;
 
-        bool finish(void *outputBuffer, size_t outputBufferSize, int32_t *bytesRead) override;
+                bool finish(void *outputBuffer, size_t outputBufferSize, int32_t *bytesRead) override;
 
-    private:
+            private:
 
-        void initialize();
+                void initialize();
 
-        z_error_code readDeflateOutput(void *outputBuffer, size_t outputBufferSize, z_flush_code flushCode, int32_t *bytesRead);
+                z_error_code readDeflateOutput(void *outputBuffer, size_t outputBufferSize, z_flush_code flushCode, int32_t *bytesRead);
 
-        void invokeDeflateInit(int32_t compressionLevel, int32_t windowBits, int32_t memoryLevel, int32_t strategy);
+                void invokeDeflateInit(int32_t compressionLevel, int32_t windowBits, int32_t memoryLevel, int32_t strategy);
 
-        z_error_code invokeDeflate(z_flush_code flushCode) noexcept(false);
+                z_error_code invokeDeflate(z_flush_code flushCode) noexcept(false);
 
-        void recreateInputBuffer(size_t size);
+                void recreateInputBuffer(size_t size);
 
-        void disposeInputBuffer();
+                void disposeInputBuffer();
 
-        [[nodiscard]]
-        bool isInputBufferCreated() const;
+                [[nodiscard]]
+                bool isInputBufferCreated() const;
 
-    };
+            };
 
+        }
+    }
 }

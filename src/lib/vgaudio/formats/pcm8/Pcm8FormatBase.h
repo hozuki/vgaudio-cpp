@@ -6,60 +6,68 @@
 #include "../../../common/utilities/runtime_jagged_array.h"
 #include "../AudioFormatBase.h"
 
-namespace vgaudio::formats::pcm16 {
-    struct Pcm16Format;
+namespace vgaudio {
+    namespace formats {
+        namespace pcm16 {
+            struct Pcm16Format;
+        }
+    }
 }
 
-namespace vgaudio::formats::pcm8 {
+namespace vgaudio {
+    namespace formats {
+        namespace pcm8 {
 
-    struct Pcm8FormatBuilder;
+            struct Pcm8FormatBuilder;
 
-    struct Pcm8FormatBase : AudioFormatBase {
+            struct Pcm8FormatBase : AudioFormatBase {
 
-        DECLARE_CLASS(Pcm8FormatBase, AudioFormatBase);
+                DECLARE_CLASS(Pcm8FormatBase, AudioFormatBase);
 
-    private:
+            private:
 
-        common_lib::utilities::jarray2_ptr<uint8_t> _channels;
+                common_lib::utilities::jarray2_ptr<uint8_t> _channels;
 
-    public:
+            public:
 
-        Pcm8FormatBase();
+                Pcm8FormatBase();
 
-        Pcm8FormatBase(const common_lib::utilities::jarray2_ptr<uint8_t> &channels, int32_t sampleRate);
+                Pcm8FormatBase(const common_lib::utilities::jarray2_ptr<uint8_t> &channels, int32_t sampleRate);
 
-        explicit Pcm8FormatBase(const std::shared_ptr<Pcm8FormatBuilder> &builder);
+                explicit Pcm8FormatBase(const std::shared_ptr<Pcm8FormatBuilder> &builder);
 
-        ~Pcm8FormatBase() override = default;
+                ~Pcm8FormatBase() override = default;
 
-        std::shared_ptr<vgaudio::formats::pcm16::Pcm16Format> toPcm16() override;
+                std::shared_ptr<vgaudio::formats::pcm16::Pcm16Format> toPcm16() override;
 
-        std::shared_ptr<IAudioFormat> encodeFromPcm16(const std::shared_ptr<vgaudio::formats::pcm16::Pcm16Format> &pcm16) override;
+                std::shared_ptr<IAudioFormat> encodeFromPcm16(const std::shared_ptr<vgaudio::formats::pcm16::Pcm16Format> &pcm16) override;
 
-        [[nodiscard]]
-        common_lib::utilities::jarray2_ptr<uint8_t> getChannels() const;
+                [[nodiscard]]
+                common_lib::utilities::jarray2_ptr<uint8_t> getChannels() const;
 
-        [[nodiscard]]
-        virtual bool isSigned() const = 0;
+                [[nodiscard]]
+                virtual bool isSigned() const = 0;
 
-    protected:
+            protected:
 
-        std::shared_ptr<AudioFormatBase> addInternal(const std::shared_ptr<IAudioFormat> &format) override;
+                std::shared_ptr<AudioFormatBase> addInternal(const std::shared_ptr<IAudioFormat> &format) override;
 
-        std::shared_ptr<AudioFormatBase> getChannelsInternal(const common_lib::utilities::array_ptr<int32_t> &channelRange) override;
+                std::shared_ptr<AudioFormatBase> getChannelsInternal(const common_lib::utilities::array_ptr<int32_t> &channelRange) override;
 
-        [[nodiscard]]
-        virtual std::function<common_lib::utilities::array_ptr<uint8_t>(const common_lib::utilities::array_ptr<int16_t> &)> getEncodeFunction() const = 0;
+                [[nodiscard]]
+                virtual std::function<common_lib::utilities::array_ptr<uint8_t>(const common_lib::utilities::array_ptr<int16_t> &)> getEncodeFunction() const = 0;
 
-        [[nodiscard]]
-        virtual std::function<common_lib::utilities::array_ptr<int16_t>(const common_lib::utilities::array_ptr<uint8_t> &)> getDecodeFunction() const = 0;
+                [[nodiscard]]
+                virtual std::function<common_lib::utilities::array_ptr<int16_t>(const common_lib::utilities::array_ptr<uint8_t> &)> getDecodeFunction() const = 0;
 
-    public:
+            public:
 
-        static std::shared_ptr<Pcm8FormatBuilder> getBuilder(const common_lib::utilities::jarray2_ptr<uint8_t> &channels, int32_t sampleRate);
+                static std::shared_ptr<Pcm8FormatBuilder> getBuilder(const common_lib::utilities::jarray2_ptr<uint8_t> &channels, int32_t sampleRate);
 
-        std::shared_ptr<AudioFormatBaseBuilder> getCloneBuilder() override;
+                std::shared_ptr<AudioFormatBaseBuilder> getCloneBuilder() override;
 
-    };
+            };
 
+        }
+    }
 }
