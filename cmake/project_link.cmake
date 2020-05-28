@@ -1,3 +1,9 @@
+if (VGAUDIO_APPS_DYNAMIC_LINKING)
+    set(VGAUDIO_APPS_LINK_LIBRARY vgaudio)
+else ()
+    set(VGAUDIO_APPS_LINK_LIBRARY vgaudio_static)
+endif ()
+
 target_link_libraries(
         test_misc
         PUBLIC ${VGAUDIO_APPS_LINK_LIBRARY}
