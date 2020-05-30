@@ -19,10 +19,10 @@ $zlibFiles.Add((Join-Path $zlibDir "README" -Resolve), "README-zlib")
 
 foreach ($platform in $platforms)
 {
-    $targetDir = Join-Path $pwd "build/$platform/cmake-build-release/Release" -Resolve
-
     Remove-Item (Join-Path $zlibDir "build") -Recurse
-    msbuild "build\$platform\vgaudio.sln" /p:Configuration = Release
+    & msbuild "build\$platform\vgaudio.sln" /p:"Configuration=Release"
+
+    $targetDir = Join-Path $pwd "build/$platform/cmake-build-release/Release" -Resolve
 
     foreach ($srcPath in $zlibFiles.Keys)
     {
