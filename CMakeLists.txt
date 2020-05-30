@@ -4,10 +4,10 @@ project(vgaudio)
 include(ExternalProject)
 
 include(cmake/common_defines.cmake)
-include(cmake/project_options.cmake)
-include(cmake/project_directories.cmake)
 
 include(cmake/project_options.cmake)
+
+include(cmake/project_directories.cmake)
 
 include(project_targets.cmake)
 
