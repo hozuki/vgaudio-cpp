@@ -12,10 +12,10 @@ namespace vgaudio {
 
                 IMPLEMENT_STATIC_CLASS(CriHcaConstants);
 
-                constexpr static int32_t SubframesPerFrame = 8;
-                constexpr static int32_t SubframeSampleBits = 7;
-                constexpr static int32_t SamplesPerSubframe = 1 << SubframeSampleBits;
-                constexpr static int32_t SamplesPerFrame = SubframesPerFrame * SamplesPerSubframe;
+                static constexpr int32_t SubframesPerFrame = 8;
+                static constexpr int32_t SubframeSampleBits = 7;
+                static constexpr int32_t SamplesPerSubframe = 1 << SubframeSampleBits;
+                static constexpr int32_t SamplesPerFrame = SubframesPerFrame * SamplesPerSubframe;
 
             };
 
