@@ -26,7 +26,7 @@ foreach ($platform in $platforms)
 
     foreach ($srcPath in $zlibFiles.Keys)
     {
-        $dstPath = Join-Path $targetDir $zlibFiles[$srcPath] -Resolve
+        $dstPath = Join-Path $targetDir $zlibFiles[$srcPath]
         Copy-Item $srcPath $dstPath
     }
 }
