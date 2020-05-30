@@ -14,6 +14,8 @@ function Copy-BuiltBinaries([String]$subDir)
 Copy-BuiltBinaries('x86')
 Copy-BuiltBinaries('x64')
 
+. (Join-Path $PSScriptRoot "after_build-common.ps1" -Resolve)
+
 [String]$DistDir = Join-Path $ProjDir "dist"
 mkdir $DistDir -ErrorAction SilentlyContinue
 

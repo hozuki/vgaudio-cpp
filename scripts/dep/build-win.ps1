@@ -2,24 +2,31 @@ mkdir build -ErrorAction SilentlyContinue
 cd build
 mkdir x86 -ErrorAction SilentlyContinue
 cd x86
-& cmake -G "Visual Studio 16 2019" -A Win32 -D CMAKE_BUILD_TYPE=Release -D CMAKE_WORKING_DIR="$pwd" ../..
+& cmake -G "Visual Studio 16 2019" -A Win32 -DCMAKE_BUILD_TYPE=Release -DCMAKE_WORKING_DIR="$pwd" ../..
 cd ..
 mkdir x64
 cd x64
-& cmake -G "Visual Studio 16 2019" -A x64 -D CMAKE_BUILD_TYPE=Release -D CMAKE_WORKING_DIR="$pwd" ../..
+& cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_BUILD_TYPE=Release -DCMAKE_WORKING_DIR="$pwd" ../..
 cd ../..
 
-$zlibBuildDir = Join-Path $PSScriptRoot "../../ext/zlib/build" -Resolve
-$zlibBins = @(
-    Join-Path (Join-Path $zlibBuildDir "bin") "zlib1.dll"
-    Join-Path (Join-Path $zlibBuildDir "lib") "zlib.lib"
-    Join-Path (Join-Path $zlibBuildDir "lib") "zlibstatic.lib"
-)
+$platforms = @("x86", "x64")
+$zlibDir = Join-Path $PSScriptRoot "../../ext/zlib" -Resolve
+$zlibFiles = @{ }
+$zlibFiles.Add((Join-Path $zlibDir "build/bin/zlib1.dll" -Resolve), "zlib1.dll")
+$zlibFiles.Add((Join-Path $zlibDir "build/lib/zlib.lib" -Resolve), "zlib.lib")
+$zlibFiles.Add((Join-Path $zlibDir "build/lib/zlibstatic.lib" -Resolve), "zlibstatic.lib")
+$zlibFiles.Add((Join-Path $zlibDir "README" -Resolve), "README-zlib")
 
-Remove-Item $zlibBuildDir -Recurse
-msbuild build\x86\vgaudio.sln /p:Configuration=Release
-Copy-Item $zlibBins (Join-Path $pwd "build/x86/cmake-build-release/Release" -Resolve)
+foreach ($platform in $platforms)
+{
+    $targetDir = Join-Path $pwd "build/$platform/cmake-build-release/Release" -Resolve
 
-Remove-Item $zlibBuildDir -Recurse
-msbuild build\x64\vgaudio.sln /p:Configuration=Release
-Copy-Item $zlibBins (Join-Path $pwd "build/x64/cmake-build-release/Release" -Resolve)
+    Remove-Item (Join-Path $zlibDir "build") -Recurse
+    msbuild "build\$platform\vgaudio.sln" /p:Configuration = Release
+
+    foreach ($srcPath in $zlibFiles.Keys)
+    {
+        $dstPath = Join-Path $targetDir $zlibFiles[$srcPath] -Resolve
+        Copy-Item $srcPath $dstPath
+    }
+}

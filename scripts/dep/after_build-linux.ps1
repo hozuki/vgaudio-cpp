@@ -6,6 +6,8 @@
 [String]$source = Join-Path $ProjDir "build/cmake-build-release" -Resolve
 Copy-Item -Path "${source}/*" -Destination $BinDir -Recurse
 
+. (Join-Path $PSScriptRoot "after_build-common.ps1" -Resolve)
+
 [String]$DistDir = Join-Path $ProjDir "dist"
 & mkdir "$DistDir"
 

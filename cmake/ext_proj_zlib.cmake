@@ -53,15 +53,21 @@ if (MSVC)
 
     target_link_libraries(
             vgaudio
-            PUBLIC zlib
+            PUBLIC zlibstatic
     )
     target_link_libraries(
             vgaudio_static
-            PUBLIC zlib
+            PUBLIC zlibstatic
     )
 else ()
     # List taken from FindZLIB
-    set(ZLIB_NAMES z zlib zdll zlib1 zlibstatic)
+    # Perform static linking on Windows, dynamic linking otherwise because zlib is a system component on those OSs
+    if (WIN32)
+        set(ZLIB_NAMES zlibstatic z zlib zdll zlib1)
+    else ()
+        set(ZLIB_NAMES z zlib zdll zlib1 zlibstatic)
+    endif ()
+
     find_library(ZLIB_LIBRARY_RELEASE NAMES ${ZLIB_NAMES})
 
     if (NOT ZLIB_LIBRARY_RELEASE)
