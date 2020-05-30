@@ -11,24 +11,28 @@ if (${GNU_COMPILER})
             COMMAND ${CMAKE_STRIP} -s $<TARGET_FILE:vgaudio>
             WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
     )
-    add_custom_command(
-            TARGET test_misc
-            POST_BUILD
-            COMMAND ${CMAKE_STRIP} -s $<TARGET_FILE:test_misc>
-            WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
-    )
-    add_custom_command(
-            TARGET test_deflate
-            POST_BUILD
-            COMMAND ${CMAKE_STRIP} -s $<TARGET_FILE:test_deflate>
-            WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
-    )
-    add_custom_command(
-            TARGET test_wave_io
-            POST_BUILD
-            COMMAND ${CMAKE_STRIP} -s $<TARGET_FILE:test_wave_io>
-            WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
-    )
+
+    if (NOT VGAUDIO_DONT_GENERATE_TEST_TARGETS)
+        add_custom_command(
+                TARGET test_misc
+                POST_BUILD
+                COMMAND ${CMAKE_STRIP} -s $<TARGET_FILE:test_misc>
+                WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+        )
+        add_custom_command(
+                TARGET test_deflate
+                POST_BUILD
+                COMMAND ${CMAKE_STRIP} -s $<TARGET_FILE:test_deflate>
+                WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+        )
+        add_custom_command(
+                TARGET test_wave_io
+                POST_BUILD
+                COMMAND ${CMAKE_STRIP} -s $<TARGET_FILE:test_wave_io>
+                WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+        )
+    endif ()
+
     add_custom_command(
             TARGET hcaenc
             POST_BUILD

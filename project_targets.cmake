@@ -5,8 +5,11 @@ set(VGAUDIO_SOURCE src/lib/vgaudio/codecs/crihca/HcaInfo.h src/lib/vgaudio/codec
 add_library(vgaudio SHARED ${VGAUDIO_SOURCE})
 add_library(vgaudio_static ${VGAUDIO_SOURCE})
 
-add_executable(test_misc test/test_misc/test_misc.cpp)
-add_executable(test_deflate test/test_deflate/test_deflate.cpp)
-add_executable(test_wave_io test/test_wave_io/test_wave_io.cpp)
+if (NOT VGAUDIO_DONT_GENERATE_TEST_TARGETS)
+    add_executable(test_misc test/test_misc/test_misc.cpp)
+    add_executable(test_deflate test/test_deflate/test_deflate.cpp)
+    add_executable(test_wave_io test/test_wave_io/test_wave_io.cpp)
+endif ()
+
 add_executable(hcaenc src/apps/hcaenc/hcaenc.cpp)
 add_executable(hcadec src/apps/hcadec/hcadec.cpp)

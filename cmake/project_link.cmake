@@ -4,18 +4,21 @@ else ()
     set(VGAUDIO_APPS_LINK_LIBRARY vgaudio_static)
 endif ()
 
-target_link_libraries(
-        test_misc
-        PUBLIC ${VGAUDIO_APPS_LINK_LIBRARY}
-)
-target_link_libraries(
-        test_deflate
-        PUBLIC ${VGAUDIO_APPS_LINK_LIBRARY}
-)
-target_link_libraries(
-        test_wave_io
-        PUBLIC ${VGAUDIO_APPS_LINK_LIBRARY}
-)
+if (NOT VGAUDIO_DONT_GENERATE_TEST_TARGETS)
+    target_link_libraries(
+            test_misc
+            PUBLIC ${VGAUDIO_APPS_LINK_LIBRARY}
+    )
+    target_link_libraries(
+            test_deflate
+            PUBLIC ${VGAUDIO_APPS_LINK_LIBRARY}
+    )
+    target_link_libraries(
+            test_wave_io
+            PUBLIC ${VGAUDIO_APPS_LINK_LIBRARY}
+    )
+endif ()
+
 target_link_libraries(
         hcaenc
         PUBLIC ${VGAUDIO_APPS_LINK_LIBRARY}
