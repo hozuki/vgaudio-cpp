@@ -21,7 +21,7 @@ mkdir $DistDir -ErrorAction SilentlyContinue
 
 [String]$zipPath = Join-Path $DistDir "vgaudio.zip"
 
-& 7z a "${zipPath}" "bin\*.*" -r
+& 7z a "${zipPath}" "bin\*" -r
 
 [String]$zipNameVersioned = "vgaudio-vc14.2-${env:APPVEYOR_BUILD_VERSION}_${env:APPVEYOR_REPO_COMMIT}.zip"
 
