@@ -12,9 +12,9 @@ cd ../..
 $platforms = @("x86", "x64")
 $zlibDir = Join-Path $PSScriptRoot "../../ext/zlib" -Resolve
 $zlibFiles = @{ }
-$zlibFiles.Add((Join-Path $zlibDir "build/bin/zlib1.dll" -Resolve), "zlib1.dll")
-$zlibFiles.Add((Join-Path $zlibDir "build/lib/zlib.lib" -Resolve), "zlib.lib")
-$zlibFiles.Add((Join-Path $zlibDir "build/lib/zlibstatic.lib" -Resolve), "zlibstatic.lib")
+$zlibFiles.Add((Join-Path $zlibDir "build/bin/zlib1.dll"), "zlib1.dll")
+$zlibFiles.Add((Join-Path $zlibDir "build/lib/zlib.lib"), "zlib.lib")
+$zlibFiles.Add((Join-Path $zlibDir "build/lib/zlibstatic.lib"), "zlibstatic.lib")
 $zlibFiles.Add((Join-Path $zlibDir "README" -Resolve), "README-zlib")
 
 foreach ($platform in $platforms)
